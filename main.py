@@ -17,6 +17,22 @@ def analyze_resolved_instances(evaluation_result, log_dict, patches):
           f" {total_resolved_instances_with_reproducing_test_passed}")
 
 
+def analyze_unresolved_instances(evaluation_result, log_dict, patches):
+    resolved_instances = evaluation_result["unresolved_ids"]
+    resolved_log_files = []
+    for instance in resolved_instances:
+        if instance in log_dict:
+            resolved_log_files.append(f"answer_issue_logs/{log_dict[instance]}.log")
+    total_resolved_instances = len(resolved_instances)
+    total_resolved_log_files = len(resolved_log_files)
+    total_resolved_instances_with_reproducing_test_passed = sum([1 if is_passed_reproducing_test(log_file)
+                                                                 else 0 for log_file in resolved_log_files])
+    print(f"Total unresolved instances: {total_resolved_instances}")
+    print(f"Total unresolved instance with log files: {total_resolved_log_files}")
+    print(f"Total unresolved instances with reproducing test passed:"
+          f" {total_resolved_instances_with_reproducing_test_passed}")
+
+
 def is_passed_reproducing_test(log_file_path: str):
     """
     Check if the log file indicates that the reproducing test was passed.
@@ -46,3 +62,4 @@ if __name__ == "__main__":
         evaluation_result = json.load(data_file)
 
     analyze_resolved_instances(evaluation_result, log_dict, patches)
+    analyze_unresolved_instances(evaluation_result, log_dict, patches)
