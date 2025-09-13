@@ -1,0 +1,314 @@
+2025-09-11 09:16:53,826 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmpo5d7lg7c/django
+2025-09-11 09:16:53,826 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 09:16:54,123 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 09:16:54,123 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 09:16:54,123 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 09:16:54,123 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 09:16:54,123 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 09:16:54,124 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.django_1776_django-15738:v1
+2025-09-11 09:16:55,021 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_67942fbef9
+2025-09-11 09:16:55,027 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_67942fbef9
+2025-09-11 09:16:59,064 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 09:16:59,242 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:16:59,242 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 09:16:59,420 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:16:59,420 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 09:17:04,394 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.4.1 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20220601171126) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20220601171126) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from asgiref>=3.4.1->Django==4.2.dev20220601171126) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.2.dev20220601171126-0.editable-py3-none-any.whl size=27101 sha256=c0a903c33c170c4255d137a37d2cba85a8df0244e26012e663d7353d887d59f0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-icszp9qz/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.2.dev20220601171126
+    Uninstalling Django-4.2.dev20220601171126:
+      Successfully uninstalled Django-4.2.dev20220601171126
+Successfully installed Django-4.2.dev20220601171126
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 09:17:04,394 - thread-140190446098112.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 09:17:04,395 - thread-140190446098112.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 09:17:04,396 - thread-140190446098112.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+Models migration with change field foreign to many and deleting unique together.
+
+Issue description: 
+Description
+	 
+		(last modified by Simon Charette)
+	 
+I have models like
+class Authors(models.Model):
+	project_data_set = models.ForeignKey(
+		ProjectDataSet,
+		on_delete=models.PROTECT
+	)
+	state = models.IntegerField()
+	start_date = models.DateField()
+	class Meta:
+		 unique_together = (('project_data_set', 'state', 'start_date'),)
+and
+class DataSet(models.Model):
+	name = models.TextField(max_length=50)
+class Project(models.Model):
+	data_sets = models.ManyToManyField(
+		DataSet,
+		through='ProjectDataSet',
+	)
+	name = models.TextField(max_length=50)
+class ProjectDataSet(models.Model):
+	"""
+	Cross table of data set and project
+	"""
+	data_set = models.ForeignKey(DataSet, on_delete=models.PROTECT)
+	project = models.ForeignKey(Project, on_delete=models.PROTECT)
+	class Meta:
+		unique_together = (('data_set', 'project'),)
+when i want to change field project_data_set in Authors model from foreign key field to many to many field I must delete a unique_together, cause it can't be on many to many field.
+Then my model should be like:
+class Authors(models.Model):
+	project_data_set = models.ManyToManyField(
+		ProjectDataSet,
+	)
+	state = models.IntegerField()
+	start_date = models.DateField()
+But when I want to do a migrations.
+python3 manage.py makemigrations
+python3 manage.py migrate
+I have error:
+ValueError: Found wrong number (0) of constraints for app_authors(project_data_set, state, start_date)
+The database is on production, so I can't delete previous initial migrations, and this error isn't depending on database, cause I delete it and error is still the same.
+My solve is to first delete unique_together, then do a makemigrations and then migrate. After that change the field from foreign key to many to many field, then do a makemigrations and then migrate.
+But in this way I have 2 migrations instead of one.
+I added attachment with this project, download it and then do makemigrations and then migrate to see this error.
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 09:17:04,396 - thread-140190446098112.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 09:17:04,397 - thread-140190446098112.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\nModels migration with change field foreign to many and deleting unique together.\n\nIssue description: \nDescription\n\t \n\t\t(last modified by Simon Charette)\n\t \nI have models like\nclass Authors(models.Model):\n\tproject_data_set = models.ForeignKey(\n\t\tProjectDataSet,\n\t\ton_delete=models.PROTECT\n\t)\n\tstate = models.IntegerField()\n\tstart_date = models.DateField()\n\tclass Meta:\n\t\t unique_together = ((\'project_data_set\', \'state\', \'start_date\'),)\nand\nclass DataSet(models.Model):\n\tname = models.TextField(max_length=50)\nclass Project(models.Model):\n\tdata_sets = models.ManyToManyField(\n\t\tDataSet,\n\t\tthrough=\'ProjectDataSet\',\n\t)\n\tname = models.TextField(max_length=50)\nclass ProjectDataSet(models.Model):\n\t"""\n\tCross table of data set and project\n\t"""\n\tdata_set = models.ForeignKey(DataSet, on_delete=models.PROTECT)\n\tproject = models.ForeignKey(Project, on_delete=models.PROTECT)\n\tclass Meta:\n\t\tunique_together = ((\'data_set\', \'project\'),)\nwhen i want to change field project_data_set in Authors model from foreign key field to many to many field I must delete a unique_together, cause it can\'t be on many to many field.\nThen my model should be like:\nclass Authors(models.Model):\n\tproject_data_set = models.ManyToManyField(\n\t\tProjectDataSet,\n\t)\n\tstate = models.IntegerField()\n\tstart_date = models.DateField()\nBut when I want to do a migrations.\npython3 manage.py makemigrations\npython3 manage.py migrate\nI have error:\nValueError: Found wrong number (0) of constraints for app_authors(project_data_set, state, start_date)\nThe database is on production, so I can\'t delete previous initial migrations, and this error isn\'t depending on database, cause I delete it and error is still the same.\nMy solve is to first delete unique_together, then do a makemigrations and then migrate. After that change the field from foreign key to many to many field, then do a makemigrations and then migrate.\nBut in this way I have 2 migrations instead of one.\nI added attachment with this project, download it and then do makemigrations and then migrate to see this error.\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 09:17:22,028 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="I'll search for relevant test cases related to migrations, unique constraints, and field changes in Django's test suite. Let me start by exploring the test structure." additional_kwargs={'tool_calls': [{'id': 'call_00_F8YbS75aFhGFVPpS7vr1fnJe', 'function': {'arguments': '{"basename": "migrations"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 52, 'prompt_tokens': 60614, 'total_tokens': 60666, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 33152}, 'prompt_cache_hit_tokens': 33152, 'prompt_cache_miss_tokens': 27462}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--950c7d68-152c-4523-b0cb-4aacb94e5fdb-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'migrations'}, 'id': 'call_00_F8YbS75aFhGFVPpS7vr1fnJe', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60614, 'output_tokens': 52, 'total_tokens': 60666, 'input_token_details': {'cache_read': 33152}, 'output_token_details': {}}
+2025-09-11 09:17:27,062 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_1Gl0njSAmsC42XwxlGP3ISWT', 'function': {'arguments': '{"basename": "test_migrations.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 22, 'prompt_tokens': 60866, 'total_tokens': 60888, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60608}, 'prompt_cache_hit_tokens': 60608, 'prompt_cache_miss_tokens': 258}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--0926c2bc-d53f-47c6-a3d8-c35add2800cd-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_migrations.py'}, 'id': 'call_00_1Gl0njSAmsC42XwxlGP3ISWT', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60866, 'output_tokens': 22, 'total_tokens': 60888, 'input_token_details': {'cache_read': 60608}, 'output_token_details': {}}
+2025-09-11 09:17:31,742 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_0pZF6nmnhTBC5R8hdIUzkhTy', 'function': {'arguments': '{"basename": "tests.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 20, 'prompt_tokens': 60971, 'total_tokens': 60991, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60864}, 'prompt_cache_hit_tokens': 60864, 'prompt_cache_miss_tokens': 107}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--49249b36-724e-4948-87f1-ac5275ad0a0a-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'tests.py'}, 'id': 'call_00_0pZF6nmnhTBC5R8hdIUzkhTy', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60971, 'output_tokens': 20, 'total_tokens': 60991, 'input_token_details': {'cache_read': 60864}, 'output_token_details': {}}
+2025-09-11 09:17:37,639 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for migration-related test files more specifically:' additional_kwargs={'tool_calls': [{'id': 'call_00_HoJgqB0WJnXJz9NEvjMUN3L9', 'function': {'arguments': '{"relative_path": "tests/migrations/tests.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 35, 'prompt_tokens': 61178, 'total_tokens': 61213, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60928}, 'prompt_cache_hit_tokens': 60928, 'prompt_cache_miss_tokens': 250}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--2160daf2-aaef-4c7b-873a-3183036dfaa4-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/migrations/tests.py'}, 'id': 'call_00_HoJgqB0WJnXJz9NEvjMUN3L9', 'type': 'tool_call'}] usage_metadata={'input_tokens': 61178, 'output_tokens': 35, 'total_tokens': 61213, 'input_token_details': {'cache_read': 60928}, 'output_token_details': {}}
+2025-09-11 09:17:44,320 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_u7YhvHzNQl3wg8rjDDkrH4TP', 'function': {'arguments': '{"basename": "tests.py", "text": "unique_together"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 33, 'prompt_tokens': 61228, 'total_tokens': 61261, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 61184}, 'prompt_cache_hit_tokens': 61184, 'prompt_cache_miss_tokens': 44}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--5d5fc346-9aea-4bd3-8fd8-0bccc8c6c9cb-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'tests.py', 'text': 'unique_together'}, 'id': 'call_00_u7YhvHzNQl3wg8rjDDkrH4TP', 'type': 'tool_call'}] usage_metadata={'input_tokens': 61228, 'output_tokens': 33, 'total_tokens': 61261, 'input_token_details': {'cache_read': 61184}, 'output_token_details': {}}
+2025-09-11 09:18:01,781 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for migration-specific tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_msF7R2ya4aQsdVW1hH1gQEvv', 'function': {'arguments': '{"basename": "tests.py", "text": "ForeignKey.*ManyToManyField"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 45, 'prompt_tokens': 76111, 'total_tokens': 76156, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 61248}, 'prompt_cache_hit_tokens': 61248, 'prompt_cache_miss_tokens': 14863}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--64af0f15-b821-42ea-b8a4-02354d114e99-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'tests.py', 'text': 'ForeignKey.*ManyToManyField'}, 'id': 'call_00_msF7R2ya4aQsdVW1hH1gQEvv', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76111, 'output_tokens': 45, 'total_tokens': 76156, 'input_token_details': {'cache_read': 61248}, 'output_token_details': {}}
+2025-09-11 09:18:09,507 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_zWw5aNbpUruHDzAgiMW21Aoj', 'function': {'arguments': '{"basename": "tests.py", "text": "ForeignKey to ManyToManyField"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 36, 'prompt_tokens': 76171, 'total_tokens': 76207, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76096}, 'prompt_cache_hit_tokens': 76096, 'prompt_cache_miss_tokens': 75}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--31f0030f-ac13-435b-a86f-2670d3c68db1-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'tests.py', 'text': 'ForeignKey to ManyToManyField'}, 'id': 'call_00_zWw5aNbpUruHDzAgiMW21Aoj', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76171, 'output_tokens': 36, 'total_tokens': 76207, 'input_token_details': {'cache_read': 76096}, 'output_token_details': {}}
+2025-09-11 09:18:15,703 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for migration test files more specifically:' additional_kwargs={'tool_calls': [{'id': 'call_00_5j1BARoj1HQHMutDq6k5wSBR', 'function': {'arguments': '{"basename": "migrations"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 30, 'prompt_tokens': 76222, 'total_tokens': 76252, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76160}, 'prompt_cache_hit_tokens': 76160, 'prompt_cache_miss_tokens': 62}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--8290f1d8-e065-4bca-850d-ac311275cbe5-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'migrations'}, 'id': 'call_00_5j1BARoj1HQHMutDq6k5wSBR', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76222, 'output_tokens': 30, 'total_tokens': 76252, 'input_token_details': {'cache_read': 76160}, 'output_token_details': {}}
+2025-09-11 09:18:22,957 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_1NstZJwDDHgOt9NoWxDjSYw7', 'function': {'arguments': '{"relative_path": "tests/migrations"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 21, 'prompt_tokens': 76452, 'total_tokens': 76473, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76224}, 'prompt_cache_hit_tokens': 76224, 'prompt_cache_miss_tokens': 228}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f4d33931-7682-47b2-8104-0ace3e9364da-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/migrations'}, 'id': 'call_00_1NstZJwDDHgOt9NoWxDjSYw7', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76452, 'output_tokens': 21, 'total_tokens': 76473, 'input_token_details': {'cache_read': 76224}, 'output_token_details': {}}
+2025-09-11 09:18:29,658 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_eg2e2HurFLNZN75WpKVrwe76', 'function': {'arguments': '{"relative_path": "tests/migrations"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 16, 'prompt_tokens': 76508, 'total_tokens': 76524, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76416}, 'prompt_cache_hit_tokens': 76416, 'prompt_cache_miss_tokens': 92}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--0181ed8a-85ba-41fe-a3fd-50f31f288256-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'tests/migrations'}, 'id': 'call_00_eg2e2HurFLNZN75WpKVrwe76', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76508, 'output_tokens': 16, 'total_tokens': 76524, 'input_token_details': {'cache_read': 76416}, 'output_token_details': {}}
+2025-09-11 09:18:35,363 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_PptT9xWGSm8WNo5isdUaZofs', 'function': {'arguments': '{"relative_path": "tests/migrations", "text": "unique_together"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 34, 'prompt_tokens': 76546, 'total_tokens': 76580, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76480}, 'prompt_cache_hit_tokens': 76480, 'prompt_cache_miss_tokens': 66}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c2fac5de-c7c1-4c78-bbbb-b102ed31a1cc-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/migrations', 'text': 'unique_together'}, 'id': 'call_00_PptT9xWGSm8WNo5isdUaZofs', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76546, 'output_tokens': 34, 'total_tokens': 76580, 'input_token_details': {'cache_read': 76480}, 'output_token_details': {}}
+2025-09-11 09:18:43,853 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for test files in the migrations directory:' additional_kwargs={'tool_calls': [{'id': 'call_00_zGd3yW8zDJWYoBfVDzrhA4U1', 'function': {'arguments': '{"basename": "test_*.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 33, 'prompt_tokens': 76596, 'total_tokens': 76629, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76544}, 'prompt_cache_hit_tokens': 76544, 'prompt_cache_miss_tokens': 52}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--66aeedfa-ce91-44c6-b4c6-0d794cdc5a4a-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_*.py'}, 'id': 'call_00_zGd3yW8zDJWYoBfVDzrhA4U1', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76596, 'output_tokens': 33, 'total_tokens': 76629, 'input_token_details': {'cache_read': 76544}, 'output_token_details': {}}
+2025-09-11 09:18:52,082 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_n46ibzyoguVuxM6xBa0hjTZZ', 'function': {'arguments': '{"relative_path": "tests/migrations", "type": "function_definition"}', 'name': 'find_ast_node_with_type_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 34, 'prompt_tokens': 76644, 'total_tokens': 76678, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76608}, 'prompt_cache_hit_tokens': 76608, 'prompt_cache_miss_tokens': 36}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--5516bf97-bd49-4f84-a43d-25975b583412-0' tool_calls=[{'name': 'find_ast_node_with_type_in_file_with_relative_path', 'args': {'relative_path': 'tests/migrations', 'type': 'function_definition'}, 'id': 'call_00_n46ibzyoguVuxM6xBa0hjTZZ', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76644, 'output_tokens': 34, 'total_tokens': 76678, 'input_token_details': {'cache_read': 76608}, 'output_token_details': {}}
+2025-09-11 09:18:58,794 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me try a different approach and search for migration test files:' additional_kwargs={'tool_calls': [{'id': 'call_00_qfH56BWhYQF3BiVu8FpqByY7', 'function': {'arguments': '{"basename": "test_autodetector.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 37, 'prompt_tokens': 76694, 'total_tokens': 76731, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76672}, 'prompt_cache_hit_tokens': 76672, 'prompt_cache_miss_tokens': 22}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e84f757c-8456-42cb-9514-bca2ae2b43a0-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_autodetector.py'}, 'id': 'call_00_qfH56BWhYQF3BiVu8FpqByY7', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76694, 'output_tokens': 37, 'total_tokens': 76731, 'input_token_details': {'cache_read': 76672}, 'output_token_details': {}}
+2025-09-11 09:19:06,796 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_zjEvg8oIiSEvNapJ7VMZUN0j', 'function': {'arguments': '{"relative_path": "tests/migrations/test_autodetector.py", "text": "unique_together"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 40, 'prompt_tokens': 76776, 'total_tokens': 76816, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76672}, 'prompt_cache_hit_tokens': 76672, 'prompt_cache_miss_tokens': 104}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--ceb0aee1-e61f-4b3d-a05e-226bfd7c82a4-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/migrations/test_autodetector.py', 'text': 'unique_together'}, 'id': 'call_00_zjEvg8oIiSEvNapJ7VMZUN0j', 'type': 'tool_call'}] usage_metadata={'input_tokens': 76776, 'output_tokens': 40, 'total_tokens': 76816, 'input_token_details': {'cache_read': 76672}, 'output_token_details': {}}
+2025-09-11 09:20:03,818 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for more specific test cases related to unique_together and field changes:' additional_kwargs={'tool_calls': [{'id': 'call_00_s9yVbdV4yz89hNOX5wvQDr6e', 'function': {'arguments': '{"relative_path": "tests/migrations/test_autodetector.py", "text": "ForeignKey.*ManyToManyField"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 61, 'prompt_tokens': 122045, 'total_tokens': 122106, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 76800}, 'prompt_cache_hit_tokens': 76800, 'prompt_cache_miss_tokens': 45245}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--cb6e6a54-0bdf-41d0-8c58-bbbf62cab6ca-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/migrations/test_autodetector.py', 'text': 'ForeignKey.*ManyToManyField'}, 'id': 'call_00_s9yVbdV4yz89hNOX5wvQDr6e', 'type': 'tool_call'}] usage_metadata={'input_tokens': 122045, 'output_tokens': 61, 'total_tokens': 122106, 'input_token_details': {'cache_read': 76800}, 'output_token_details': {}}
+2025-09-11 09:20:10,774 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_rkrryCAFqmIJZFrD2QLbD5xj', 'function': {'arguments': '{"relative_path": "tests/migrations/test_autodetector.py", "text": "ManyToManyField"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 41, 'prompt_tokens': 122121, 'total_tokens': 122162, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 122048}, 'prompt_cache_hit_tokens': 122048, 'prompt_cache_miss_tokens': 73}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b6745aae-15f2-4611-af68-1f5bd35f6377-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/migrations/test_autodetector.py', 'text': 'ManyToManyField'}, 'id': 'call_00_rkrryCAFqmIJZFrD2QLbD5xj', 'type': 'tool_call'}] usage_metadata={'input_tokens': 122121, 'output_tokens': 41, 'total_tokens': 122162, 'input_token_details': {'cache_read': 122048}, 'output_token_details': {}}
+2025-09-11 09:20:12,575 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 09:20:22,813 - thread-140190446098112.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 175391 tokens (167391 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 175391 tokens (167391 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

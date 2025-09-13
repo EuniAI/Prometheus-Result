@@ -1,0 +1,319 @@
+2025-09-11 09:30:50,443 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmpv_5cysrp/django
+2025-09-11 09:30:50,443 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 09:30:50,735 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 09:30:50,735 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 09:30:50,735 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 09:30:50,735 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 09:30:50,735 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 09:30:50,735 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.django_1776_django-16400:v1
+2025-09-11 09:30:51,602 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_ba582e83a1
+2025-09-11 09:30:51,607 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_ba582e83a1
+2025-09-11 09:30:53,034 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 09:30:53,200 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:30:53,200 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 09:30:53,362 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:30:53,362 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 09:30:57,667 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.6.0 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20221222094112) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20221222094112) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from asgiref>=3.6.0->Django==4.2.dev20221222094112) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.2.dev20221222094112-0.editable-py3-none-any.whl size=27386 sha256=e45a5e195539d029510a6999a7effd3c647dffb5f7e249b9d0016c23cfa7b7af
+  Stored in directory: /tmp/pip-ephem-wheel-cache-8l1dn7za/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.2.dev20221222094112
+    Uninstalling Django-4.2.dev20221222094112:
+      Successfully uninstalled Django-4.2.dev20221222094112
+Successfully installed Django-4.2.dev20221222094112
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 09:30:57,667 - thread-140190471276224.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 09:30:57,668 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 09:30:57,669 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+migrate management command does not respect database parameter when adding Permissions.
+
+Issue description: 
+Description
+	 
+		(last modified by Vasanth)
+	 
+When invoking migrate with a database parameter, the migration runs successfully. However, there seems to be a DB read request that runs after the migration. This call does not respect the db param and invokes the db router .
+When naming the db as a parameter, all DB calls in the context of the migrate command are expected to use the database specified.
+I came across this as I am currently using a thread-local variable to get the active DB with a custom DB router for a multi-tenant service .
+Minimal example 
+Setup the custom middleware and custom DB Router as show below. Then run any DB migration. We see that "read {}" is being printed before the exception message.
+Ideally none of this code must be called as the DB was specified during management command.
+from threading import local
+from django.conf import settings
+local_state = local()
+class InvalidTenantException(Exception):
+	pass
+class TenantSubdomainMiddleware:
+	def __init__(self, get_response):
+		self.get_response = get_response
+	def __call__(self, request):
+		## Get Subdomain
+		host = request.get_host().split(":")[0]
+		local_state.subdomain = (
+			# We assume single level of subdomain : app.service.com 
+			# HOST_IP : used to for local dev. 
+			host if host in settings.HOST_IP else host.split(".")[0]
+		)
+		response = self.get_response(request)
+		return response
+class TenantDatabaseRouter:
+	def _default_db(self):
+		subdomain = getattr(local_state, "subdomain", None)
+		if subdomain is not None and subdomain in settings.TENANT_MAP:
+			db_name = settings.TENANT_MAP[local_state.subdomain]
+			return db_name
+		else:
+			raise InvalidTenantException()
+	def db_for_read(self, model, **hints):
+		print("read", hints)
+		return self._default_db()
+	def db_for_write(self, model, **hints):
+		print("write", hints)
+		return self._default_db()
+	def allow_relation(self, obj1, obj2, **hints):
+		return None
+	def allow_migrate(self, db, app_label, model_name=None, **hints):
+		return None
+## settings.py
+MIDDLEWARE = [
+	"utils.tenant_db_router.TenantSubdomainMiddleware",
+	"django.middleware.security.SecurityMiddleware",
+	...
+]
+TENANT_MAP = {"localhost":"default", "tenant_1":"default"}
+DATABASE_ROUTERS = ["utils.tenant_db_router.TenantDatabaseRouter"]
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 09:30:57,670 - thread-140190471276224.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 09:30:57,670 - thread-140190471276224.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\nmigrate management command does not respect database parameter when adding Permissions.\n\nIssue description: \nDescription\n\t \n\t\t(last modified by Vasanth)\n\t \nWhen invoking migrate with a database parameter, the migration runs successfully. However, there seems to be a DB read request that runs after the migration. This call does not respect the db param and invokes the db router .\nWhen naming the db as a parameter, all DB calls in the context of the migrate command are expected to use the database specified.\nI came across this as I am currently using a thread-local variable to get the active DB with a custom DB router for a multi-tenant service .\nMinimal example \nSetup the custom middleware and custom DB Router as show below. Then run any DB migration. We see that "read {}" is being printed before the exception message.\nIdeally none of this code must be called as the DB was specified during management command.\nfrom threading import local\nfrom django.conf import settings\nlocal_state = local()\nclass InvalidTenantException(Exception):\n\tpass\nclass TenantSubdomainMiddleware:\n\tdef __init__(self, get_response):\n\t\tself.get_response = get_response\n\tdef __call__(self, request):\n\t\t## Get Subdomain\n\t\thost = request.get_host().split(":")[0]\n\t\tlocal_state.subdomain = (\n\t\t\t# We assume single level of subdomain : app.service.com \n\t\t\t# HOST_IP : used to for local dev. \n\t\t\thost if host in settings.HOST_IP else host.split(".")[0]\n\t\t)\n\t\tresponse = self.get_response(request)\n\t\treturn response\nclass TenantDatabaseRouter:\n\tdef _default_db(self):\n\t\tsubdomain = getattr(local_state, "subdomain", None)\n\t\tif subdomain is not None and subdomain in settings.TENANT_MAP:\n\t\t\tdb_name = settings.TENANT_MAP[local_state.subdomain]\n\t\t\treturn db_name\n\t\telse:\n\t\t\traise InvalidTenantException()\n\tdef db_for_read(self, model, **hints):\n\t\tprint("read", hints)\n\t\treturn self._default_db()\n\tdef db_for_write(self, model, **hints):\n\t\tprint("write", hints)\n\t\treturn self._default_db()\n\tdef allow_relation(self, obj1, obj2, **hints):\n\t\treturn None\n\tdef allow_migrate(self, db, app_label, model_name=None, **hints):\n\t\treturn None\n## settings.py\nMIDDLEWARE = [\n\t"utils.tenant_db_router.TenantSubdomainMiddleware",\n\t"django.middleware.security.SecurityMiddleware",\n\t...\n]\nTENANT_MAP = {"localhost":"default", "tenant_1":"default"}\nDATABASE_ROUTERS = ["utils.tenant_db_router.TenantDatabaseRouter"]\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 09:31:05,081 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="Looking at the issue, I need to find test cases related to Django's migrate command and database routing, particularly focusing on how the `--database` parameter is handled and how permissions are created during migrations. Let me search for relevant test files and code." additional_kwargs={'tool_calls': [{'id': 'call_00_fwSheKf1b5WzgpcVJPdTbjf8', 'function': {'arguments': '{"basename": "migrate.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 73, 'prompt_tokens': 60844, 'total_tokens': 60917, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60800}, 'prompt_cache_hit_tokens': 60800, 'prompt_cache_miss_tokens': 44}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c083d117-fddf-4fc9-be29-581a8d8e7ab2-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'migrate.py'}, 'id': 'call_00_fwSheKf1b5WzgpcVJPdTbjf8', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60844, 'output_tokens': 73, 'total_tokens': 60917, 'input_token_details': {'cache_read': 60800}, 'output_token_details': {}}
+2025-09-11 09:31:20,380 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_sao8Fyp7q2YPYYht6k2e32hD', 'function': {'arguments': '{"relative_path": "django/core/management/commands/migrate.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 24, 'prompt_tokens': 60963, 'total_tokens': 60987, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60928}, 'prompt_cache_hit_tokens': 60928, 'prompt_cache_miss_tokens': 35}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--898cbc5d-174e-461f-9d52-b9e52d9f3a8b-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'django/core/management/commands/migrate.py'}, 'id': 'call_00_sao8Fyp7q2YPYYht6k2e32hD', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60963, 'output_tokens': 24, 'total_tokens': 60987, 'input_token_details': {'cache_read': 60928}, 'output_token_details': {}}
+2025-09-11 09:31:43,030 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for test files related to migrations and database routing:' additional_kwargs={'tool_calls': [{'id': 'call_00_fTXGRcoEG8JM2IutANlHMabJ', 'function': {'arguments': '{"basename": "test_migrations.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 36, 'prompt_tokens': 67017, 'total_tokens': 67053, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 24320}, 'prompt_cache_hit_tokens': 24320, 'prompt_cache_miss_tokens': 42697}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--78e6b924-7413-4c09-8e46-c23c486f1ab8-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_migrations.py'}, 'id': 'call_00_fTXGRcoEG8JM2IutANlHMabJ', 'type': 'tool_call'}] usage_metadata={'input_tokens': 67017, 'output_tokens': 36, 'total_tokens': 67053, 'input_token_details': {'cache_read': 24320}, 'output_token_details': {}}
+2025-09-11 09:31:49,662 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_5FCyAY76sciE8hKlcrquSMI7', 'function': {'arguments': '{"basename": "test_commands.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 22, 'prompt_tokens': 67138, 'total_tokens': 67160, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 67008}, 'prompt_cache_hit_tokens': 67008, 'prompt_cache_miss_tokens': 130}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c3796609-f737-49fb-923c-133daa852c74-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_commands.py'}, 'id': 'call_00_5FCyAY76sciE8hKlcrquSMI7', 'type': 'tool_call'}] usage_metadata={'input_tokens': 67138, 'output_tokens': 22, 'total_tokens': 67160, 'input_token_details': {'cache_read': 67008}, 'output_token_details': {}}
+2025-09-11 09:31:57,252 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for test files related to database routing:' additional_kwargs={'tool_calls': [{'id': 'call_00_pb4uj6gxmfWi2yxXq1om42nT', 'function': {'arguments': '{"basename": "test_multidb.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 34, 'prompt_tokens': 67290, 'total_tokens': 67324, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 67136}, 'prompt_cache_hit_tokens': 67136, 'prompt_cache_miss_tokens': 154}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--da6dca87-ef9a-4935-b793-7ff9073a2863-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_multidb.py'}, 'id': 'call_00_pb4uj6gxmfWi2yxXq1om42nT', 'type': 'tool_call'}] usage_metadata={'input_tokens': 67290, 'output_tokens': 34, 'total_tokens': 67324, 'input_token_details': {'cache_read': 67136}, 'output_token_details': {}}
+2025-09-11 09:32:04,547 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me also search for test files related to permissions and content types:' additional_kwargs={'tool_calls': [{'id': 'call_00_bHkoPAmT2nF2xnQW0gzM7LSq', 'function': {'arguments': '{"basename": "test_management.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 36, 'prompt_tokens': 67411, 'total_tokens': 67447, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 67264}, 'prompt_cache_hit_tokens': 67264, 'prompt_cache_miss_tokens': 147}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--facccf8f-7af8-4cb2-92e1-495d307ea397-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_management.py'}, 'id': 'call_00_bHkoPAmT2nF2xnQW0gzM7LSq', 'type': 'tool_call'}] usage_metadata={'input_tokens': 67411, 'output_tokens': 36, 'total_tokens': 67447, 'input_token_details': {'cache_read': 67264}, 'output_token_details': {}}
+2025-09-11 09:32:12,238 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for test files related to signals and post_migrate:' additional_kwargs={'tool_calls': [{'id': 'call_00_2qdsnNvMsNQqOEwI1rvAzk74', 'function': {'arguments': '{"basename": "test_commands.py", "text": "emit_post_migrate_signal"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 67659, 'total_tokens': 67713, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 67392}, 'prompt_cache_hit_tokens': 67392, 'prompt_cache_miss_tokens': 267}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--d401a44e-e070-4e5c-9ee5-49736a6ff880-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_commands.py', 'text': 'emit_post_migrate_signal'}, 'id': 'call_00_2qdsnNvMsNQqOEwI1rvAzk74', 'type': 'tool_call'}] usage_metadata={'input_tokens': 67659, 'output_tokens': 54, 'total_tokens': 67713, 'input_token_details': {'cache_read': 67392}, 'output_token_details': {}}
+2025-09-11 09:32:20,557 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_n8IlZ3RSdBHQyOGP9MWRjuc8', 'function': {'arguments': '{"basename": "test_commands.py", "text": "post_migrate"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 36, 'prompt_tokens': 67728, 'total_tokens': 67764, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 67648}, 'prompt_cache_hit_tokens': 67648, 'prompt_cache_miss_tokens': 80}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--2c6fd51d-37a6-4d3f-8cee-cd69eef06dac-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_commands.py', 'text': 'post_migrate'}, 'id': 'call_00_n8IlZ3RSdBHQyOGP9MWRjuc8', 'type': 'tool_call'}] usage_metadata={'input_tokens': 67728, 'output_tokens': 36, 'total_tokens': 67764, 'input_token_details': {'cache_read': 67648}, 'output_token_details': {}}
+2025-09-11 09:32:27,363 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for test files that test the migrate command specifically:' additional_kwargs={'tool_calls': [{'id': 'call_00_ocnU3qV27RFKyHbeUcPp5vvB', 'function': {'arguments': '{"basename": "test_commands.py", "text": "migrate"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 48, 'prompt_tokens': 67779, 'total_tokens': 67827, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 67712}, 'prompt_cache_hit_tokens': 67712, 'prompt_cache_miss_tokens': 67}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--d5b6708a-ee2c-43eb-b2bd-32a673ce4734-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_commands.py', 'text': 'migrate'}, 'id': 'call_00_ocnU3qV27RFKyHbeUcPp5vvB', 'type': 'tool_call'}] usage_metadata={'input_tokens': 67779, 'output_tokens': 48, 'total_tokens': 67827, 'input_token_details': {'cache_read': 67712}, 'output_token_details': {}}
+2025-09-11 09:32:59,911 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests related to database routing and multi-database scenarios:' additional_kwargs={'tool_calls': [{'id': 'call_00_4YZ3tNtbGGvuVJDVZhhxDybD', 'function': {'arguments': '{"relative_path": "tests/migrations/test_multidb.py", "start_line": 1, "end_line": 100}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 55, 'prompt_tokens': 99733, 'total_tokens': 99788, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 67776}, 'prompt_cache_hit_tokens': 67776, 'prompt_cache_miss_tokens': 31957}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--bb546a65-c383-4fae-bb51-6b05e8744c97-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/migrations/test_multidb.py', 'start_line': 1, 'end_line': 100}, 'id': 'call_00_4YZ3tNtbGGvuVJDVZhhxDybD', 'type': 'tool_call'}] usage_metadata={'input_tokens': 99733, 'output_tokens': 55, 'total_tokens': 99788, 'input_token_details': {'cache_read': 67776}, 'output_token_details': {}}
+2025-09-11 09:33:08,981 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me continue reading this file to see more test cases:' additional_kwargs={'tool_calls': [{'id': 'call_00_avBBJNS1vZXprxpK54pwUgR2', 'function': {'arguments': '{"relative_path": "tests/migrations/test_multidb.py", "start_line": 100, "end_line": 200}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 100940, 'total_tokens': 100991, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 99776}, 'prompt_cache_hit_tokens': 99776, 'prompt_cache_miss_tokens': 1164}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7ffa2737-b6ba-4720-ad1d-850a2c888c67-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/migrations/test_multidb.py', 'start_line': 100, 'end_line': 200}, 'id': 'call_00_avBBJNS1vZXprxpK54pwUgR2', 'type': 'tool_call'}] usage_metadata={'input_tokens': 100940, 'output_tokens': 51, 'total_tokens': 100991, 'input_token_details': {'cache_read': 99776}, 'output_token_details': {}}
+2025-09-11 09:33:17,340 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests related to content types and permissions:' additional_kwargs={'tool_calls': [{'id': 'call_00_aF9q65ASLpnsHEUaPh4Yp4cf', 'function': {'arguments': '{"relative_path": "tests/contenttypes_tests/test_migrations.py", "start_line": 1, "end_line": 100}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 53, 'prompt_tokens': 102327, 'total_tokens': 102380, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 100928}, 'prompt_cache_hit_tokens': 100928, 'prompt_cache_miss_tokens': 1399}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a55a3437-7951-4d38-9037-26c89d98e369-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/contenttypes_tests/test_migrations.py', 'start_line': 1, 'end_line': 100}, 'id': 'call_00_aF9q65ASLpnsHEUaPh4Yp4cf', 'type': 'tool_call'}] usage_metadata={'input_tokens': 102327, 'output_tokens': 53, 'total_tokens': 102380, 'input_token_details': {'cache_read': 100928}, 'output_token_details': {}}
+2025-09-11 09:33:25,971 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests related to post_migrate signals and permissions:' additional_kwargs={'tool_calls': [{'id': 'call_00_Evh10eLHVBvnxKIbcB94SxTz', 'function': {'arguments': '{"basename": "test_management.py", "text": "post_migrate"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 102841, 'total_tokens': 102892, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 102336}, 'prompt_cache_hit_tokens': 102336, 'prompt_cache_miss_tokens': 505}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--4b43257a-ccd9-4001-be0e-26604d8e611c-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_management.py', 'text': 'post_migrate'}, 'id': 'call_00_Evh10eLHVBvnxKIbcB94SxTz', 'type': 'tool_call'}] usage_metadata={'input_tokens': 102841, 'output_tokens': 51, 'total_tokens': 102892, 'input_token_details': {'cache_read': 102336}, 'output_token_details': {}}
+2025-09-11 09:33:35,252 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for more tests related to database routing and migrate command:' additional_kwargs={'tool_calls': [{'id': 'call_00_RQIpQP9wefSOVTbRpYomIVdd', 'function': {'arguments': '{"basename": "test_commands.py", "text": "--database"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 47, 'prompt_tokens': 103741, 'total_tokens': 103788, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 102848}, 'prompt_cache_hit_tokens': 102848, 'prompt_cache_miss_tokens': 893}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b9a2b41b-cb09-41e1-a7f4-572d481be6c8-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_commands.py', 'text': '--database'}, 'id': 'call_00_RQIpQP9wefSOVTbRpYomIVdd', 'type': 'tool_call'}] usage_metadata={'input_tokens': 103741, 'output_tokens': 47, 'total_tokens': 103788, 'input_token_details': {'cache_read': 102848}, 'output_token_details': {}}
+2025-09-11 09:33:43,799 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_lgqs0bSHnySXyJGgSRS2cJb4', 'function': {'arguments': '{"basename": "test_commands.py", "text": "database="}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 34, 'prompt_tokens': 103803, 'total_tokens': 103837, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 103744}, 'prompt_cache_hit_tokens': 103744, 'prompt_cache_miss_tokens': 59}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--07c6ff3b-a0fa-42bf-b545-dcc640eda524-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_commands.py', 'text': 'database='}, 'id': 'call_00_lgqs0bSHnySXyJGgSRS2cJb4', 'type': 'tool_call'}] usage_metadata={'input_tokens': 103803, 'output_tokens': 34, 'total_tokens': 103837, 'input_token_details': {'cache_read': 103744}, 'output_token_details': {}}
+2025-09-11 09:34:10,659 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that specifically test the database parameter in migrate command:' additional_kwargs={'tool_calls': [{'id': 'call_00_ID3zq2YEP8O7zI2T5iHs4pf4', 'function': {'arguments': '{"basename": "test_commands.py", "text": "database=\\"other\\""}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 53, 'prompt_tokens': 118816, 'total_tokens': 118869, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 103808}, 'prompt_cache_hit_tokens': 103808, 'prompt_cache_miss_tokens': 15008}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--3cb68949-870f-4bb4-838a-791064849607-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_commands.py', 'text': 'database="other"'}, 'id': 'call_00_ID3zq2YEP8O7zI2T5iHs4pf4', 'type': 'tool_call'}] usage_metadata={'input_tokens': 118816, 'output_tokens': 53, 'total_tokens': 118869, 'input_token_details': {'cache_read': 103808}, 'output_token_details': {}}
+2025-09-11 09:34:11,458 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 09:34:21,773 - thread-140190471276224.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 141848 tokens (133848 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 141848 tokens (133848 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

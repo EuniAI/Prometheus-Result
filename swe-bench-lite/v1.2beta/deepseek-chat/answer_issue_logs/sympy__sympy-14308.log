@@ -1,0 +1,2857 @@
+2025-09-11 15:48:11,911 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmpw1iw8cfw/sympy
+2025-09-11 15:48:11,911 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 15:48:12,103 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 15:48:12,103 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 15:48:12,103 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 15:48:12,103 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 15:48:12,103 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 15:48:12,103 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.sympy_1776_sympy-14308:v1
+2025-09-11 15:48:13,064 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_728550c30d
+2025-09-11 15:48:13,070 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_728550c30d
+2025-09-11 15:48:13,678 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 15:48:13,843 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 15:48:13,843 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 15:48:14,005 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 15:48:14,005 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 15:48:14,828 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: mpmath>=0.19 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from sympy==1.1.2.dev0) (1.3.0)
+Installing collected packages: sympy
+  Attempting uninstall: sympy
+    Found existing installation: sympy 1.1.2.dev0
+    Uninstalling sympy-1.1.2.dev0:
+      Successfully uninstalled sympy-1.1.2.dev0
+  DEPRECATION: Legacy editable install of sympy==1.1.2.dev0 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for sympy
+Successfully installed sympy
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 15:48:14,828 - thread-140190471276224.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 15:48:14,829 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 15:48:14,829 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+vectors break pretty printing
+
+Issue description: 
+```py
+In [1]: from sympy.vector import *
+
+In [2]: e = CoordSysCartesian('e')
+
+In [3]: (x/y)**t*e.j
+Out[3]:
+⎛   t⎞ e_j
+⎜⎛x⎞ e_j ⎟
+⎜⎜─⎟ ⎟
+⎝⎝y⎠ ⎠
+```
+
+Also, when it does print correctly, the baseline is wrong (it should be centered). 
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 15:48:14,830 - thread-140190471276224.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 15:48:14,830 - thread-140190471276224.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\nvectors break pretty printing\n\nIssue description: \n```py\nIn [1]: from sympy.vector import *\n\nIn [2]: e = CoordSysCartesian(\'e\')\n\nIn [3]: (x/y)**t*e.j\nOut[3]:\n⎛   t⎞ e_j\n⎜⎛x⎞ e_j ⎟\n⎜⎜─⎟ ⎟\n⎝⎝y⎠ ⎠\n```\n\nAlso, when it does print correctly, the baseline is wrong (it should be centered). \n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 15:48:21,753 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='I need to search for existing tests related to vector pretty printing in the SymPy codebase. Let me start by exploring the vector module and its tests, particularly focusing on pretty printing functionality.' additional_kwargs={'tool_calls': [{'id': 'call_00_GtBW7uw3crqhVk637hBet8J4', 'function': {'arguments': '{"basename": "test_printing.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 60, 'prompt_tokens': 19888, 'total_tokens': 19948, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19840}, 'prompt_cache_hit_tokens': 19840, 'prompt_cache_miss_tokens': 48}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--76019d04-f27f-4cee-b5b9-ca5a6fd5a791-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_printing.py'}, 'id': 'call_00_GtBW7uw3crqhVk637hBet8J4', 'type': 'tool_call'}] usage_metadata={'input_tokens': 19888, 'output_tokens': 60, 'total_tokens': 19948, 'input_token_details': {'cache_read': 19840}, 'output_token_details': {}}
+2025-09-11 15:48:26,318 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_z03s72FJ7iIOgH63IrbHW2bC', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 23, 'prompt_tokens': 20084, 'total_tokens': 20107, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 20032}, 'prompt_cache_hit_tokens': 20032, 'prompt_cache_miss_tokens': 52}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--0b54b79d-ceaf-4a94-82d2-7d65447f924f-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py'}, 'id': 'call_00_z03s72FJ7iIOgH63IrbHW2bC', 'type': 'tool_call'}] usage_metadata={'input_tokens': 20084, 'output_tokens': 23, 'total_tokens': 20107, 'input_token_details': {'cache_read': 20032}, 'output_token_details': {}}
+2025-09-11 15:48:34,350 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me look for tests related to vector pretty printing with exponents and baseline issues:' additional_kwargs={'tool_calls': [{'id': 'call_00_WZiJvvGLC2R8pQfZtMqYlTdx', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "**"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 56, 'prompt_tokens': 22996, 'total_tokens': 23052, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 17152}, 'prompt_cache_hit_tokens': 17152, 'prompt_cache_miss_tokens': 5844}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--cd8653f2-9b36-49cb-8963-61918ccfa358-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': '**'}, 'id': 'call_00_WZiJvvGLC2R8pQfZtMqYlTdx', 'type': 'tool_call'}] usage_metadata={'input_tokens': 22996, 'output_tokens': 56, 'total_tokens': 23052, 'input_token_details': {'cache_read': 17152}, 'output_token_details': {}}
+2025-09-11 15:48:40,965 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for more specific tests related to vector expressions with exponents:' additional_kwargs={'tool_calls': [{'id': 'call_00_1It0eSCEkuPwiHjUDT4crtAN', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "t"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 53, 'prompt_tokens': 23557, 'total_tokens': 23610, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 23040}, 'prompt_cache_hit_tokens': 23040, 'prompt_cache_miss_tokens': 517}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--4fe7f31e-f999-4fc7-a7f0-dacd32e7b548-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 't'}, 'id': 'call_00_1It0eSCEkuPwiHjUDT4crtAN', 'type': 'tool_call'}] usage_metadata={'input_tokens': 23557, 'output_tokens': 53, 'total_tokens': 23610, 'input_token_details': {'cache_read': 23040}, 'output_token_details': {}}
+2025-09-11 15:48:49,499 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might involve vector expressions with exponents or power operations:' additional_kwargs={'tool_calls': [{'id': 'call_00_yku5J0Bdhx8rNq932O4qGq8a', 'function': {'arguments': '{"text": "**t"}', 'name': 'find_text_node_with_text'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 33, 'prompt_tokens': 24054, 'total_tokens': 24087, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 23552}, 'prompt_cache_hit_tokens': 23552, 'prompt_cache_miss_tokens': 502}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--6039e3d4-5a0d-4a40-a071-42d360467c3d-0' tool_calls=[{'name': 'find_text_node_with_text', 'args': {'text': '**t'}, 'id': 'call_00_yku5J0Bdhx8rNq932O4qGq8a', 'type': 'tool_call'}] usage_metadata={'input_tokens': 24054, 'output_tokens': 33, 'total_tokens': 24087, 'input_token_details': {'cache_read': 23552}, 'output_token_details': {}}
+2025-09-11 15:48:55,986 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that involve vector expressions with power operations or exponents:' additional_kwargs={'tool_calls': [{'id': 'call_00_YFJc5xsSVAP9BjShjMhzSpS4', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "power"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 25248, 'total_tokens': 25302, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 24064}, 'prompt_cache_hit_tokens': 24064, 'prompt_cache_miss_tokens': 1184}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--80dfcbfb-8ee3-4707-92d1-6513896694b4-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'power'}, 'id': 'call_00_YFJc5xsSVAP9BjShjMhzSpS4', 'type': 'tool_call'}] usage_metadata={'input_tokens': 25248, 'output_tokens': 54, 'total_tokens': 25302, 'input_token_details': {'cache_read': 24064}, 'output_token_details': {}}
+2025-09-11 15:49:02,240 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might involve vector expressions with multiplication or scalar operations:' additional_kwargs={'tool_calls': [{'id': 'call_00_TrVZlHqoB9SP34t94VKXEqab', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "a*N.i"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 58, 'prompt_tokens': 25317, 'total_tokens': 25375, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 25280}, 'prompt_cache_hit_tokens': 25280, 'prompt_cache_miss_tokens': 37}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c7e745f4-9b3a-4ef2-9246-db939edeb2d7-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'a*N.i'}, 'id': 'call_00_TrVZlHqoB9SP34t94VKXEqab', 'type': 'tool_call'}] usage_metadata={'input_tokens': 25317, 'output_tokens': 58, 'total_tokens': 25375, 'input_token_details': {'cache_read': 25280}, 'output_token_details': {}}
+2025-09-11 15:49:09,126 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me look for more comprehensive vector tests that might include expressions with exponents:' additional_kwargs={'tool_calls': [{'id': 'call_00_t0oi6FWnqkeG2NufeqhdRdxN', 'function': {'arguments': '{"basename": "test_vector.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 36, 'prompt_tokens': 25560, 'total_tokens': 25596, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 25344}, 'prompt_cache_hit_tokens': 25344, 'prompt_cache_miss_tokens': 216}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7a61c0b5-226f-40a1-bd74-e89d66726ed0-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_vector.py'}, 'id': 'call_00_t0oi6FWnqkeG2NufeqhdRdxN', 'type': 'tool_call'}] usage_metadata={'input_tokens': 25560, 'output_tokens': 36, 'total_tokens': 25596, 'input_token_details': {'cache_read': 25344}, 'output_token_details': {}}
+2025-09-11 15:49:15,843 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_0uaxbmC7dc2WK1jnc2rLO0Ly', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 22, 'prompt_tokens': 25682, 'total_tokens': 25704, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 25536}, 'prompt_cache_hit_tokens': 25536, 'prompt_cache_miss_tokens': 146}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--83e68d74-b3d4-4955-8a48-fa5b7ad4778b-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py'}, 'id': 'call_00_0uaxbmC7dc2WK1jnc2rLO0Ly', 'type': 'tool_call'}] usage_metadata={'input_tokens': 25682, 'output_tokens': 22, 'total_tokens': 25704, 'input_token_details': {'cache_read': 25536}, 'output_token_details': {}}
+2025-09-11 15:49:25,098 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with exponents or power operations:' additional_kwargs={'tool_calls': [{'id': 'call_00_LjlSwHaPBnMz50ZeD6RJSxpt', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py", "text": "**2"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 56, 'prompt_tokens': 28871, 'total_tokens': 28927, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 25664}, 'prompt_cache_hit_tokens': 25664, 'prompt_cache_miss_tokens': 3207}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c4430897-56bd-48df-b44a-cca243b26af0-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py', 'text': '**2'}, 'id': 'call_00_LjlSwHaPBnMz50ZeD6RJSxpt', 'type': 'tool_call'}] usage_metadata={'input_tokens': 28871, 'output_tokens': 56, 'total_tokens': 28927, 'input_token_details': {'cache_read': 25664}, 'output_token_details': {}}
+2025-09-11 15:49:33,631 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might involve vector expressions with more complex power operations:' additional_kwargs={'tool_calls': [{'id': 'call_00_eVZ3TeLMDiwpbw8mqPOSXVfK', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py", "text": "**3"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 55, 'prompt_tokens': 30483, 'total_tokens': 30538, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 28864}, 'prompt_cache_hit_tokens': 28864, 'prompt_cache_miss_tokens': 1619}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--dc08ef60-6955-4d4f-b7bf-517f09108c4e-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py', 'text': '**3'}, 'id': 'call_00_eVZ3TeLMDiwpbw8mqPOSXVfK', 'type': 'tool_call'}] usage_metadata={'input_tokens': 30483, 'output_tokens': 55, 'total_tokens': 30538, 'input_token_details': {'cache_read': 28864}, 'output_token_details': {}}
+2025-09-11 15:49:41,283 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with symbolic exponents:' additional_kwargs={'tool_calls': [{'id': 'call_00_DUvTupG0nROID4lSwTJqu9kK', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py", "text": "**t"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 31292, 'total_tokens': 31346, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 30528}, 'prompt_cache_hit_tokens': 30528, 'prompt_cache_miss_tokens': 764}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a33fb589-d428-4807-9588-c8f5c18ac3d6-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py', 'text': '**t'}, 'id': 'call_00_DUvTupG0nROID4lSwTJqu9kK', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31292, 'output_tokens': 54, 'total_tokens': 31346, 'input_token_details': {'cache_read': 30528}, 'output_token_details': {}}
+2025-09-11 15:49:47,561 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might involve vector expressions with more complex mathematical operations:' additional_kwargs={'tool_calls': [{'id': 'call_00_MlSEjgV8xAX6QOv6v7ocH9WY', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py", "text": "sqrt"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 31361, 'total_tokens': 31415, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31296}, 'prompt_cache_hit_tokens': 31296, 'prompt_cache_miss_tokens': 65}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--0d1bb6c5-7752-4520-88d4-657135bd21f5-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py', 'text': 'sqrt'}, 'id': 'call_00_MlSEjgV8xAX6QOv6v7ocH9WY', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31361, 'output_tokens': 54, 'total_tokens': 31415, 'input_token_details': {'cache_read': 31296}, 'output_token_details': {}}
+2025-09-11 15:49:53,726 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might involve vector expressions with trigonometric functions:' additional_kwargs={'tool_calls': [{'id': 'call_00_Dav3BN8Nvcg2knuRyxT7uxFF', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py", "text": "sin"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 52, 'prompt_tokens': 31849, 'total_tokens': 31901, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31360}, 'prompt_cache_hit_tokens': 31360, 'prompt_cache_miss_tokens': 489}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--225b635f-e6b3-4b09-b7d9-6bc6fb0ce556-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py', 'text': 'sin'}, 'id': 'call_00_Dav3BN8Nvcg2knuRyxT7uxFF', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31849, 'output_tokens': 52, 'total_tokens': 31901, 'input_token_details': {'cache_read': 31360}, 'output_token_details': {}}
+2025-09-11 15:50:00,043 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_Jx55xMpBXSvno4jzZ402mAib', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "Integral"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 61, 'prompt_tokens': 33115, 'total_tokens': 33176, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31872}, 'prompt_cache_hit_tokens': 31872, 'prompt_cache_miss_tokens': 1243}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--aa0445ac-c2e9-458b-88e3-614212d9dac7-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'Integral'}, 'id': 'call_00_Jx55xMpBXSvno4jzZ402mAib', 'type': 'tool_call'}] usage_metadata={'input_tokens': 33115, 'output_tokens': 61, 'total_tokens': 33176, 'input_token_details': {'cache_read': 31872}, 'output_token_details': {}}
+2025-09-11 15:50:07,785 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_z8txTAbxJ6bm3SaY8bt2KmpT', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "Function"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 59, 'prompt_tokens': 33805, 'total_tokens': 33864, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 33152}, 'prompt_cache_hit_tokens': 33152, 'prompt_cache_miss_tokens': 653}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7cae7bba-a761-4680-9864-2f4c567ce349-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'Function'}, 'id': 'call_00_z8txTAbxJ6bm3SaY8bt2KmpT', 'type': 'tool_call'}] usage_metadata={'input_tokens': 33805, 'output_tokens': 59, 'total_tokens': 33864, 'input_token_details': {'cache_read': 33152}, 'output_token_details': {}}
+2025-09-11 15:50:14,367 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_n6Avhr6ftOoKyXqE0HhT5OXt', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "f(b)"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 62, 'prompt_tokens': 34046, 'total_tokens': 34108, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 33856}, 'prompt_cache_hit_tokens': 33856, 'prompt_cache_miss_tokens': 190}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--77cf561e-c3b2-4623-bdf1-79a363423893-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'f(b)'}, 'id': 'call_00_n6Avhr6ftOoKyXqE0HhT5OXt', 'type': 'tool_call'}] usage_metadata={'input_tokens': 34046, 'output_tokens': 62, 'total_tokens': 34108, 'input_token_details': {'cache_read': 33856}, 'output_token_details': {}}
+2025-09-11 15:50:21,141 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_7nZmASGA7LhjkYRN25MIeFbM', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "C.x**2"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 34789, 'total_tokens': 34852, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 34048}, 'prompt_cache_hit_tokens': 34048, 'prompt_cache_miss_tokens': 741}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--8ebabfa5-b6ad-4fae-9c87-973510748f65-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'C.x**2'}, 'id': 'call_00_7nZmASGA7LhjkYRN25MIeFbM', 'type': 'tool_call'}] usage_metadata={'input_tokens': 34789, 'output_tokens': 63, 'total_tokens': 34852, 'input_token_details': {'cache_read': 34048}, 'output_token_details': {}}
+2025-09-11 15:50:29,063 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_OeQERFy5mQs1RBBlU4fDXB8T', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "N.x**2"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 35285, 'total_tokens': 35348, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 34816}, 'prompt_cache_hit_tokens': 34816, 'prompt_cache_miss_tokens': 469}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--836e1d98-a58d-47d2-bf73-05a2895a9574-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'N.x**2'}, 'id': 'call_00_OeQERFy5mQs1RBBlU4fDXB8T', 'type': 'tool_call'}] usage_metadata={'input_tokens': 35285, 'output_tokens': 63, 'total_tokens': 35348, 'input_token_details': {'cache_read': 34816}, 'output_token_details': {}}
+2025-09-11 15:50:39,012 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_6D3ujBPKPy64WOluxlenzVIR', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "a**2"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 62, 'prompt_tokens': 35773, 'total_tokens': 35835, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 35328}, 'prompt_cache_hit_tokens': 35328, 'prompt_cache_miss_tokens': 445}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b4bd7341-016a-480c-931e-9115551b324d-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'a**2'}, 'id': 'call_00_6D3ujBPKPy64WOluxlenzVIR', 'type': 'tool_call'}] usage_metadata={'input_tokens': 35773, 'output_tokens': 62, 'total_tokens': 35835, 'input_token_details': {'cache_read': 35328}, 'output_token_details': {}}
+2025-09-11 15:50:46,545 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_SghjTDyVGoQ8RGBLuC95iuN5', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "3*C.y"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 36254, 'total_tokens': 36317, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 35776}, 'prompt_cache_hit_tokens': 35776, 'prompt_cache_miss_tokens': 478}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--564c4a42-ea53-4f24-bad7-e9859db7cdd5-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': '3*C.y'}, 'id': 'call_00_SghjTDyVGoQ8RGBLuC95iuN5', 'type': 'tool_call'}] usage_metadata={'input_tokens': 36254, 'output_tokens': 63, 'total_tokens': 36317, 'input_token_details': {'cache_read': 35776}, 'output_token_details': {}}
+2025-09-11 15:50:52,934 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_SXZHtZis6OfVWx7NmFoP9tEf', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "3*(C.y"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 36648, 'total_tokens': 36711, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 36288}, 'prompt_cache_hit_tokens': 36288, 'prompt_cache_miss_tokens': 360}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--6d6ca8d1-b372-4d16-82cc-d22bac9185c6-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': '3*(C.y'}, 'id': 'call_00_SXZHtZis6OfVWx7NmFoP9tEf', 'type': 'tool_call'}] usage_metadata={'input_tokens': 36648, 'output_tokens': 63, 'total_tokens': 36711, 'input_token_details': {'cache_read': 36288}, 'output_token_details': {}}
+2025-09-11 15:51:01,252 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_QDVzVAHtIeo4oqmUwYObtJta', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "C.y - c"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 36928, 'total_tokens': 36991, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 36672}, 'prompt_cache_hit_tokens': 36672, 'prompt_cache_miss_tokens': 256}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--17829b11-bd19-45dd-af5e-10904b51d827-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': 'C.y - c'}, 'id': 'call_00_QDVzVAHtIeo4oqmUwYObtJta', 'type': 'tool_call'}] usage_metadata={'input_tokens': 36928, 'output_tokens': 63, 'total_tokens': 36991, 'input_token_details': {'cache_read': 36672}, 'output_token_details': {}}
+2025-09-11 15:51:09,470 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_86x258fn6fwBVpx9OryQ269Y', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "3*C.y*N.x**2"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 68, 'prompt_tokens': 37208, 'total_tokens': 37276, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 36928}, 'prompt_cache_hit_tokens': 36928, 'prompt_cache_miss_tokens': 280}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--58f67950-c951-4183-b067-b9b0faf30eb9-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': '3*C.y*N.x**2'}, 'id': 'call_00_86x258fn6fwBVpx9OryQ269Y', 'type': 'tool_call'}] usage_metadata={'input_tokens': 37208, 'output_tokens': 68, 'total_tokens': 37276, 'input_token_details': {'cache_read': 36928}, 'output_token_details': {}}
+2025-09-11 15:51:16,973 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_0nL9dMsLVAROE3UZJDvrco6n', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "3*N.x**2*C.y"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 68, 'prompt_tokens': 37607, 'total_tokens': 37675, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 37248}, 'prompt_cache_hit_tokens': 37248, 'prompt_cache_miss_tokens': 359}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--cf6dc802-0972-45ff-8ad4-d971bb421132-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': '3*N.x**2*C.y'}, 'id': 'call_00_0nL9dMsLVAROE3UZJDvrco6n', 'type': 'tool_call'}] usage_metadata={'input_tokens': 37607, 'output_tokens': 68, 'total_tokens': 37675, 'input_token_details': {'cache_read': 37248}, 'output_token_details': {}}
+2025-09-11 15:51:23,704 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might involve vector expressions with more complex mathematical operations in the printing tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_bnG7iTuBZExEgMMYlOc4zUPY', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py", "text": "3*C.y*N.x**2"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 68, 'prompt_tokens': 37771, 'total_tokens': 37839, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 37632}, 'prompt_cache_hit_tokens': 37632, 'prompt_cache_miss_tokens': 139}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--4d5d819a-2ef8-4725-ae1c-a4ecf120365a-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py', 'text': '3*C.y*N.x**2'}, 'id': 'call_00_bnG7iTuBZExEgMMYlOc4zUPY', 'type': 'tool_call'}] usage_metadata={'input_tokens': 37771, 'output_tokens': 68, 'total_tokens': 37839, 'input_token_details': {'cache_read': 37632}, 'output_token_details': {}}
+2025-09-11 15:53:09,973 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Based on my search through the vector module tests, I have found several relevant test cases that could potentially break existing functionality if the vector pretty printing issue is fixed. Let me provide 8 complete test cases:\n\n--- BEGIN TEST CASES ---\n\nFile: sympy/vector/tests/test_printing.py\nLine Number: 98-111\nContent:\ndef test_str_printing():\n    assert str(v[0]) == \'0\'\n    assert str(v[1]) == \'N.i\'\n    assert str(v[2]) == \'(-1)*N.i\'\n    assert str(v[3]) == \'N.i + N.j\'\n    assert str(v[8]) == \'N.j + (C.x**2 - Integral(f(b), b))*N.k\'\n    assert str(v[9]) == \'C.k + N.i\'\n    assert str(s) == \'3*C.y*N.x**2\'\n    assert str(d[0]) == \'0\'\n    assert str(d[1]) == \'(N.i|N.k)\'\n    assert str(d[4]) == \'a*(N.i|N.k)\'\n    assert str(d[5]) == \'a*(N.i|N.k) + (-b)*(N.j|N.k)\'\n    assert str(d[8]) == (\'(N.j|N.k) + (C.x**2 - \' +\n                         \'Integral(f(b), b))*(N.k|N.k)\')\n\nFile: sympy/vector/tests/test_printing.py\nLine Number: 115-126\nContent:\n@XFAIL\ndef test_pretty_printing_ascii():\n    assert pretty(v[0]) == u\'0\'\n    assert pretty(v[1]) == u\'N_i\'\n    assert pretty(v[5]) == u\'(a) N_i + (-b) N_j\'\n    assert pretty(v[8]) == pretty_v_8\n    assert pretty(v[2]) == u\'(-1) N_i\'\n    assert pretty(v[11]) == pretty_v_11\n    assert pretty(s) == pretty_s\n    assert pretty(d[0]) == u\'(0|0)\'\n    assert pretty(d[5]) == u\'(a) (N_i|N_k) + (-b) (N_j|N_k)\'\n    assert pretty(d[7]) == pretty_d_7\n    assert pretty(d[10]) == u\'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)\'\n\nFile: sympy/vector/tests/test_printing.py\nLine Number: 129-142\nContent:\ndef test_pretty_print_unicode():\n    assert upretty(v[0]) == u\'0\'\n    assert upretty(v[1]) == u\'N_i\'\n    assert upretty(v[5]) == u\'(a) N_i + (-b) N_j\'\n    # Make sure the printing works in other objects\n    assert upretty(v[5].args) == u\'((a) N_i, (-b) N_j)\'\n    assert upretty(v[8]) == upretty_v_8\n    assert upretty(v[2]) == u\'(-1) N_i\'\n    assert upretty(v[11]) == upretty_v_11\n    assert upretty(s) == upretty_s\n    assert upretty(d[0]) == u\'(0|0)\'\n    assert upretty(d[5]) == u\'(a) (N_i|N_k) + (-b) (N_j|N_k)\'\n    assert upretty(d[7]) == upretty_d_7\n    assert upretty(d[10]) == u\'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)\'\n\nFile: sympy/vector/tests/test_printing.py\nLine Number: 145-166\nContent:\ndef test_latex_printing():\n    assert latex(v[0]) == \'\\\\mathbf{\\\\hat{0}}\'\n    assert latex(v[1]) == \'\\\\mathbf{\\\\hat{i}_{N}}\'\n    assert latex(v[2]) == \'- \\\\mathbf{\\\\hat{i}_{N}}\'\n    assert latex(v[5]) == (\'(a)\\\\mathbf{\\\\hat{i}_{N}} + \' +\n                           \'(- b)\\\\mathbf{\\\\hat{j}_{N}}\')\n    assert latex(v[6]) == (\'(\\\\mathbf{{x}_{N}} + a^{2})\\\\mathbf{\\\\hat{i}_\' +\n                           \'{N}} + \\\\mathbf{\\\\hat{k}_{N}}\')\n    assert latex(v[8]) == (\'\\\\mathbf{\\\\hat{j}_{N}} + (\\\\mathbf{{x}_\' +\n                            \'{C}}^{2} - \\\\int f{\\\\left (b \\\\right )}\\\\\\\\\' +\n                            \' db)\\\\mathbf{\\\\hat{k}_{N}}\')\n    assert latex(s) == \'3 \\\\mathbf{{y}_{C}} \\\\mathbf{{x}_{N}}^{2}\'\n    assert latex(d[0]) == \'(\\\\mathbf{\\\\hat{0}}|\\\\mathbf{\\\\hat{0}})\'\n    assert latex(d[4]) == (\'(a)(\\\\mathbf{\\\\hat{i}_{N}}{|}\\\\mathbf\' +\n                            \'{\\\\hat{k}_{N}})\')\n    assert latex(d[9]) == (\'(\\\\mathbf{\\\\hat{k}_{C}}{|}\\\\mathbf{\\\\\' +\n                            \'hat{k}_{N}}) + (\\\\mathbf{\\\\hat{i}_{N}}{|\' +\n                            \'}\\\\mathbf{\\\\hat{k}_{N}})\')\n    assert latex(d[11]) == (\'(a^{2} + b)(\\\\mathbf{\\\\hat{i}_{N}}{|}\\\\\\\\\' +\n                             \'mathbf{\\\\hat{k}_{N}}) + (\\\\int f{\\\\left (\' +\n                             \'b \\\\right )}\\\\\\\\, db)(\\\\mathbf{\\\\hat{k}_{N}\' +\n                             \'}{|}\\\\mathbf{\\\\hat{k}_{N}})\')\n\nFile: sympy/vector/tests/test_printing.py\nLine Number: 169-176\nContent:\ndef test_custom_names():\n    A = CoordSys3D(\'A\', vector_names=[\'x\', \'y\', \'z\'],\n                   variable_names=[\'i\', \'j\', \'k\'])\n    assert A.i.__str__() == \'A.i\'\n    assert A.x.__str__() == \'A.x\'\n    assert A.i._pretty_form == \'A_i\'\n    assert A.x._pretty_form == \'A_x\'\n    assert A.i._latex_form == r\'\\mathbf{{i}_{A}}\'\n    assert A.x._latex_form == r"\\mathbf{\\hat{x}_{A}}"\n\nFile: sympy/vector/tests/test_vector.py\nLine Number: 15-22\nContent:\ndef test_cross():\n    v1 = C.x * i + C.z * C.z * j\n    v2 = C.x * i + C.y * j + C.z * k\n    assert Cross(v1, v2) == Cross(C.x*C.i + C.z**2*C.j, C.x*C.i + C.y*C.j + C.z*C.k)\n    assert Cross(v1, v2).doit() == C.z**3*C.i + (-C.x*C.z)*C.j + (C.x*C.y - C.x*C.z**2)*C.k\n    assert cross(v1, v2) == C.z**3*C.i + (-C.x*C.z)*C.j + (C.x*C.y - C.x*C.z**2)*C.k\n    assert Cross(v1, v2) == -Cross(v2, v1)\n    assert Cross(v1, v2) + Cross(v2, v1) == Vector.zero\n\nFile: sympy/vector/tests/test_vector.py\nLine Number: 25-31\nContent:\ndef test_dot():\n    v1 = C.x * i + C.z * C.z * j\n    v2 = C.x * i + C.y * j + C.z * k\n    assert Dot(v1, v2) == Dot(C.x*C.i + C.z**2*C.j, C.x*C.i + C.y*C.j + C.z*C.k)\n    assert Dot(v1, v2).doit() == C.x**2 + C.y*C.z**2\n    assert Dot(v1, v2).doit() == C.x**2 + C.y*C.z**2\n    assert Dot(v1, v2) == Dot(v2, v1)\n\nFile: sympy/vector/tests/test_vector.py\nLine Number: 128-153\nContent:\ndef test_vector_simplify():\n    A, s, k, m = symbols(\'A, s, k, m\')\n\n    test1 = (1 / a + 1 / b) * i\n    assert (test1 & i) != (a + b) / (a * b)\n    test1 = simplify(test1)\n    assert (test1 & i) == (a + b) / (a * b)\n    assert test1.simplify() == simplify(test1)\n\n    test2 = (A**2 * s**4 / (4 * pi * k * m**3)) * i\n    test2 = simplify(test2)\n    assert (test2 & i) == (A**2 * s**4 / (4 * pi * k * m**3))\n\n    test3 = ((4 + 4 * a - 2 * (2 + 2 * a)) / (2 + 2 * a)) * i\n    test3 = simplify(test3)\n    assert (test3 & i) == 0\n\n    test4 = ((-4 * a * b**2 - 2 * b**3 - 2 * a**2 * b) / (a + b)**2) * i\n    test4 = simplify(test4)\n    assert (test4 & i) == -2 * b\n\n    v = (sin(a)+cos(a))**2*i - j\n    assert trigsimp(v) == (2*sin(a + pi/4)**2)*i + (-1)*j\n    assert trigsimp(v) == v.trigsimp()\n\n    assert simplify(Vector.zero) == Vector.zero\n\n--- END TEST CASES ---\n\nI have identified 8 relevant test cases from the SymPy vector module that are most likely to break existing functionality if the vector pretty printing issue is fixed. These tests cover:\n\n1. String printing of vector expressions with exponents and complex operations\n2. ASCII pretty printing with various vector operations\n3. Unicode pretty printing with integrals and complex expressions\n4. LaTeX printing with exponents and mathematical operations\n5. Custom coordinate system naming and printing\n6. Cross product operations with exponent expressions\n7. Dot product operations with exponent expressions\n8. Vector simplification with trigonometric functions and exponents\n\nThese tests are comprehensive and cover the core functionality that could be affected by changes to vector pretty printing, including baseline alignment issues and exponent handling.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 2369, 'prompt_tokens': 38170, 'total_tokens': 40539, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 37824}, 'prompt_cache_hit_tokens': 37824, 'prompt_cache_miss_tokens': 346}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'stop', 'logprobs': None} id='run--9deb9149-36a9-4a8f-8f50-cab0f49b457b-0' usage_metadata={'input_tokens': 38170, 'output_tokens': 2369, 'total_tokens': 40539, 'input_token_details': {'cache_read': 37824}, 'output_token_details': {}}
+2025-09-11 15:53:09,973 - thread-140190471276224.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-09-11 15:53:09,974 - thread-140190471276224.prometheus.lang_graph.nodes.context_extraction_node - DEBUG - This is the original user query:
+
+--- BEGIN ORIGINAL QUERY ---
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+vectors break pretty printing
+
+Issue description: 
+```py
+In [1]: from sympy.vector import *
+
+In [2]: e = CoordSysCartesian('e')
+
+In [3]: (x/y)**t*e.j
+Out[3]:
+⎛   t⎞ e_j
+⎜⎛x⎞ e_j ⎟
+⎜⎜─⎟ ⎟
+⎝⎝y⎠ ⎠
+```
+
+Also, when it does print correctly, the baseline is wrong (it should be centered). 
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+--- END ORIGINAL QUERY ---
+
+The context or file content that you have seen so far (Some of the context may be IRRELEVANT to the query!!!):
+
+--- BEGIN CONTEXT ---
+File: sympy/vector/tests/test_printing.py
+Line number range: 1 - 177
+Content:
+1. # -*- coding: utf-8 -*-
+2. from sympy import Integral, latex, Function
+3. from sympy import pretty as xpretty
+4. from sympy.vector import CoordSys3D, Vector, express
+5. from sympy.abc import a, b, c
+6. from sympy.core.compatibility import u_decode as u
+7. from sympy.utilities.pytest import XFAIL
+8. 
+9. 
+10. def pretty(expr):
+11.     """ASCII pretty-printing"""
+12.     return xpretty(expr, use_unicode=False, wrap_line=False)
+13. 
+14. 
+15. def upretty(expr):
+16.     """Unicode pretty-printing"""
+17.     return xpretty(expr, use_unicode=True, wrap_line=False)
+18. 
+19. 
+20. # Initialize the basic and tedious vector/dyadic expressions
+21. # needed for testing.
+22. # Some of the pretty forms shown denote how the expressions just
+23. # above them should look with pretty printing.
+24. N = CoordSys3D('N')
+25. C = N.orient_new_axis('C', a, N.k)
+26. v = []
+27. d = []
+28. v.append(Vector.zero)
+29. v.append(N.i)
+30. v.append(-N.i)
+31. v.append(N.i + N.j)
+32. v.append(a*N.i)
+33. v.append(a*N.i - b*N.j)
+34. v.append((a**2 + N.x)*N.i + N.k)
+35. v.append((a**2 + b)*N.i + 3*(C.y - c)*N.k)
+36. f = Function('f')
+37. v.append(N.j - (Integral(f(b)) - C.x**2)*N.k)
+38. upretty_v_8 = u(
+39. """\
+40. N_j + ⎛   2   ⌠        ⎞ N_k\n\
+41.       ⎜C_x  - ⎮ f(b) db⎟    \n\
+42.       ⎝       ⌡        ⎠    \
+43. """)
+44. pretty_v_8 = u(
+45.     """\
+46. N_j + /         /       \\\n\
+47.       |   2    |        |\n\
+48.       |C_x  -  | f(b) db|\n\
+49.       |        |        |\n\
+50.       \\       /         / \
+51. """)
+52. 
+53. v.append(N.i + C.k)
+54. v.append(express(N.i, C))
+55. v.append((a**2 + b)*N.i + (Integral(f(b)))*N.k)
+56. upretty_v_11 = u(
+57. """\
+58. ⎛ 2    ⎞ N_i + ⎛⌠        ⎞ N_k\n\
+59. ⎝a  + b⎠       ⎜⎮ f(b) db⎟    \n\
+60.                ⎝⌡        ⎠    \
+61. """)
+62. pretty_v_11 = u(
+63. """\
+64. / 2    \\ + /  /       \\\n\
+65. \\a  + b/ N_i| |        |\n\
+66.            | | f(b) db|\n\
+67.            | |        |\n\
+68.            \\/         / \
+69. """)
+70. 
+71. for x in v:
+72.     d.append(x | N.k)
+73. s = 3*N.x**2*C.y
+74. upretty_s = u(
+75. """\
+76.          2\n\
+77. 3⋅C_y⋅N_x \
+78. """)
+79. pretty_s = u(
+80. """\
+81.          2\n\
+82. 3*C_y*N_x \
+83. """)
+84. 
+85. # This is the pretty form for ((a**2 + b)*N.i + 3*(C.y - c)*N.k) | N.k
+86. upretty_d_7 = u(
+87. """\
+88. ⎛ 2    ⎞ (N_i|N_k) + (3⋅C_y - 3⋅c) (N_k|N_k)\n\
+89. ⎝a  + b⎠                                    \
+90. """)
+91. pretty_d_7 = u(
+92. """\
+93. / 2    \\ (N_i|N_k) + (3*C_y - 3*c) (N_k|N_k)\n\
+94. \\a  + b/                                    \
+95. """)
+96. 
+97. 
+98. def test_str_printing():
+99.     assert str(v[0]) == '0'
+100.     assert str(v[1]) == 'N.i'
+101.     assert str(v[2]) == '(-1)*N.i'
+102.     assert str(v[3]) == 'N.i + N.j'
+103.     assert str(v[8]) == 'N.j + (C.x**2 - Integral(f(b), b))*N.k'
+104.     assert str(v[9]) == 'C.k + N.i'
+105.     assert str(s) == '3*C.y*N.x**2'
+106.     assert str(d[0]) == '0'
+107.     assert str(d[1]) == '(N.i|N.k)'
+108.     assert str(d[4]) == 'a*(N.i|N.k)'
+109.     assert str(d[5]) == 'a*(N.i|N.k) + (-b)*(N.j|N.k)'
+110.     assert str(d[8]) == ('(N.j|N.k) + (C.x**2 - ' +
+111.                          'Integral(f(b), b))*(N.k|N.k)')
+112. 
+113. 
+114. @XFAIL
+115. def test_pretty_printing_ascii():
+116.     assert pretty(v[0]) == u'0'
+117.     assert pretty(v[1]) == u'N_i'
+118.     assert pretty(v[5]) == u'(a) N_i + (-b) N_j'
+119.     assert pretty(v[8]) == pretty_v_8
+120.     assert pretty(v[2]) == u'(-1) N_i'
+121.     assert pretty(v[11]) == pretty_v_11
+122.     assert pretty(s) == pretty_s
+123.     assert pretty(d[0]) == u'(0|0)'
+124.     assert pretty(d[5]) == u'(a) (N_i|N_k) + (-b) (N_j|N_k)'
+125.     assert pretty(d[7]) == pretty_d_7
+126.     assert pretty(d[10]) == u'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)'
+127. 
+128. 
+129. def test_pretty_print_unicode():
+130.     assert upretty(v[0]) == u'0'
+131.     assert upretty(v[1]) == u'N_i'
+132.     assert upretty(v[5]) == u'(a) N_i + (-b) N_j'
+133.     # Make sure the printing works in other objects
+134.     assert upretty(v[5].args) == u'((a) N_i, (-b) N_j)'
+135.     assert upretty(v[8]) == upretty_v_8
+136.     assert upretty(v[2]) == u'(-1) N_i'
+137.     assert upretty(v[11]) == upretty_v_11
+138.     assert upretty(s) == upretty_s
+139.     assert upretty(d[0]) == u'(0|0)'
+140.     assert upretty(d[5]) == u'(a) (N_i|N_k) + (-b) (N_j|N_k)'
+141.     assert upretty(d[7]) == upretty_d_7
+142.     assert upretty(d[10]) == u'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)'
+143. 
+144. 
+145. def test_latex_printing():
+146.     assert latex(v[0]) == '\\mathbf{\\hat{0}}'
+147.     assert latex(v[1]) == '\\mathbf{\\hat{i}_{N}}'
+148.     assert latex(v[2]) == '- \\mathbf{\\hat{i}_{N}}'
+149.     assert latex(v[5]) == ('(a)\\mathbf{\\hat{i}_{N}} + ' +
+150.                            '(- b)\\mathbf{\\hat{j}_{N}}')
+151.     assert latex(v[6]) == ('(\\mathbf{{x}_{N}} + a^{2})\\mathbf{\\hat{i}_' +
+152.                           '{N}} + \\mathbf{\\hat{k}_{N}}')
+153.     assert latex(v[8]) == ('\\mathbf{\\hat{j}_{N}} + (\\mathbf{{x}_' +
+154.                            '{C}}^{2} - \\int f{\\left (b \\right )}\\,' +
+155.                            ' db)\\mathbf{\\hat{k}_{N}}')
+156.     assert latex(s) == '3 \\mathbf{{y}_{C}} \\mathbf{{x}_{N}}^{2}'
+157.     assert latex(d[0]) == '(\\mathbf{\\hat{0}}|\\mathbf{\\hat{0}})'
+158.     assert latex(d[4]) == ('(a)(\\mathbf{\\hat{i}_{N}}{|}\\mathbf' +
+159.                            '{\\hat{k}_{N}})')
+160.     assert latex(d[9]) == ('(\\mathbf{\\hat{k}_{C}}{|}\\mathbf{\\' +
+161.                            'hat{k}_{N}}) + (\\mathbf{\\hat{i}_{N}}{|' +
+162.                            '}\\mathbf{\\hat{k}_{N}})')
+163.     assert latex(d[11]) == ('(a^{2} + b)(\\mathbf{\\hat{i}_{N}}{|}\\' +
+164.                             'mathbf{\\hat{k}_{N}}) + (\\int f{\\left (' +
+165.                             'b \\right )}\\, db)(\\mathbf{\\hat{k}_{N}' +
+166.                             '}{|}\\mathbf{\\hat{k}_{N}})')
+167. 
+168. 
+169. def test_custom_names():
+170.     A = CoordSys3D('A', vector_names=['x', 'y', 'z'],
+171.                    variable_names=['i', 'j', 'k'])
+172.     assert A.i.__str__() == 'A.i'
+173.     assert A.x.__str__() == 'A.x'
+174.     assert A.i._pretty_form == 'A_i'
+175.     assert A.x._pretty_form == 'A_x'
+176.     assert A.i._latex_form == r'\mathbf{{i}_{A}}'
+177.     assert A.x._latex_form == r"\mathbf{\hat{x}_{A}}"
+
+File: doc/src/guide.rst
+Line number range: 412 - 545
+Content:
+So what is ``what_am_i``?  Let's try it::
+
+    >>> pprint(what_am_i(x).series(x, 0, 10))
+         3      5       7       9
+        x    2*x    17*x    62*x     / 10\
+    x - -- + ---- - ----- + ----- + O\x  /
+        3     15     315     2835
+
+Well, it's ``tanh``::
+
+    >>> from sympy import tanh
+    >>> pprint(tanh(x).series(x, 0, 10))
+         3      5       7       9
+        x    2*x    17*x    62*x     / 10\
+    x - -- + ---- - ----- + ----- + O\x  /
+        3     15     315     2835
+
+The new functions we just defined are regular SymPy objects, you
+can use them all over SymPy, e.g.::
+
+    >>> from sympy import limit
+    >>> limit(what_am_i(x)/x, x, 0)
+    1
+
+
+Common tasks
+------------
+
+Please use the same way as is shown below all across SymPy.
+
+**accessing parameters**::
+
+    >>> from sympy import sign, sin
+    >>> from sympy.abc import x, y, z
+
+    >>> e = sign(x**2)
+    >>> e.args
+    (x**2,)
+
+    >>> e.args[0]
+    x**2
+
+    Number arguments (in Adds and Muls) will always be the first argument;
+    other arguments might be in arbitrary order:
+    >>> (1 + x + y*z).args[0]
+    1
+    >>> (1 + x + y*z).args[1] in (x, y*z)
+    True
+
+    >>> (y*z).args
+    (y, z)
+
+    >>> sin(y*z).args
+    (y*z,)
+
+Never use internal methods or variables, prefixed with "``_``" (example: don't
+use ``_args``, use ``.args`` instead).
+
+**testing the structure of a SymPy expression**
+
+Applied functions::
+
+    >>> from sympy import sign, exp, Function
+    >>> e = sign(x**2)
+
+    >>> isinstance(e, sign)
+    True
+
+    >>> isinstance(e, exp)
+    False
+
+    >>> isinstance(e, Function)
+    True
+
+So ``e`` is a ``sign(z)`` function, but not ``exp(z)`` function.
+
+Unapplied functions::
+
+    >>> from sympy import sign, exp, FunctionClass
+    >>> e = sign
+
+    >>> f = exp
+
+    >>> g = Add
+
+    >>> isinstance(e, FunctionClass)
+    True
+
+    >>> isinstance(f, FunctionClass)
+    True
+
+    >>> isinstance(g, FunctionClass)
+    False
+
+    >>> g is Add
+    True
+
+So ``e`` and ``f`` are functions, ``g`` is not a function.
+
+Contributing
+============
+
+We welcome every SymPy user to participate in it's development. Don't worry if
+you've never contributed to any open source project, we'll help you learn
+anything necessary, just ask on our mailinglist_.
+
+Don't be afraid to ask anything and don't worry that you are wasting our time
+if you are new to SymPy and ask questions that maybe most of the people know
+the answer to -- you are not, because that's exactly what the mailinglist_ is
+for and people answer your emails because they want to. Also we try hard to
+answer every email, so you'll always get some feedback and pointers what to do
+next.
+
+Improving the code
+------------------
+
+Go to issues_ that are sorted by priority and simply find something that you
+would like to get fixed and fix it. If you find something odd, please report it
+into issues_ first before fixing it. Feel free to consult with us on the
+mailinglist_.  Then send your patch either to the issues_ or the mailinglist_.
+
+Please read our excellent `SymPy Patches Tutorial
+<https://github.com/sympy/sympy/wiki/Development-workflow>`_ at our
+wiki for a guide on how to write patches to SymPy, how to work with Git,
+and how to make your life easier as you get started with SymPy.
+
+.. _issues:             https://github.com/sympy/sympy/issues
+.. _mailinglist:        https://groups.google.com/forum/#!forum/sympy
+
+Improving the docs
+------------------
+
+Please see :ref:`the documentation <module-docs>` how to fix and improve
+SymPy's documentation. All contribution is very welcome.
+
+File: sympy/vector/tests/test_vector.py
+Line number range: 1 - 228
+Content:
+1. from sympy.simplify import simplify, trigsimp
+2. from sympy import pi, sqrt, symbols, ImmutableMatrix as Matrix, \
+3.      sin, cos, Function, Integral, Derivative, diff
+4. from sympy.vector.vector import Vector, BaseVector, VectorAdd, \
+5.      VectorMul, VectorZero
+6. from sympy.vector.coordsysrect import CoordSys3D
+7. from sympy.vector.vector import Cross, Dot, dot, cross
+8. 
+9. C = CoordSys3D('C')
+10. 
+11. i, j, k = C.base_vectors()
+12. a, b, c = symbols('a b c')
+13. 
+14. 
+15. def test_cross():
+16.     v1 = C.x * i + C.z * C.z * j
+17.     v2 = C.x * i + C.y * j + C.z * k
+18.     assert Cross(v1, v2) == Cross(C.x*C.i + C.z**2*C.j, C.x*C.i + C.y*C.j + C.z*C.k)
+19.     assert Cross(v1, v2).doit() == C.z**3*C.i + (-C.x*C.z)*C.j + (C.x*C.y - C.x*C.z**2)*C.k
+20.     assert cross(v1, v2) == C.z**3*C.i + (-C.x*C.z)*C.j + (C.x*C.y - C.x*C.z**2)*C.k
+21.     assert Cross(v1, v2) == -Cross(v2, v1)
+22.     assert Cross(v1, v2) + Cross(v2, v1) == Vector.zero
+23. 
+24. 
+25. def test_dot():
+26.     v1 = C.x * i + C.z * C.z * j
+27.     v2 = C.x * i + C.y * j + C.z * k
+28.     assert Dot(v1, v2) == Dot(C.x*C.i + C.z**2*C.j, C.x*C.i + C.y*C.j + C.z*C.k)
+29.     assert Dot(v1, v2).doit() == C.x**2 + C.y*C.z**2
+30.     assert Dot(v1, v2).doit() == C.x**2 + C.y*C.z**2
+31.     assert Dot(v1, v2) == Dot(v2, v1)
+32. 
+33. 
+34. def test_vector_sympy():
+35.     """
+36.     Test whether the Vector framework confirms to the hashing
+37.     and equality testing properties of SymPy.
+38.     """
+39.     v1 = 3*j
+40.     assert v1 == j*3
+41.     assert v1.components == {j: 3}
+42.     v2 = 3*i + 4*j + 5*k
+43.     v3 = 2*i + 4*j + i + 4*k + k
+44.     assert v3 == v2
+45.     assert v3.__hash__() == v2.__hash__()
+46. 
+47. 
+48. def test_vector():
+49.     assert isinstance(i, BaseVector)
+50.     assert i != j
+51.     assert j != k
+52.     assert k != i
+53.     assert i - i == Vector.zero
+54.     assert i + Vector.zero == i
+55.     assert i - Vector.zero == i
+56.     assert Vector.zero != 0
+57.     assert -Vector.zero == Vector.zero
+58. 
+59.     v1 = a*i + b*j + c*k
+60.     v2 = a**2*i + b**2*j + c**2*k
+61.     v3 = v1 + v2
+62.     v4 = 2 * v1
+63.     v5 = a * i
+64. 
+65.     assert isinstance(v1, VectorAdd)
+66.     assert v1 - v1 == Vector.zero
+67.     assert v1 + Vector.zero == v1
+68.     assert v1.dot(i) == a
+69.     assert v1.dot(j) == b
+70.     assert v1.dot(k) == c
+71.     assert i.dot(v2) == a**2
+72.     assert j.dot(v2) == b**2
+73.     assert k.dot(v2) == c**2
+74.     assert v3.dot(i) == a**2 + a
+75.     assert v3.dot(j) == b**2 + b
+76.     assert v3.dot(k) == c**2 + c
+77. 
+78.     assert v1 + v2 == v2 + v1
+79.     assert v1 - v2 == -1 * (v2 - v1)
+80.     assert a * v1 == v1 * a
+81. 
+82.     assert isinstance(v5, VectorMul)
+83.     assert v5.base_vector == i
+84.     assert v5.measure_number == a
+85.     assert isinstance(v4, Vector)
+86.     assert isinstance(v4, VectorAdd)
+87.     assert isinstance(v4, Vector)
+88.     assert isinstance(Vector.zero, VectorZero)
+89.     assert isinstance(Vector.zero, Vector)
+90.     assert isinstance(v1 * 0, VectorZero)
+91. 
+92.     assert v1.to_matrix(C) == Matrix([[a], [b], [c]])
+93. 
+94.     assert i.components == {i: 1}
+95.     assert v5.components == {i: a}
+96.     assert v1.components == {i: a, j: b, k: c}
+97. 
+98.     assert VectorAdd(v1, Vector.zero) == v1
+99.     assert VectorMul(a, v1) == v1*a
+100.     assert VectorMul(1, i) == i
+101.     assert VectorAdd(v1, Vector.zero) == v1
+102.     assert VectorMul(0, Vector.zero) == Vector.zero
+103. 
+104. 
+105. def test_vector_magnitude_normalize():
+106.     assert Vector.zero.magnitude() == 0
+107.     assert Vector.zero.normalize() == Vector.zero
+108. 
+109.     assert i.magnitude() == 1
+110.     assert j.magnitude() == 1
+111.     assert k.magnitude() == 1
+112.     assert i.normalize() == i
+113.     assert j.normalize() == j
+114.     assert k.normalize() == k
+115. 
+116.     v1 = a * i
+117.     assert v1.normalize() == (a/sqrt(a**2))*i
+118.     assert v1.magnitude() == sqrt(a**2)
+119. 
+120.     v2 = a*i + b*j + c*k
+121.     assert v2.magnitude() == sqrt(a**2 + b**2 + c**2)
+122.     assert v2.normalize() == v2 / v2.magnitude()
+123. 
+124.     v3 = i + j
+125.     assert v3.normalize() == (sqrt(2)/2)*C.i + (sqrt(2)/2)*C.j
+126. 
+127. 
+128. def test_vector_simplify():
+129.     A, s, k, m = symbols('A, s, k, m')
+130. 
+131.     test1 = (1 / a + 1 / b) * i
+132.     assert (test1 & i) != (a + b) / (a * b)
+133.     test1 = simplify(test1)
+134.     assert (test1 & i) == (a + b) / (a * b)
+135.     assert test1.simplify() == simplify(test1)
+136. 
+137.     test2 = (A**2 * s**4 / (4 * pi * k * m**3)) * i
+138.     test2 = simplify(test2)
+139.     assert (test2 & i) == (A**2 * s**4 / (4 * pi * k * m**3))
+140. 
+141.     test3 = ((4 + 4 * a - 2 * (2 + 2 * a)) / (2 + 2 * a)) * i
+142.     test3 = simplify(test3)
+143.     assert (test3 & i) == 0
+144. 
+145.     test4 = ((-4 * a * b**2 - 2 * b**3 - 2 * a**2 * b) / (a + b)**2) * i
+146.     test4 = simplify(test4)
+147.     assert (test4 & i) == -2 * b
+148. 
+149.     v = (sin(a)+cos(a))**2*i - j
+150.     assert trigsimp(v) == (2*sin(a + pi/4)**2)*i + (-1)*j
+151.     assert trigsimp(v) == v.trigsimp()
+152. 
+153.     assert simplify(Vector.zero) == Vector.zero
+154. 
+155. 
+156. def test_vector_dot():
+157.     assert i.dot(Vector.zero) == 0
+158.     assert Vector.zero.dot(i) == 0
+159.     assert i & Vector.zero == 0
+160. 
+161.     assert i.dot(i) == 1
+162.     assert i.dot(j) == 0
+163.     assert i.dot(k) == 0
+164.     assert i & i == 1
+165.     assert i & j == 0
+166.     assert i & k == 0
+167. 
+168.     assert j.dot(i) == 0
+169.     assert j.dot(j) == 1
+170.     assert j.dot(k) == 0
+171.     assert j & i == 0
+172.     assert j & j == 1
+173.     assert j & k == 0
+174. 
+175.     assert k.dot(i) == 0
+176.     assert k.dot(j) == 0
+177.     assert k.dot(k) == 1
+178.     assert k & i == 0
+179.     assert k & j == 0
+180.     assert k & k == 1
+181. 
+182. 
+183. def test_vector_cross():
+184.     assert i.cross(Vector.zero) == Vector.zero
+185.     assert Vector.zero.cross(i) == Vector.zero
+186. 
+187.     assert i.cross(i) == Vector.zero
+188.     assert i.cross(j) == k
+189.     assert i.cross(k) == -j
+190.     assert i ^ i == Vector.zero
+191.     assert i ^ j == k
+192.     assert i ^ k == -j
+193. 
+194.     assert j.cross(i) == -k
+195.     assert j.cross(j) == Vector.zero
+196.     assert j.cross(k) == i
+197.     assert j ^ i == -k
+198.     assert j ^ j == Vector.zero
+199.     assert j ^ k == i
+200. 
+201.     assert k.cross(i) == j
+202.     assert k.cross(j) == -i
+203.     assert k.cross(k) == Vector.zero
+204.     assert k ^ i == j
+205.     assert k ^ j == -i
+206.     assert k ^ k == Vector.zero
+207. 
+208. 
+209. def test_projection():
+210.     v1 = i + j + k
+211.     v2 = 3*i + 4*j
+212.     v3 = 0*i + 0*j
+213.     assert v1.projection(v1) == i + j + k
+214.     assert v1.projection(v2) == 7/3*C.i + 7/3*C.j + 7/3*C.k
+215.     assert v1.projection(v1, scalar=True) == 1
+216.     assert v1.projection(v2, scalar=True) == 7/3
+217.     assert v3.projection(v1) == Vector.zero
+218. 
+219. 
+220. def test_vector_diff_integrate():
+221.     f = Function('f')
+222.     v = f(a)*C.i + a**2*C.j - C.k
+223.     assert Derivative(v, a) == Derivative((f(a))*C.i +
+224.                                           a**2*C.j + (-1)*C.k, a)
+225.     assert (diff(v, a) == v.diff(a) == Derivative(v, a).doit() ==
+226.             (Derivative(f(a), a))*C.i + 2*a*C.j)
+227.     assert (Integral(v, a) == (Integral(f(a), a))*C.i +
+228.             (Integral(a**2, a))*C.j + (Integral(-1, a))*C.k)
+
+
+--- END CONTEXT ---
+
+REMEMBER: Your task is to summarize the relevant contexts to a given query and return it in the specified format!
+
+2025-09-11 15:53:56,956 - thread-140190471276224.prometheus.lang_graph.nodes.context_extraction_node - DEBUG - Model response: context=[ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue is about vector pretty printing breaking with expressions like (x/y)**t*e.j\n   - Need to find existing tests that test pretty printing functionality\n2. Extended relevance:\n   - This file contains tests for vector printing functionality\n   - The test_pretty_print_unicode function tests Unicode pretty printing which is directly related to the issue\n   - Lines 129-142 contain tests that verify proper Unicode pretty printing of vector expressions', relative_path='sympy/vector/tests/test_printing.py', start_line=129, end_line=142), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue mentions that baseline is wrong in pretty printing\n   - ASCII pretty printing tests are also relevant for regression testing\n2. Extended relevance:\n   - This test function tests ASCII pretty printing of vector expressions\n   - The XFAIL decorator indicates these tests are expected to fail, which might be related to the reported issue\n   - Lines 114-127 contain tests for ASCII pretty printing format', relative_path='sympy/vector/tests/test_printing.py', start_line=114, end_line=127), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves vector expressions with coordinate systems\n   - Test setup includes CoordSys3D initialization which is essential for vector operations\n2. Extended relevance:\n   - Lines 20-36 show how vector expressions are initialized for testing\n   - This setup is crucial for understanding how vector expressions are constructed and tested\n   - The expressions created here are similar to the problematic expression in the issue', relative_path='sympy/vector/tests/test_printing.py', start_line=20, end_line=36), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves vector operations and expressions\n   - Need to understand how vectors are implemented and tested\n2. Extended relevance:\n   - This file contains core vector functionality tests\n   - Lines 48-103 test basic vector operations and properties\n   - Understanding vector implementation is essential for fixing printing issues', relative_path='sympy/vector/tests/test_vector.py', start_line=48, end_line=103), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves expressions with exponents and vector components\n   - Need to understand how vector multiplication and scaling work\n2. Extended relevance:\n   - Lines 105-126 test vector magnitude and normalization\n   - These operations involve mathematical expressions that could affect printing\n   - Understanding vector scaling is relevant to the (x/y)**t expression in the issue', relative_path='sympy/vector/tests/test_vector.py', start_line=105, end_line=126), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves complex mathematical expressions with vectors\n   - Simplification and trigonometric functions might affect printing\n2. Extended relevance:\n   - Lines 128-154 test vector simplification including trigonometric simplification\n   - Complex expressions like those in the issue might undergo simplification before printing\n   - Understanding simplification behavior is relevant to printing output', relative_path='sympy/vector/tests/test_vector.py', start_line=128, end_line=154), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves coordinate system operations\n   - Need to understand how coordinate systems are defined and used\n2. Extended relevance:\n   - Lines 9-12 show coordinate system initialization\n   - This setup is fundamental for creating vector expressions like the one in the issue\n   - Understanding base vectors and coordinate systems is essential', relative_path='sympy/vector/tests/test_vector.py', start_line=9, end_line=12), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves custom coordinate system naming\n   - The test shows how custom names affect printing\n2. Extended relevance:\n   - Lines 169-177 test custom coordinate system names and their printing\n   - This is directly relevant to the printing issue as it shows how vector components are formatted\n   - Custom naming could affect the baseline alignment mentioned in the issue', relative_path='sympy/vector/tests/test_printing.py', start_line=169, end_line=177)]
+2025-09-11 15:53:56,957 - thread-140190471276224.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context [Context(relative_path='sympy/vector/tests/test_printing.py', content="129. def test_pretty_print_unicode():\n130.     assert upretty(v[0]) == u'0'\n131.     assert upretty(v[1]) == u'N_i'\n132.     assert upretty(v[5]) == u'(a) N_i + (-b) N_j'\n133.     # Make sure the printing works in other objects\n134.     assert upretty(v[5].args) == u'((a) N_i, (-b) N_j)'\n135.     assert upretty(v[8]) == upretty_v_8\n136.     assert upretty(v[2]) == u'(-1) N_i'\n137.     assert upretty(v[11]) == upretty_v_11\n138.     assert upretty(s) == upretty_s\n139.     assert upretty(d[0]) == u'(0|0)'\n140.     assert upretty(d[5]) == u'(a) (N_i|N_k) + (-b) (N_j|N_k)'\n141.     assert upretty(d[7]) == upretty_d_7\n142.     assert upretty(d[10]) == u'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)'", start_line_number=129, end_line_number=142), Context(relative_path='sympy/vector/tests/test_printing.py', content="114. @XFAIL\n115. def test_pretty_printing_ascii():\n116.     assert pretty(v[0]) == u'0'\n117.     assert pretty(v[1]) == u'N_i'\n118.     assert pretty(v[5]) == u'(a) N_i + (-b) N_j'\n119.     assert pretty(v[8]) == pretty_v_8\n120.     assert pretty(v[2]) == u'(-1) N_i'\n121.     assert pretty(v[11]) == pretty_v_11\n122.     assert pretty(s) == pretty_s\n123.     assert pretty(d[0]) == u'(0|0)'\n124.     assert pretty(d[5]) == u'(a) (N_i|N_k) + (-b) (N_j|N_k)'\n125.     assert pretty(d[7]) == pretty_d_7\n126.     assert pretty(d[10]) == u'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)'\n127. ", start_line_number=114, end_line_number=127), Context(relative_path='sympy/vector/tests/test_printing.py', content="20. # Initialize the basic and tedious vector/dyadic expressions\n21. # needed for testing.\n22. # Some of the pretty forms shown denote how the expressions just\n23. # above them should look with pretty printing.\n24. N = CoordSys3D('N')\n25. C = N.orient_new_axis('C', a, N.k)\n26. v = []\n27. d = []\n28. v.append(Vector.zero)\n29. v.append(N.i)\n30. v.append(-N.i)\n31. v.append(N.i + N.j)\n32. v.append(a*N.i)\n33. v.append(a*N.i - b*N.j)\n34. v.append((a**2 + N.x)*N.i + N.k)\n35. v.append((a**2 + b)*N.i + 3*(C.y - c)*N.k)\n36. f = Function('f')", start_line_number=20, end_line_number=36), Context(relative_path='sympy/vector/tests/test_vector.py', content='48. def test_vector():\n49.     assert isinstance(i, BaseVector)\n50.     assert i != j\n51.     assert j != k\n52.     assert k != i\n53.     assert i - i == Vector.zero\n54.     assert i + Vector.zero == i\n55.     assert i - Vector.zero == i\n56.     assert Vector.zero != 0\n57.     assert -Vector.zero == Vector.zero\n58. \n59.     v1 = a*i + b*j + c*k\n60.     v2 = a**2*i + b**2*j + c**2*k\n61.     v3 = v1 + v2\n62.     v4 = 2 * v1\n63.     v5 = a * i\n64. \n65.     assert isinstance(v1, VectorAdd)\n66.     assert v1 - v1 == Vector.zero\n67.     assert v1 + Vector.zero == v1\n68.     assert v1.dot(i) == a\n69.     assert v1.dot(j) == b\n70.     assert v1.dot(k) == c\n71.     assert i.dot(v2) == a**2\n72.     assert j.dot(v2) == b**2\n73.     assert k.dot(v2) == c**2\n74.     assert v3.dot(i) == a**2 + a\n75.     assert v3.dot(j) == b**2 + b\n76.     assert v3.dot(k) == c**2 + c\n77. \n78.     assert v1 + v2 == v2 + v1\n79.     assert v1 - v2 == -1 * (v2 - v1)\n80.     assert a * v1 == v1 * a\n81. \n82.     assert isinstance(v5, VectorMul)\n83.     assert v5.base_vector == i\n84.     assert v5.measure_number == a\n85.     assert isinstance(v4, Vector)\n86.     assert isinstance(v4, VectorAdd)\n87.     assert isinstance(v4, Vector)\n88.     assert isinstance(Vector.zero, VectorZero)\n89.     assert isinstance(Vector.zero, Vector)\n90.     assert isinstance(v1 * 0, VectorZero)\n91. \n92.     assert v1.to_matrix(C) == Matrix([[a], [b], [c]])\n93. \n94.     assert i.components == {i: 1}\n95.     assert v5.components == {i: a}\n96.     assert v1.components == {i: a, j: b, k: c}\n97. \n98.     assert VectorAdd(v1, Vector.zero) == v1\n99.     assert VectorMul(a, v1) == v1*a\n100.     assert VectorMul(1, i) == i\n101.     assert VectorAdd(v1, Vector.zero) == v1\n102.     assert VectorMul(0, Vector.zero) == Vector.zero\n103. ', start_line_number=48, end_line_number=103), Context(relative_path='sympy/vector/tests/test_vector.py', content='105. def test_vector_magnitude_normalize():\n106.     assert Vector.zero.magnitude() == 0\n107.     assert Vector.zero.normalize() == Vector.zero\n108. \n109.     assert i.magnitude() == 1\n110.     assert j.magnitude() == 1\n111.     assert k.magnitude() == 1\n112.     assert i.normalize() == i\n113.     assert j.normalize() == j\n114.     assert k.normalize() == k\n115. \n116.     v1 = a * i\n117.     assert v1.normalize() == (a/sqrt(a**2))*i\n118.     assert v1.magnitude() == sqrt(a**2)\n119. \n120.     v2 = a*i + b*j + c*k\n121.     assert v2.magnitude() == sqrt(a**2 + b**2 + c**2)\n122.     assert v2.normalize() == v2 / v2.magnitude()\n123. \n124.     v3 = i + j\n125.     assert v3.normalize() == (sqrt(2)/2)*C.i + (sqrt(2)/2)*C.j\n126. ', start_line_number=105, end_line_number=126), Context(relative_path='sympy/vector/tests/test_vector.py', content="128. def test_vector_simplify():\n129.     A, s, k, m = symbols('A, s, k, m')\n130. \n131.     test1 = (1 / a + 1 / b) * i\n132.     assert (test1 & i) != (a + b) / (a * b)\n133.     test1 = simplify(test1)\n134.     assert (test1 & i) == (a + b) / (a * b)\n135.     assert test1.simplify() == simplify(test1)\n136. \n137.     test2 = (A**2 * s**4 / (4 * pi * k * m**3)) * i\n138.     test2 = simplify(test2)\n139.     assert (test2 & i) == (A**2 * s**4 / (4 * pi * k * m**3))\n140. \n141.     test3 = ((4 + 4 * a - 2 * (2 + 2 * a)) / (2 + 2 * a)) * i\n142.     test3 = simplify(test3)\n143.     assert (test3 & i) == 0\n144. \n145.     test4 = ((-4 * a * b**2 - 2 * b**3 - 2 * a**2 * b) / (a + b)**2) * i\n146.     test4 = simplify(test4)\n147.     assert (test4 & i) == -2 * b\n148. \n149.     v = (sin(a)+cos(a))**2*i - j\n150.     assert trigsimp(v) == (2*sin(a + pi/4)**2)*i + (-1)*j\n151.     assert trigsimp(v) == v.trigsimp()\n152. \n153.     assert simplify(Vector.zero) == Vector.zero\n154. ", start_line_number=128, end_line_number=154), Context(relative_path='sympy/vector/tests/test_vector.py', content="9. C = CoordSys3D('C')\n10. \n11. i, j, k = C.base_vectors()\n12. a, b, c = symbols('a b c')", start_line_number=9, end_line_number=12), Context(relative_path='sympy/vector/tests/test_printing.py', content='169. def test_custom_names():\n170.     A = CoordSys3D(\'A\', vector_names=[\'x\', \'y\', \'z\'],\n171.                    variable_names=[\'i\', \'j\', \'k\'])\n172.     assert A.i.__str__() == \'A.i\'\n173.     assert A.x.__str__() == \'A.x\'\n174.     assert A.i._pretty_form == \'A_i\'\n175.     assert A.x._pretty_form == \'A_x\'\n176.     assert A.i._latex_form == r\'\\mathbf{{i}_{A}}\'\n177.     assert A.x._latex_form == r"\\mathbf{\\hat{x}_{A}}"', start_line_number=169, end_line_number=177)]
+2025-09-11 15:53:56,957 - thread-140190471276224.prometheus.lang_graph.nodes.reset_messages_node - DEBUG - Resetting context_provider_messages in state.
+2025-09-11 15:53:56,958 - thread-140190471276224.prometheus.lang_graph.nodes.context_refine_node - DEBUG - This is the codebase structure:
+--- BEGIN FILE TREE ---
+sympy
+├── .ci
+|   ├── generate_durations_log.sh
+|   └── parse_durations_log.py
+├── .travis.yml
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── PULL_REQUEST_TEMPLATE.md
+├── README.rst
+├── bin
+|   ├── ask_update.py
+|   ├── authors_update.py
+|   ├── coverage_doctest.py
+|   ├── coverage_report.py
+|   ├── generate_module_list.py
+|   ├── generate_test_list.py
+|   ├── get_sympy.py
+|   ├── mailmap_update.py
+|   ├── sympy_time.py
+|   ├── sympy_time_cache.py
+|   ├── test_import.py
+|   ├── test_setup.py
+|   └── test_travis.sh
+├── conftest.py
+├── data
+|   └── TeXmacs
+|       ├── bin
+|       └── progs
+├── doc
+|   ├── README.rst
+|   ├── api
+|   |   ├── conf.py
+|   |   └── index.rst
+|   ├── cheatsheet
+|   ├── ext
+|   |   ├── docscrape.py
+|   |   ├── docscrape_sphinx.py
+|   |   ├── numpydoc.py
+|   |   └── sympylive.py
+|   ├── generate_logos.py
+|   ├── man
+|   └── src
+|       ├── _static
+|       ├── _templates
+|       ├── aboutus.rst
+|       ├── citing.rst
+|       ├── conf.py
+|       ├── gotchas.rst
+|       ├── guide.rst
+|       ├── index.rst
+|       ├── install.rst
+|       ├── logo
+|       |   └── info.txt
+|       ├── modules
+|       |   ├── assumptions
+|       |   |   ├── ask.rst
+|       |   |   ├── assume.rst
+|       |   |   ├── handlers
+|       |   |   ├── index.rst
+|       |   |   └── refine.rst
+|       |   ├── calculus
+|       |   |   └── index.rst
+|       |   ├── categories.rst
+|       |   ├── codegen.rst
+|       |   ├── combinatorics
+|       |   |   ├── fp_groups.rst
+|       |   |   ├── graycode.rst
+|       |   |   ├── group_constructs.rst
+|       |   |   ├── index.rst
+|       |   |   ├── named_groups.rst
+|       |   |   ├── partitions.rst
+|       |   |   ├── perm_groups.rst
+|       |   |   ├── permutations.rst
+|       |   |   ├── polyhedron.rst
+|       |   |   ├── prufer.rst
+|       |   |   ├── subsets.rst
+|       |   |   ├── tensor_can.rst
+|       |   |   ├── testutil.rst
+|       |   |   └── util.rst
+|       |   ├── concrete.rst
+|       |   ├── core.rst
+|       |   ├── crypto.rst
+|       |   ├── diffgeom.rst
+|       |   ├── evalf.rst
+|       |   ├── functions
+|       |   |   ├── combinatorial.rst
+|       |   |   ├── elementary.rst
+|       |   |   ├── index.rst
+|       |   |   └── special.rst
+|       |   ├── geometry
+|       |   |   ├── curves.rst
+|       |   |   ├── ellipses.rst
+|       |   |   ├── entities.rst
+|       |   |   ├── index.rst
+|       |   |   ├── lines.rst
+|       |   |   ├── plane.rst
+|       |   |   ├── points.rst
+|       |   |   ├── polygons.rst
+|       |   |   └── utils.rst
+|       |   ├── holonomic
+|       |   |   ├── about.rst
+|       |   |   ├── convert.rst
+|       |   |   ├── index.rst
+|       |   |   ├── operations.rst
+|       |   |   ├── represent.rst
+|       |   |   └── uses.rst
+|       |   ├── index.rst
+|       |   ├── integrals
+|       |   |   ├── g-functions.rst
+|       |   |   └── integrals.rst
+|       |   ├── liealgebras
+|       |   |   └── index.rst
+|       |   ├── logic.rst
+|       |   ├── matrices
+|       |   |   ├── dense.rst
+|       |   |   ├── expressions.rst
+|       |   |   ├── immutablematrices.rst
+|       |   |   ├── index.rst
+|       |   |   ├── matrices.rst
+|       |   |   └── sparse.rst
+|       |   ├── ntheory.rst
+|       |   ├── numeric-computation.rst
+|       |   ├── parsing.rst
+|       |   ├── physics
+|       |   |   ├── continuum_mechanics
+|       |   |   ├── hep
+|       |   |   ├── hydrogen.rst
+|       |   |   ├── index.rst
+|       |   |   ├── matrices.rst
+|       |   |   ├── mechanics
+|       |   |   ├── optics
+|       |   |   ├── paulialgebra.rst
+|       |   |   ├── qho_1d.rst
+|       |   |   ├── quantum
+|       |   |   ├── secondquant.rst
+|       |   |   ├── sho.rst
+|       |   |   ├── units
+|       |   |   ├── vector
+|       |   |   └── wigner.rst
+|       |   ├── plotting.rst
+|       |   ├── polys
+|       |   |   ├── agca.rst
+|       |   |   ├── basics.rst
+|       |   |   ├── index.rst
+|       |   |   ├── internals.rst
+|       |   |   ├── literature.rst
+|       |   |   ├── reference.rst
+|       |   |   ├── ringseries.rst
+|       |   |   └── wester.rst
+|       |   ├── printing.rst
+|       |   ├── rewriting.rst
+|       |   ├── series
+|       |   |   ├── formal.rst
+|       |   |   ├── fourier.rst
+|       |   |   ├── index.rst
+|       |   |   ├── limitseq.rst
+|       |   |   ├── sequences.rst
+|       |   |   └── series.rst
+|       |   ├── sets.rst
+|       |   ├── simplify
+|       |   |   ├── hyperexpand.rst
+|       |   |   └── simplify.rst
+|       |   ├── solvers
+|       |   |   ├── diophantine.rst
+|       |   |   ├── inequalities.rst
+|       |   |   ├── ode.rst
+|       |   |   ├── pde.rst
+|       |   |   ├── solvers.rst
+|       |   |   └── solveset.rst
+|       |   ├── stats.rst
+|       |   ├── tensor
+|       |   |   ├── array.rst
+|       |   |   ├── index.rst
+|       |   |   ├── index_methods.rst
+|       |   |   ├── indexed.rst
+|       |   |   └── tensor.rst
+|       |   ├── utilities
+|       |   |   ├── autowrap.rst
+|       |   |   ├── codegen.rst
+|       |   |   ├── decorator.rst
+|       |   |   ├── enumerative.rst
+|       |   |   ├── index.rst
+|       |   |   ├── iterables.rst
+|       |   |   ├── lambdify.rst
+|       |   |   ├── memoization.rst
+|       |   |   ├── misc.rst
+|       |   |   ├── pkgdata.rst
+|       |   |   ├── pytest.rst
+|       |   |   ├── randtest.rst
+|       |   |   ├── runtests.rst
+|       |   |   ├── source.rst
+|       |   |   └── timeutils.rst
+|       |   └── vector
+|       |       ├── api
+|       |       ├── basics.rst
+|       |       ├── coordsys.rst
+|       |       ├── examples.rst
+|       |       ├── fields.rst
+|       |       ├── index.rst
+|       |       └── intro.rst
+|       ├── outreach.rst
+|       ├── pics
+|       ├── python-comparisons.rst
+|       ├── special_topics
+|       |   ├── finite_diff_derivatives.rst
+|       |   ├── index.rst
+|       |   └── intro.rst
+|       ├── tutorial
+|       |   ├── basic_operations.rst
+|       |   ├── calculus.rst
+|       |   ├── gotchas.rst
+|       |   ├── index.rst
+|       |   ├── intro.rst
+|       |   ├── manipulation.rst
+|       |   ├── matrices.rst
+|       |   ├── preliminaries.rst
+|       |   ├── printing.rst
+|       |   ├── simplification.rst
+|       |   └── solvers.rst
+|       └── wiki.rst
+├── examples
+|   ├── advanced
+|   |   ├── autowrap_integrators.py
+|   |   ├── autowrap_ufuncify.py
+|   |   ├── curvilinear_coordinates.py
+|   |   ├── dense_coding_example.py
+|   |   ├── fem.py
+|   |   ├── gibbs_phenomenon.py
+|   |   ├── grover_example.py
+|   |   ├── hydrogen.py
+|   |   ├── pidigits.py
+|   |   ├── pyglet_plotting.py
+|   |   ├── qft.py
+|   |   └── relativity.py
+|   ├── all.py
+|   ├── beginner
+|   |   ├── basic.py
+|   |   ├── differentiation.py
+|   |   ├── expansion.py
+|   |   ├── functions.py
+|   |   ├── limits_examples.py
+|   |   ├── plot_examples.py
+|   |   ├── plotting_nice_plot.py
+|   |   ├── precision.py
+|   |   ├── print_pretty.py
+|   |   ├── series.py
+|   |   └── substitution.py
+|   ├── intermediate
+|   |   ├── coupled_cluster.py
+|   |   ├── differential_equations.py
+|   |   ├── infinite_1d_box.py
+|   |   ├── mplot2d.py
+|   |   ├── mplot3d.py
+|   |   ├── partial_differential_eqs.py
+|   |   ├── print_gtk.py
+|   |   ├── sample.py
+|   |   ├── trees.py
+|   |   └── vandermonde.py
+|   └── notebooks
+|       └── README.txt
+├── isympy.py
+├── release
+|   ├── README.md
+|   ├── fabfile.py
+|   ├── pull_and_run_rever.sh
+|   └── release.sh
+├── setup.py
+├── setupegg.py
+└── sympy
+    ├── __init__.py
+    ├── abc.py
+    ├── algebras
+    |   ├── __init__.py
+    |   ├── quaternion.py
+    |   └── tests
+    |       └── test_quaternion.py
+    ├── assumptions
+    |   ├── __init__.py
+    |   ├── ask.py
+    |   ├── ask_generated.py
+    |   ├── assume.py
+    |   ├── handlers
+    |   |   ├── __init__.py
+    |   |   ├── calculus.py
+    |   |   ├── common.py
+    |   |   ├── matrices.py
+    |   |   ├── ntheory.py
+    |   |   ├── order.py
+    |   |   └── sets.py
+    |   ├── refine.py
+    |   ├── satask.py
+    |   ├── sathandlers.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_assumptions_2.py
+    |       ├── test_context.py
+    |       ├── test_matrices.py
+    |       ├── test_query.py
+    |       ├── test_refine.py
+    |       ├── test_satask.py
+    |       └── test_sathandlers.py
+    ├── benchmarks
+    |   ├── __init__.py
+    |   ├── bench_discrete_log.py
+    |   ├── bench_meijerint.py
+    |   └── bench_symbench.py
+    ├── calculus
+    |   ├── __init__.py
+    |   ├── euler.py
+    |   ├── finite_diff.py
+    |   ├── singularities.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_euler.py
+    |   |   ├── test_finite_diff.py
+    |   |   ├── test_singularities.py
+    |   |   └── test_util.py
+    |   └── util.py
+    ├── categories
+    |   ├── __init__.py
+    |   ├── baseclasses.py
+    |   ├── diagram_drawing.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_baseclasses.py
+    |       └── test_drawing.py
+    ├── codegen
+    |   ├── __init__.py
+    |   ├── approximations.py
+    |   ├── ast.py
+    |   ├── cfunctions.py
+    |   ├── ffunctions.py
+    |   ├── rewriting.py
+    |   └── tests
+    |       ├── test_approximations.py
+    |       ├── test_ast.py
+    |       ├── test_cfunctions.py
+    |       ├── test_ffunctions.py
+    |       └── test_rewriting.py
+    ├── combinatorics
+    |   ├── __init__.py
+    |   ├── coset_table.py
+    |   ├── fp_groups.py
+    |   ├── free_groups.py
+    |   ├── generators.py
+    |   ├── graycode.py
+    |   ├── group_constructs.py
+    |   ├── homomorphisms.py
+    |   ├── named_groups.py
+    |   ├── partitions.py
+    |   ├── perm_groups.py
+    |   ├── permutations.py
+    |   ├── polyhedron.py
+    |   ├── prufer.py
+    |   ├── rewritingsystem.py
+    |   ├── subsets.py
+    |   ├── tensor_can.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_coset_table.py
+    |   |   ├── test_fp_groups.py
+    |   |   ├── test_free_groups.py
+    |   |   ├── test_generators.py
+    |   |   ├── test_graycode.py
+    |   |   ├── test_group_constructs.py
+    |   |   ├── test_homomorphisms.py
+    |   |   ├── test_named_groups.py
+    |   |   ├── test_partitions.py
+    |   |   ├── test_perm_groups.py
+    |   |   ├── test_permutations.py
+    |   |   ├── test_polyhedron.py
+    |   |   ├── test_prufer.py
+    |   |   ├── test_rewriting.py
+    |   |   ├── test_subsets.py
+    |   |   ├── test_tensor_can.py
+    |   |   ├── test_testutil.py
+    |   |   └── test_util.py
+    |   ├── testutil.py
+    |   └── util.py
+    ├── concrete
+    |   ├── __init__.py
+    |   ├── delta.py
+    |   ├── expr_with_intlimits.py
+    |   ├── expr_with_limits.py
+    |   ├── gosper.py
+    |   ├── guess.py
+    |   ├── products.py
+    |   ├── summations.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_delta.py
+    |       ├── test_gosper.py
+    |       ├── test_guess.py
+    |       ├── test_products.py
+    |       └── test_sums_products.py
+    ├── conftest.py
+    ├── core
+    |   ├── __init__.py
+    |   ├── add.py
+    |   ├── alphabets.py
+    |   ├── assumptions.py
+    |   ├── backend.py
+    |   ├── basic.py
+    |   ├── benchmarks
+    |   |   ├── __init__.py
+    |   |   ├── bench_arit.py
+    |   |   ├── bench_assumptions.py
+    |   |   ├── bench_basic.py
+    |   |   ├── bench_expand.py
+    |   |   ├── bench_numbers.py
+    |   |   └── bench_sympify.py
+    |   ├── cache.py
+    |   ├── compatibility.py
+    |   ├── containers.py
+    |   ├── core.py
+    |   ├── coreerrors.py
+    |   ├── decorators.py
+    |   ├── evalf.py
+    |   ├── evaluate.py
+    |   ├── expr.py
+    |   ├── exprtools.py
+    |   ├── facts.py
+    |   ├── function.py
+    |   ├── logic.py
+    |   ├── mod.py
+    |   ├── mul.py
+    |   ├── multidimensional.py
+    |   ├── numbers.py
+    |   ├── operations.py
+    |   ├── power.py
+    |   ├── relational.py
+    |   ├── rules.py
+    |   ├── singleton.py
+    |   ├── symbol.py
+    |   ├── sympify.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_args.py
+    |   |   ├── test_arit.py
+    |   |   ├── test_assumptions.py
+    |   |   ├── test_basic.py
+    |   |   ├── test_cache.py
+    |   |   ├── test_compatibility.py
+    |   |   ├── test_complex.py
+    |   |   ├── test_constructor_postprocessor.py
+    |   |   ├── test_containers.py
+    |   |   ├── test_count_ops.py
+    |   |   ├── test_diff.py
+    |   |   ├── test_equal.py
+    |   |   ├── test_eval.py
+    |   |   ├── test_eval_power.py
+    |   |   ├── test_evalf.py
+    |   |   ├── test_evaluate.py
+    |   |   ├── test_expand.py
+    |   |   ├── test_expr.py
+    |   |   ├── test_exprtools.py
+    |   |   ├── test_facts.py
+    |   |   ├── test_function.py
+    |   |   ├── test_logic.py
+    |   |   ├── test_match.py
+    |   |   ├── test_noncommutative.py
+    |   |   ├── test_numbers.py
+    |   |   ├── test_operations.py
+    |   |   ├── test_priority.py
+    |   |   ├── test_relational.py
+    |   |   ├── test_rules.py
+    |   |   ├── test_subs.py
+    |   |   ├── test_symbol.py
+    |   |   ├── test_sympify.py
+    |   |   ├── test_trace.py
+    |   |   ├── test_truediv.py
+    |   |   └── test_var.py
+    |   └── trace.py
+    ├── crypto
+    |   ├── __init__.py
+    |   ├── crypto.py
+    |   └── tests
+    |       ├── __init__.py
+    |       └── test_crypto.py
+    ├── deprecated
+    |   ├── __init__.py
+    |   ├── class_registry.py
+    |   └── tests
+    |       ├── __init__.py
+    |       └── test_class_registry.py
+    ├── diffgeom
+    |   ├── __init__.py
+    |   ├── diffgeom.py
+    |   ├── rn.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_class_structure.py
+    |       ├── test_diffgeom.py
+    |       ├── test_function_diffgeom_book.py
+    |       └── test_hyperbolic_space.py
+    ├── external
+    |   ├── __init__.py
+    |   ├── importtools.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_autowrap.py
+    |       ├── test_codegen.py
+    |       ├── test_importtools.py
+    |       ├── test_numpy.py
+    |       ├── test_sage.py
+    |       └── test_scipy.py
+    ├── functions
+    |   ├── __init__.py
+    |   ├── combinatorial
+    |   |   ├── __init__.py
+    |   |   ├── factorials.py
+    |   |   ├── numbers.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       ├── test_comb_factorials.py
+    |   |       └── test_comb_numbers.py
+    |   ├── elementary
+    |   |   ├── __init__.py
+    |   |   ├── benchmarks
+    |   |   |   ├── __init__.py
+    |   |   |   └── bench_exp.py
+    |   |   ├── complexes.py
+    |   |   ├── exponential.py
+    |   |   ├── hyperbolic.py
+    |   |   ├── integers.py
+    |   |   ├── miscellaneous.py
+    |   |   ├── piecewise.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   ├── test_complexes.py
+    |   |   |   ├── test_exponential.py
+    |   |   |   ├── test_hyperbolic.py
+    |   |   |   ├── test_integers.py
+    |   |   |   ├── test_interface.py
+    |   |   |   ├── test_miscellaneous.py
+    |   |   |   ├── test_piecewise.py
+    |   |   |   └── test_trigonometric.py
+    |   |   └── trigonometric.py
+    |   └── special
+    |       ├── __init__.py
+    |       ├── benchmarks
+    |       |   ├── __init__.py
+    |       |   └── bench_special.py
+    |       ├── bessel.py
+    |       ├── beta_functions.py
+    |       ├── bsplines.py
+    |       ├── delta_functions.py
+    |       ├── elliptic_integrals.py
+    |       ├── error_functions.py
+    |       ├── gamma_functions.py
+    |       ├── hyper.py
+    |       ├── mathieu_functions.py
+    |       ├── polynomials.py
+    |       ├── singularity_functions.py
+    |       ├── spherical_harmonics.py
+    |       ├── tensor_functions.py
+    |       ├── tests
+    |       |   ├── __init__.py
+    |       |   ├── test_bessel.py
+    |       |   ├── test_beta_functions.py
+    |       |   ├── test_bsplines.py
+    |       |   ├── test_delta_functions.py
+    |       |   ├── test_elliptic_integrals.py
+    |       |   ├── test_error_functions.py
+    |       |   ├── test_gamma_functions.py
+    |       |   ├── test_hyper.py
+    |       |   ├── test_mathieu.py
+    |       |   ├── test_singularity_functions.py
+    |       |   ├── test_spec_polynomials.py
+    |       |   ├── test_spherical_harmonics.py
+    |       |   ├── test_tensor_functions.py
+    |       |   └── test_zeta_functions.py
+    |       └── zeta_functions.py
+    ├── galgebra.py
+    ├── geometry
+    |   ├── __init__.py
+    |   ├── curve.py
+    |   ├── ellipse.py
+    |   ├── entity.py
+    |   ├── exceptions.py
+    |   ├── line.py
+    |   ├── parabola.py
+    |   ├── plane.py
+    |   ├── point.py
+    |   ├── polygon.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_curve.py
+    |   |   ├── test_ellipse.py
+    |   |   ├── test_entity.py
+    |   |   ├── test_geometrysets.py
+    |   |   ├── test_line.py
+    |   |   ├── test_parabola.py
+    |   |   ├── test_plane.py
+    |   |   ├── test_point.py
+    |   |   ├── test_polygon.py
+    |   |   └── test_util.py
+    |   └── util.py
+    ├── holonomic
+    |   ├── __init__.py
+    |   ├── holonomic.py
+    |   ├── holonomicerrors.py
+    |   ├── linearsolver.py
+    |   ├── numerical.py
+    |   ├── recurrence.py
+    |   └── tests
+    |       ├── test_holonomic.py
+    |       └── test_recurrence.py
+    ├── integrals
+    |   ├── __init__.py
+    |   ├── benchmarks
+    |   |   ├── __init__.py
+    |   |   ├── bench_integrate.py
+    |   |   └── bench_trigintegrate.py
+    |   ├── deltafunctions.py
+    |   ├── heurisch.py
+    |   ├── integrals.py
+    |   ├── intpoly.py
+    |   ├── manualintegrate.py
+    |   ├── meijerint.py
+    |   ├── meijerint_doc.py
+    |   ├── prde.py
+    |   ├── quadrature.py
+    |   ├── rationaltools.py
+    |   ├── rde.py
+    |   ├── risch.py
+    |   ├── rubi
+    |   |   ├── __init__.py
+    |   |   ├── parsetools
+    |   |   |   ├── __init__.py
+    |   |   |   ├── parse.py
+    |   |   |   └── tests
+    |   |   ├── rubi.py
+    |   |   ├── rules
+    |   |   |   ├── __init__.py
+    |   |   |   ├── binomial_products.py
+    |   |   |   ├── exponential.py
+    |   |   |   ├── hyperbolic.py
+    |   |   |   ├── integrand_simplification.py
+    |   |   |   ├── inverse_hyperbolic.py
+    |   |   |   ├── inverse_trig.py
+    |   |   |   ├── linear_products.py
+    |   |   |   ├── logarithms.py
+    |   |   |   ├── miscellaneous_algebraic.py
+    |   |   |   ├── miscellaneous_integration.py
+    |   |   |   ├── miscellaneous_trig.py
+    |   |   |   ├── piecewise_linear.py
+    |   |   |   ├── quadratic_products.py
+    |   |   |   ├── secant.py
+    |   |   |   ├── sine.py
+    |   |   |   ├── tangent.py
+    |   |   |   └── trinomial_products.py
+    |   |   ├── symbol.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   ├── test_1_2.py
+    |   |   |   ├── test_1_3.py
+    |   |   |   ├── test_1_4.py
+    |   |   |   ├── test_rubi_integrate.py
+    |   |   |   └── test_utility_function.py
+    |   |   └── utility_function.py
+    |   ├── singularityfunctions.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_deltafunctions.py
+    |   |   ├── test_failing_integrals.py
+    |   |   ├── test_heurisch.py
+    |   |   ├── test_integrals.py
+    |   |   ├── test_intpoly.py
+    |   |   ├── test_lineintegrals.py
+    |   |   ├── test_manual.py
+    |   |   ├── test_meijerint.py
+    |   |   ├── test_prde.py
+    |   |   ├── test_quadrature.py
+    |   |   ├── test_rationaltools.py
+    |   |   ├── test_rde.py
+    |   |   ├── test_risch.py
+    |   |   ├── test_singularityfunctions.py
+    |   |   ├── test_transforms.py
+    |   |   └── test_trigonometry.py
+    |   ├── transforms.py
+    |   └── trigonometry.py
+    ├── interactive
+    |   ├── __init__.py
+    |   ├── ipythonprinting.py
+    |   ├── printing.py
+    |   ├── session.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_interactive.py
+    |       ├── test_ipython.py
+    |       └── test_ipythonprinting.py
+    ├── liealgebras
+    |   ├── __init__.py
+    |   ├── cartan_matrix.py
+    |   ├── cartan_type.py
+    |   ├── dynkin_diagram.py
+    |   ├── root_system.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_cartan_matrix.py
+    |   |   ├── test_cartan_type.py
+    |   |   ├── test_dynkin_diagram.py
+    |   |   ├── test_root_system.py
+    |   |   ├── test_type_A.py
+    |   |   ├── test_type_B.py
+    |   |   ├── test_type_C.py
+    |   |   ├── test_type_D.py
+    |   |   ├── test_type_E.py
+    |   |   ├── test_type_F.py
+    |   |   ├── test_type_G.py
+    |   |   └── test_weyl_group.py
+    |   ├── type_a.py
+    |   ├── type_b.py
+    |   ├── type_c.py
+    |   ├── type_d.py
+    |   ├── type_e.py
+    |   ├── type_f.py
+    |   ├── type_g.py
+    |   └── weyl_group.py
+    ├── logic
+    |   ├── __init__.py
+    |   ├── algorithms
+    |   |   ├── __init__.py
+    |   |   ├── dpll.py
+    |   |   └── dpll2.py
+    |   ├── boolalg.py
+    |   ├── inference.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_boolalg.py
+    |   |   ├── test_dimacs.py
+    |   |   └── test_inference.py
+    |   └── utilities
+    |       ├── __init__.py
+    |       └── dimacs.py
+    ├── matrices
+    |   ├── __init__.py
+    |   ├── benchmarks
+    |   |   ├── __init__.py
+    |   |   └── bench_matrix.py
+    |   ├── common.py
+    |   ├── dense.py
+    |   ├── densearith.py
+    |   ├── densesolve.py
+    |   ├── densetools.py
+    |   ├── expressions
+    |   |   ├── __init__.py
+    |   |   ├── adjoint.py
+    |   |   ├── blockmatrix.py
+    |   |   ├── determinant.py
+    |   |   ├── diagonal.py
+    |   |   ├── dotproduct.py
+    |   |   ├── factorizations.py
+    |   |   ├── fourier.py
+    |   |   ├── funcmatrix.py
+    |   |   ├── hadamard.py
+    |   |   ├── inverse.py
+    |   |   ├── kronecker.py
+    |   |   ├── matadd.py
+    |   |   ├── matexpr.py
+    |   |   ├── matmul.py
+    |   |   ├── matpow.py
+    |   |   ├── slice.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   ├── test_adjoint.py
+    |   |   |   ├── test_blockmatrix.py
+    |   |   |   ├── test_derivatives.py
+    |   |   |   ├── test_determinant.py
+    |   |   |   ├── test_diagonal.py
+    |   |   |   ├── test_dotproduct.py
+    |   |   |   ├── test_factorizations.py
+    |   |   |   ├── test_fourier.py
+    |   |   |   ├── test_funcmatrix.py
+    |   |   |   ├── test_hadamard.py
+    |   |   |   ├── test_indexing.py
+    |   |   |   ├── test_inverse.py
+    |   |   |   ├── test_kronecker.py
+    |   |   |   ├── test_matadd.py
+    |   |   |   ├── test_matexpr.py
+    |   |   |   ├── test_matmul.py
+    |   |   |   ├── test_matpow.py
+    |   |   |   ├── test_slice.py
+    |   |   |   ├── test_trace.py
+    |   |   |   └── test_transpose.py
+    |   |   ├── trace.py
+    |   |   └── transpose.py
+    |   ├── immutable.py
+    |   ├── matrices.py
+    |   ├── normalforms.py
+    |   ├── sparse.py
+    |   ├── sparsetools.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_commonmatrix.py
+    |       ├── test_densearith.py
+    |       ├── test_densesolve.py
+    |       ├── test_densetools.py
+    |       ├── test_immutable.py
+    |       ├── test_interactions.py
+    |       ├── test_matrices.py
+    |       ├── test_normalforms.py
+    |       ├── test_sparse.py
+    |       └── test_sparsetools.py
+    ├── multipledispatch
+    |   ├── __init__.py
+    |   ├── conflict.py
+    |   ├── core.py
+    |   ├── dispatcher.py
+    |   ├── tests
+    |   |   ├── test_conflict.py
+    |   |   ├── test_core.py
+    |   |   └── test_dispatcher.py
+    |   └── utils.py
+    ├── ntheory
+    |   ├── __init__.py
+    |   ├── bbp_pi.py
+    |   ├── continued_fraction.py
+    |   ├── egyptian_fraction.py
+    |   ├── factor_.py
+    |   ├── generate.py
+    |   ├── modular.py
+    |   ├── multinomial.py
+    |   ├── partitions_.py
+    |   ├── primetest.py
+    |   ├── residue_ntheory.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_bbp_pi.py
+    |       ├── test_continued_fraction.py
+    |       ├── test_egyptian_fraction.py
+    |       ├── test_factor_.py
+    |       ├── test_generate.py
+    |       ├── test_modular.py
+    |       ├── test_multinomial.py
+    |       ├── test_partitions.py
+    |       ├── test_primetest.py
+    |       └── test_residue.py
+    ├── parsing
+    |   ├── __init__.py
+    |   ├── ast_parser.py
+    |   ├── latex
+    |   |   ├── LICENSE.txt
+    |   |   ├── __init__.py
+    |   |   ├── _antlr
+    |   |   |   ├── __init__.py
+    |   |   |   ├── latexlexer.py
+    |   |   |   └── latexparser.py
+    |   |   ├── _build_latex_antlr.py
+    |   |   ├── _parse_latex_antlr.py
+    |   |   └── errors.py
+    |   ├── mathematica.py
+    |   ├── maxima.py
+    |   ├── sympy_parser.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_implicit_multiplication_application.py
+    |       ├── test_latex.py
+    |       ├── test_latex_deps.py
+    |       ├── test_mathematica.py
+    |       ├── test_maxima.py
+    |       └── test_sympy_parser.py
+    ├── physics
+    |   ├── __init__.py
+    |   ├── continuum_mechanics
+    |   |   ├── __init__.py
+    |   |   ├── beam.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       └── test_beam.py
+    |   ├── gaussopt.py
+    |   ├── hep
+    |   |   ├── __init__.py
+    |   |   ├── gamma_matrices.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       └── test_gamma_matrices.py
+    |   ├── hydrogen.py
+    |   ├── matrices.py
+    |   ├── mechanics
+    |   |   ├── __init__.py
+    |   |   ├── body.py
+    |   |   ├── functions.py
+    |   |   ├── kane.py
+    |   |   ├── lagrange.py
+    |   |   ├── linearize.py
+    |   |   ├── models.py
+    |   |   ├── particle.py
+    |   |   ├── rigidbody.py
+    |   |   ├── system.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       ├── test_body.py
+    |   |       ├── test_functions.py
+    |   |       ├── test_kane.py
+    |   |       ├── test_kane2.py
+    |   |       ├── test_kane3.py
+    |   |       ├── test_lagrange.py
+    |   |       ├── test_lagrange2.py
+    |   |       ├── test_linearize.py
+    |   |       ├── test_models.py
+    |   |       ├── test_particle.py
+    |   |       ├── test_rigidbody.py
+    |   |       └── test_system.py
+    |   ├── optics
+    |   |   ├── __init__.py
+    |   |   ├── gaussopt.py
+    |   |   ├── medium.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   ├── test_gaussopt.py
+    |   |   |   ├── test_medium.py
+    |   |   |   ├── test_utils.py
+    |   |   |   └── test_waves.py
+    |   |   ├── utils.py
+    |   |   └── waves.py
+    |   ├── paulialgebra.py
+    |   ├── pring.py
+    |   ├── qho_1d.py
+    |   ├── quantum
+    |   |   ├── __init__.py
+    |   |   ├── anticommutator.py
+    |   |   ├── boson.py
+    |   |   ├── cartesian.py
+    |   |   ├── cg.py
+    |   |   ├── circuitplot.py
+    |   |   ├── circuitutils.py
+    |   |   ├── commutator.py
+    |   |   ├── constants.py
+    |   |   ├── dagger.py
+    |   |   ├── density.py
+    |   |   ├── fermion.py
+    |   |   ├── gate.py
+    |   |   ├── grover.py
+    |   |   ├── hilbert.py
+    |   |   ├── identitysearch.py
+    |   |   ├── innerproduct.py
+    |   |   ├── matrixcache.py
+    |   |   ├── matrixutils.py
+    |   |   ├── operator.py
+    |   |   ├── operatorordering.py
+    |   |   ├── operatorset.py
+    |   |   ├── pauli.py
+    |   |   ├── piab.py
+    |   |   ├── qapply.py
+    |   |   ├── qasm.py
+    |   |   ├── qexpr.py
+    |   |   ├── qft.py
+    |   |   ├── qubit.py
+    |   |   ├── represent.py
+    |   |   ├── sho1d.py
+    |   |   ├── shor.py
+    |   |   ├── spin.py
+    |   |   ├── state.py
+    |   |   ├── tensorproduct.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       ├── test_anticommutator.py
+    |   |       ├── test_boson.py
+    |   |       ├── test_cartesian.py
+    |   |       ├── test_cg.py
+    |   |       ├── test_circuitplot.py
+    |   |       ├── test_circuitutils.py
+    |   |       ├── test_commutator.py
+    |   |       ├── test_constants.py
+    |   |       ├── test_dagger.py
+    |   |       ├── test_density.py
+    |   |       ├── test_fermion.py
+    |   |       ├── test_gate.py
+    |   |       ├── test_grover.py
+    |   |       ├── test_hilbert.py
+    |   |       ├── test_identitysearch.py
+    |   |       ├── test_innerproduct.py
+    |   |       ├── test_matrixutils.py
+    |   |       ├── test_operator.py
+    |   |       ├── test_operatorordering.py
+    |   |       ├── test_operatorset.py
+    |   |       ├── test_pauli.py
+    |   |       ├── test_piab.py
+    |   |       ├── test_printing.py
+    |   |       ├── test_qapply.py
+    |   |       ├── test_qasm.py
+    |   |       ├── test_qexpr.py
+    |   |       ├── test_qft.py
+    |   |       ├── test_qubit.py
+    |   |       ├── test_represent.py
+    |   |       ├── test_sho1d.py
+    |   |       ├── test_shor.py
+    |   |       ├── test_spin.py
+    |   |       ├── test_state.py
+    |   |       └── test_tensorproduct.py
+    |   ├── secondquant.py
+    |   ├── sho.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_clebsch_gordan.py
+    |   |   ├── test_hydrogen.py
+    |   |   ├── test_paulialgebra.py
+    |   |   ├── test_physics_matrices.py
+    |   |   ├── test_pring.py
+    |   |   ├── test_qho_1d.py
+    |   |   ├── test_secondquant.py
+    |   |   └── test_sho.py
+    |   ├── units
+    |   |   ├── __init__.py
+    |   |   ├── definitions.py
+    |   |   ├── dimensions.py
+    |   |   ├── prefixes.py
+    |   |   ├── quantities.py
+    |   |   ├── systems
+    |   |   |   ├── __init__.py
+    |   |   |   ├── mks.py
+    |   |   |   ├── mksa.py
+    |   |   |   ├── natural.py
+    |   |   |   └── si.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   ├── test_dimensions.py
+    |   |   |   ├── test_dimensionsystem.py
+    |   |   |   ├── test_prefixes.py
+    |   |   |   ├── test_quantities.py
+    |   |   |   ├── test_unitsystem.py
+    |   |   |   └── test_util.py
+    |   |   ├── unitsystem.py
+    |   |   └── util.py
+    |   ├── unitsystems.py
+    |   ├── vector
+    |   |   ├── __init__.py
+    |   |   ├── dyadic.py
+    |   |   ├── fieldfunctions.py
+    |   |   ├── frame.py
+    |   |   ├── functions.py
+    |   |   ├── point.py
+    |   |   ├── printing.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   ├── test_dyadic.py
+    |   |   |   ├── test_fieldfunctions.py
+    |   |   |   ├── test_frame.py
+    |   |   |   ├── test_functions.py
+    |   |   |   ├── test_output.py
+    |   |   |   ├── test_point.py
+    |   |   |   ├── test_printing.py
+    |   |   |   └── test_vector.py
+    |   |   └── vector.py
+    |   └── wigner.py
+    ├── plotting
+    |   ├── __init__.py
+    |   ├── experimental_lambdify.py
+    |   ├── intervalmath
+    |   |   ├── __init__.py
+    |   |   ├── interval_arithmetic.py
+    |   |   ├── lib_interval.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       ├── test_interval_functions.py
+    |   |       └── test_intervalmath.py
+    |   ├── plot.py
+    |   ├── plot_implicit.py
+    |   ├── pygletplot
+    |   |   ├── __init__.py
+    |   |   ├── color_scheme.py
+    |   |   ├── managed_window.py
+    |   |   ├── plot.py
+    |   |   ├── plot_axes.py
+    |   |   ├── plot_camera.py
+    |   |   ├── plot_controller.py
+    |   |   ├── plot_curve.py
+    |   |   ├── plot_interval.py
+    |   |   ├── plot_mode.py
+    |   |   ├── plot_mode_base.py
+    |   |   ├── plot_modes.py
+    |   |   ├── plot_object.py
+    |   |   ├── plot_rotation.py
+    |   |   ├── plot_surface.py
+    |   |   ├── plot_window.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   └── test_plotting.py
+    |   |   └── util.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_plot.py
+    |   |   └── test_plot_implicit.py
+    |   └── textplot.py
+    ├── polys
+    |   ├── __init__.py
+    |   ├── agca
+    |   |   ├── __init__.py
+    |   |   ├── extensions.py
+    |   |   ├── homomorphisms.py
+    |   |   ├── ideals.py
+    |   |   ├── modules.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       ├── test_extensions.py
+    |   |       ├── test_homomorphisms.py
+    |   |       ├── test_ideals.py
+    |   |       └── test_modules.py
+    |   ├── benchmarks
+    |   |   ├── __init__.py
+    |   |   ├── bench_galoispolys.py
+    |   |   ├── bench_groebnertools.py
+    |   |   └── bench_solvers.py
+    |   ├── compatibility.py
+    |   ├── constructor.py
+    |   ├── densearith.py
+    |   ├── densebasic.py
+    |   ├── densetools.py
+    |   ├── dispersion.py
+    |   ├── distributedmodules.py
+    |   ├── domains
+    |   |   ├── __init__.py
+    |   |   ├── algebraicfield.py
+    |   |   ├── characteristiczero.py
+    |   |   ├── complexfield.py
+    |   |   ├── compositedomain.py
+    |   |   ├── domain.py
+    |   |   ├── domainelement.py
+    |   |   ├── expressiondomain.py
+    |   |   ├── field.py
+    |   |   ├── finitefield.py
+    |   |   ├── fractionfield.py
+    |   |   ├── gmpyfinitefield.py
+    |   |   ├── gmpyintegerring.py
+    |   |   ├── gmpyrationalfield.py
+    |   |   ├── groundtypes.py
+    |   |   ├── integerring.py
+    |   |   ├── modularinteger.py
+    |   |   ├── mpelements.py
+    |   |   ├── old_fractionfield.py
+    |   |   ├── old_polynomialring.py
+    |   |   ├── polynomialring.py
+    |   |   ├── pythonfinitefield.py
+    |   |   ├── pythonintegerring.py
+    |   |   ├── pythonrational.py
+    |   |   ├── pythonrationalfield.py
+    |   |   ├── quotientring.py
+    |   |   ├── rationalfield.py
+    |   |   ├── realfield.py
+    |   |   ├── ring.py
+    |   |   ├── simpledomain.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       ├── test_domains.py
+    |   |       ├── test_polynomialring.py
+    |   |       └── test_quotientring.py
+    |   ├── euclidtools.py
+    |   ├── factortools.py
+    |   ├── fglmtools.py
+    |   ├── fields.py
+    |   ├── galoistools.py
+    |   ├── groebnertools.py
+    |   ├── heuristicgcd.py
+    |   ├── modulargcd.py
+    |   ├── monomials.py
+    |   ├── numberfields.py
+    |   ├── orderings.py
+    |   ├── orthopolys.py
+    |   ├── partfrac.py
+    |   ├── polyclasses.py
+    |   ├── polyconfig.py
+    |   ├── polyerrors.py
+    |   ├── polyfuncs.py
+    |   ├── polymatrix.py
+    |   ├── polyoptions.py
+    |   ├── polyquinticconst.py
+    |   ├── polyroots.py
+    |   ├── polytools.py
+    |   ├── polyutils.py
+    |   ├── rationaltools.py
+    |   ├── ring_series.py
+    |   ├── rings.py
+    |   ├── rootisolation.py
+    |   ├── rootoftools.py
+    |   ├── solvers.py
+    |   ├── specialpolys.py
+    |   ├── sqfreetools.py
+    |   ├── subresultants_qq_zz.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_constructor.py
+    |       ├── test_densearith.py
+    |       ├── test_densebasic.py
+    |       ├── test_densetools.py
+    |       ├── test_dispersion.py
+    |       ├── test_distributedmodules.py
+    |       ├── test_euclidtools.py
+    |       ├── test_factortools.py
+    |       ├── test_fields.py
+    |       ├── test_galoistools.py
+    |       ├── test_groebnertools.py
+    |       ├── test_heuristicgcd.py
+    |       ├── test_injections.py
+    |       ├── test_modulargcd.py
+    |       ├── test_monomials.py
+    |       ├── test_numberfields.py
+    |       ├── test_orderings.py
+    |       ├── test_orthopolys.py
+    |       ├── test_partfrac.py
+    |       ├── test_polyclasses.py
+    |       ├── test_polyfuncs.py
+    |       ├── test_polymatrix.py
+    |       ├── test_polyoptions.py
+    |       ├── test_polyroots.py
+    |       ├── test_polytools.py
+    |       ├── test_polyutils.py
+    |       ├── test_pythonrational.py
+    |       ├── test_rationaltools.py
+    |       ├── test_ring_series.py
+    |       ├── test_rings.py
+    |       ├── test_rootisolation.py
+    |       ├── test_rootoftools.py
+    |       ├── test_solvers.py
+    |       ├── test_specialpolys.py
+    |       ├── test_sqfreetools.py
+    |       └── test_subresultants_qq_zz.py
+    ├── printing
+    |   ├── __init__.py
+    |   ├── ccode.py
+    |   ├── codeprinter.py
+    |   ├── conventions.py
+    |   ├── cxxcode.py
+    |   ├── defaults.py
+    |   ├── dot.py
+    |   ├── fcode.py
+    |   ├── glsl.py
+    |   ├── gtk.py
+    |   ├── jscode.py
+    |   ├── julia.py
+    |   ├── lambdarepr.py
+    |   ├── latex.py
+    |   ├── llvmjitcode.py
+    |   ├── mathematica.py
+    |   ├── mathml.py
+    |   ├── octave.py
+    |   ├── precedence.py
+    |   ├── pretty
+    |   |   ├── __init__.py
+    |   |   ├── pretty.py
+    |   |   ├── pretty_symbology.py
+    |   |   ├── stringpict.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       └── test_pretty.py
+    |   ├── preview.py
+    |   ├── printer.py
+    |   ├── pycode.py
+    |   ├── python.py
+    |   ├── rcode.py
+    |   ├── repr.py
+    |   ├── rust.py
+    |   ├── str.py
+    |   ├── tableform.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_ccode.py
+    |   |   ├── test_codeprinter.py
+    |   |   ├── test_conventions.py
+    |   |   ├── test_cxxcode.py
+    |   |   ├── test_dot.py
+    |   |   ├── test_fcode.py
+    |   |   ├── test_glsl.py
+    |   |   ├── test_gtk.py
+    |   |   ├── test_jscode.py
+    |   |   ├── test_julia.py
+    |   |   ├── test_lambdarepr.py
+    |   |   ├── test_latex.py
+    |   |   ├── test_llvmjit.py
+    |   |   ├── test_mathematica.py
+    |   |   ├── test_mathml.py
+    |   |   ├── test_numpy.py
+    |   |   ├── test_octave.py
+    |   |   ├── test_precedence.py
+    |   |   ├── test_preview.py
+    |   |   ├── test_pycode.py
+    |   |   ├── test_python.py
+    |   |   ├── test_rcode.py
+    |   |   ├── test_repr.py
+    |   |   ├── test_rust.py
+    |   |   ├── test_str.py
+    |   |   ├── test_tableform.py
+    |   |   └── test_theanocode.py
+    |   ├── theanocode.py
+    |   └── tree.py
+    ├── release.py
+    ├── sandbox
+    |   ├── __init__.py
+    |   ├── indexed_integrals.py
+    |   └── tests
+    |       ├── __init__.py
+    |       └── test_indexed_integrals.py
+    ├── series
+    |   ├── __init__.py
+    |   ├── acceleration.py
+    |   ├── approximants.py
+    |   ├── benchmarks
+    |   |   ├── __init__.py
+    |   |   ├── bench_limit.py
+    |   |   └── bench_order.py
+    |   ├── formal.py
+    |   ├── fourier.py
+    |   ├── gruntz.py
+    |   ├── kauers.py
+    |   ├── limits.py
+    |   ├── limitseq.py
+    |   ├── order.py
+    |   ├── residues.py
+    |   ├── sequences.py
+    |   ├── series.py
+    |   ├── series_class.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_approximants.py
+    |       ├── test_demidovich.py
+    |       ├── test_formal.py
+    |       ├── test_fourier.py
+    |       ├── test_gruntz.py
+    |       ├── test_kauers.py
+    |       ├── test_limits.py
+    |       ├── test_limitseq.py
+    |       ├── test_lseries.py
+    |       ├── test_nseries.py
+    |       ├── test_order.py
+    |       ├── test_residues.py
+    |       ├── test_sequences.py
+    |       └── test_series.py
+    ├── sets
+    |   ├── __init__.py
+    |   ├── conditionset.py
+    |   ├── contains.py
+    |   ├── fancysets.py
+    |   ├── handlers
+    |   |   ├── __init__.py
+    |   |   ├── add.py
+    |   |   ├── functions.py
+    |   |   ├── intersection.py
+    |   |   ├── mul.py
+    |   |   ├── power.py
+    |   |   └── union.py
+    |   ├── ordinals.py
+    |   ├── setexpr.py
+    |   ├── sets.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_conditionset.py
+    |       ├── test_contains.py
+    |       ├── test_fancysets.py
+    |       ├── test_ordinals.py
+    |       ├── test_setexpr.py
+    |       └── test_sets.py
+    ├── simplify
+    |   ├── __init__.py
+    |   ├── combsimp.py
+    |   ├── cse_main.py
+    |   ├── cse_opts.py
+    |   ├── epathtools.py
+    |   ├── fu.py
+    |   ├── gammasimp.py
+    |   ├── hyperexpand.py
+    |   ├── hyperexpand_doc.py
+    |   ├── powsimp.py
+    |   ├── radsimp.py
+    |   ├── ratsimp.py
+    |   ├── simplify.py
+    |   ├── sqrtdenest.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_combsimp.py
+    |   |   ├── test_cse.py
+    |   |   ├── test_epathtools.py
+    |   |   ├── test_fu.py
+    |   |   ├── test_function.py
+    |   |   ├── test_gammasimp.py
+    |   |   ├── test_hyperexpand.py
+    |   |   ├── test_powsimp.py
+    |   |   ├── test_radsimp.py
+    |   |   ├── test_ratsimp.py
+    |   |   ├── test_rewrite.py
+    |   |   ├── test_simplify.py
+    |   |   ├── test_sqrtdenest.py
+    |   |   ├── test_traversaltools.py
+    |   |   └── test_trigsimp.py
+    |   ├── traversaltools.py
+    |   └── trigsimp.py
+    ├── solvers
+    |   ├── __init__.py
+    |   ├── benchmarks
+    |   |   ├── __init__.py
+    |   |   └── bench_solvers.py
+    |   ├── bivariate.py
+    |   ├── decompogen.py
+    |   ├── deutils.py
+    |   ├── diophantine.py
+    |   ├── inequalities.py
+    |   ├── ode.py
+    |   ├── pde.py
+    |   ├── polysys.py
+    |   ├── recurr.py
+    |   ├── solvers.py
+    |   ├── solveset.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_constantsimp.py
+    |       ├── test_decompogen.py
+    |       ├── test_diophantine.py
+    |       ├── test_inequalities.py
+    |       ├── test_numeric.py
+    |       ├── test_ode.py
+    |       ├── test_pde.py
+    |       ├── test_polysys.py
+    |       ├── test_recurr.py
+    |       ├── test_solvers.py
+    |       └── test_solveset.py
+    ├── stats
+    |   ├── __init__.py
+    |   ├── crv.py
+    |   ├── crv_types.py
+    |   ├── drv.py
+    |   ├── drv_types.py
+    |   ├── error_prop.py
+    |   ├── frv.py
+    |   ├── frv_types.py
+    |   ├── rv.py
+    |   ├── rv_interface.py
+    |   ├── symbolic_probability.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_continuous_rv.py
+    |       ├── test_discrete_rv.py
+    |       ├── test_error_prop.py
+    |       ├── test_finite_rv.py
+    |       ├── test_mix.py
+    |       ├── test_rv.py
+    |       └── test_symbolic_probability.py
+    ├── strategies
+    |   ├── __init__.py
+    |   ├── branch
+    |   |   ├── __init__.py
+    |   |   ├── core.py
+    |   |   ├── tests
+    |   |   |   ├── __init__.py
+    |   |   |   ├── test_core.py
+    |   |   |   ├── test_tools.py
+    |   |   |   └── test_traverse.py
+    |   |   ├── tools.py
+    |   |   └── traverse.py
+    |   ├── core.py
+    |   ├── rl.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_core.py
+    |   |   ├── test_rl.py
+    |   |   ├── test_strat.py
+    |   |   ├── test_tools.py
+    |   |   ├── test_traverse.py
+    |   |   └── test_tree.py
+    |   ├── tools.py
+    |   ├── traverse.py
+    |   ├── tree.py
+    |   └── util.py
+    ├── tensor
+    |   ├── __init__.py
+    |   ├── array
+    |   |   ├── __init__.py
+    |   |   ├── arrayop.py
+    |   |   ├── dense_ndim_array.py
+    |   |   ├── mutable_ndim_array.py
+    |   |   ├── ndim_array.py
+    |   |   ├── sparse_ndim_array.py
+    |   |   └── tests
+    |   |       ├── __init__.py
+    |   |       ├── test_arrayop.py
+    |   |       ├── test_immutable_ndim_array.py
+    |   |       ├── test_mutable_ndim_array.py
+    |   |       └── test_ndim_array_conversions.py
+    |   ├── functions.py
+    |   ├── index_methods.py
+    |   ├── indexed.py
+    |   ├── tensor.py
+    |   └── tests
+    |       ├── __init__.py
+    |       ├── test_functions.py
+    |       ├── test_index_methods.py
+    |       ├── test_indexed.py
+    |       └── test_tensor.py
+    ├── this.py
+    ├── unify
+    |   ├── __init__.py
+    |   ├── core.py
+    |   ├── rewrite.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── test_rewrite.py
+    |   |   ├── test_sympy.py
+    |   |   └── test_unify.py
+    |   └── usympy.py
+    ├── utilities
+    |   ├── __init__.py
+    |   ├── autowrap.py
+    |   ├── benchmarking.py
+    |   ├── codegen.py
+    |   ├── decorator.py
+    |   ├── enumerative.py
+    |   ├── exceptions.py
+    |   ├── iterables.py
+    |   ├── lambdify.py
+    |   ├── magic.py
+    |   ├── mathml
+    |   |   ├── __init__.py
+    |   |   └── data
+    |   ├── memoization.py
+    |   ├── misc.py
+    |   ├── pkgdata.py
+    |   ├── pytest.py
+    |   ├── randtest.py
+    |   ├── runtests.py
+    |   ├── source.py
+    |   ├── tests
+    |   |   ├── __init__.py
+    |   |   ├── diagnose_imports.py
+    |   |   ├── test_autowrap.py
+    |   |   ├── test_code_quality.py
+    |   |   ├── test_codegen.py
+    |   |   ├── test_codegen_julia.py
+    |   |   ├── test_codegen_octave.py
+    |   |   ├── test_codegen_rust.py
+    |   |   ├── test_decorator.py
+    |   |   ├── test_enumerative.py
+    |   |   ├── test_iterables.py
+    |   |   ├── test_lambdify.py
+    |   |   ├── test_misc.py
+    |   |   ├── test_module_imports.py
+    |   |   ├── test_pickling.py
+    |   |   ├── test_pytest.py
+    |   |   ├── test_source.py
+    |   |   ├── test_timeutils.py
+    |   |   └── test_wester.py
+    |   └── timeutils.py
+    └── vector
+        ├── __init__.py
+        ├── basisdependent.py
+        ├── coordsysrect.py
+        ├── deloperator.py
+        ├── dyadic.py
+        ├── functions.py
+        ├── operators.py
+        ├── orienters.py
+        ├── point.py
+        ├── scalar.py
+        ├── tests
+        |   ├── __init__.py
+        |   ├── test_coordsysrect.py
+        |   ├── test_dyadic.py
+        |   ├── test_field_functions.py
+        |   ├── test_functions.py
+        |   ├── test_operators.py
+        |   ├── test_printing.py
+        |   └── test_vector.py
+        └── vector.py
+--- END FILE TREE ---
+    
+This is the original user query:
+--- BEGIN ORIGINAL QUERY ---
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+vectors break pretty printing
+
+Issue description: 
+```py
+In [1]: from sympy.vector import *
+
+In [2]: e = CoordSysCartesian('e')
+
+In [3]: (x/y)**t*e.j
+Out[3]:
+⎛   t⎞ e_j
+⎜⎛x⎞ e_j ⎟
+⎜⎜─⎟ ⎟
+⎝⎝y⎠ ⎠
+```
+
+Also, when it does print correctly, the baseline is wrong (it should be centered). 
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+--- END ORIGINAL QUERY ---
+
+All aggregated context for the queries:
+--- BEGIN AGGREGATED CONTEXT ---
+File: sympy/vector/tests/test_printing.py
+Line number range: 129 - 142
+Content:
+129. def test_pretty_print_unicode():
+130.     assert upretty(v[0]) == u'0'
+131.     assert upretty(v[1]) == u'N_i'
+132.     assert upretty(v[5]) == u'(a) N_i + (-b) N_j'
+133.     # Make sure the printing works in other objects
+134.     assert upretty(v[5].args) == u'((a) N_i, (-b) N_j)'
+135.     assert upretty(v[8]) == upretty_v_8
+136.     assert upretty(v[2]) == u'(-1) N_i'
+137.     assert upretty(v[11]) == upretty_v_11
+138.     assert upretty(s) == upretty_s
+139.     assert upretty(d[0]) == u'(0|0)'
+140.     assert upretty(d[5]) == u'(a) (N_i|N_k) + (-b) (N_j|N_k)'
+141.     assert upretty(d[7]) == upretty_d_7
+142.     assert upretty(d[10]) == u'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)'
+
+
+File: sympy/vector/tests/test_printing.py
+Line number range: 114 - 127
+Content:
+114. @XFAIL
+115. def test_pretty_printing_ascii():
+116.     assert pretty(v[0]) == u'0'
+117.     assert pretty(v[1]) == u'N_i'
+118.     assert pretty(v[5]) == u'(a) N_i + (-b) N_j'
+119.     assert pretty(v[8]) == pretty_v_8
+120.     assert pretty(v[2]) == u'(-1) N_i'
+121.     assert pretty(v[11]) == pretty_v_11
+122.     assert pretty(s) == pretty_s
+123.     assert pretty(d[0]) == u'(0|0)'
+124.     assert pretty(d[5]) == u'(a) (N_i|N_k) + (-b) (N_j|N_k)'
+125.     assert pretty(d[7]) == pretty_d_7
+126.     assert pretty(d[10]) == u'(cos(a)) (C_i|N_k) + (-sin(a)) (C_j|N_k)'
+127. 
+
+
+File: sympy/vector/tests/test_printing.py
+Line number range: 20 - 36
+Content:
+20. # Initialize the basic and tedious vector/dyadic expressions
+21. # needed for testing.
+22. # Some of the pretty forms shown denote how the expressions just
+23. # above them should look with pretty printing.
+24. N = CoordSys3D('N')
+25. C = N.orient_new_axis('C', a, N.k)
+26. v = []
+27. d = []
+28. v.append(Vector.zero)
+29. v.append(N.i)
+30. v.append(-N.i)
+31. v.append(N.i + N.j)
+32. v.append(a*N.i)
+33. v.append(a*N.i - b*N.j)
+34. v.append((a**2 + N.x)*N.i + N.k)
+35. v.append((a**2 + b)*N.i + 3*(C.y - c)*N.k)
+36. f = Function('f')
+
+
+File: sympy/vector/tests/test_vector.py
+Line number range: 48 - 103
+Content:
+48. def test_vector():
+49.     assert isinstance(i, BaseVector)
+50.     assert i != j
+51.     assert j != k
+52.     assert k != i
+53.     assert i - i == Vector.zero
+54.     assert i + Vector.zero == i
+55.     assert i - Vector.zero == i
+56.     assert Vector.zero != 0
+57.     assert -Vector.zero == Vector.zero
+58. 
+59.     v1 = a*i + b*j + c*k
+60.     v2 = a**2*i + b**2*j + c**2*k
+61.     v3 = v1 + v2
+62.     v4 = 2 * v1
+63.     v5 = a * i
+64. 
+65.     assert isinstance(v1, VectorAdd)
+66.     assert v1 - v1 == Vector.zero
+67.     assert v1 + Vector.zero == v1
+68.     assert v1.dot(i) == a
+69.     assert v1.dot(j) == b
+70.     assert v1.dot(k) == c
+71.     assert i.dot(v2) == a**2
+72.     assert j.dot(v2) == b**2
+73.     assert k.dot(v2) == c**2
+74.     assert v3.dot(i) == a**2 + a
+75.     assert v3.dot(j) == b**2 + b
+76.     assert v3.dot(k) == c**2 + c
+77. 
+78.     assert v1 + v2 == v2 + v1
+79.     assert v1 - v2 == -1 * (v2 - v1)
+80.     assert a * v1 == v1 * a
+81. 
+82.     assert isinstance(v5, VectorMul)
+83.     assert v5.base_vector == i
+84.     assert v5.measure_number == a
+85.     assert isinstance(v4, Vector)
+86.     assert isinstance(v4, VectorAdd)
+87.     assert isinstance(v4, Vector)
+88.     assert isinstance(Vector.zero, VectorZero)
+89.     assert isinstance(Vector.zero, Vector)
+90.     assert isinstance(v1 * 0, VectorZero)
+91. 
+92.     assert v1.to_matrix(C) == Matrix([[a], [b], [c]])
+93. 
+94.     assert i.components == {i: 1}
+95.     assert v5.components == {i: a}
+96.     assert v1.components == {i: a, j: b, k: c}
+97. 
+98.     assert VectorAdd(v1, Vector.zero) == v1
+99.     assert VectorMul(a, v1) == v1*a
+100.     assert VectorMul(1, i) == i
+101.     assert VectorAdd(v1, Vector.zero) == v1
+102.     assert VectorMul(0, Vector.zero) == Vector.zero
+103. 
+
+
+File: sympy/vector/tests/test_vector.py
+Line number range: 105 - 126
+Content:
+105. def test_vector_magnitude_normalize():
+106.     assert Vector.zero.magnitude() == 0
+107.     assert Vector.zero.normalize() == Vector.zero
+108. 
+109.     assert i.magnitude() == 1
+110.     assert j.magnitude() == 1
+111.     assert k.magnitude() == 1
+112.     assert i.normalize() == i
+113.     assert j.normalize() == j
+114.     assert k.normalize() == k
+115. 
+116.     v1 = a * i
+117.     assert v1.normalize() == (a/sqrt(a**2))*i
+118.     assert v1.magnitude() == sqrt(a**2)
+119. 
+120.     v2 = a*i + b*j + c*k
+121.     assert v2.magnitude() == sqrt(a**2 + b**2 + c**2)
+122.     assert v2.normalize() == v2 / v2.magnitude()
+123. 
+124.     v3 = i + j
+125.     assert v3.normalize() == (sqrt(2)/2)*C.i + (sqrt(2)/2)*C.j
+126. 
+
+
+File: sympy/vector/tests/test_vector.py
+Line number range: 128 - 154
+Content:
+128. def test_vector_simplify():
+129.     A, s, k, m = symbols('A, s, k, m')
+130. 
+131.     test1 = (1 / a + 1 / b) * i
+132.     assert (test1 & i) != (a + b) / (a * b)
+133.     test1 = simplify(test1)
+134.     assert (test1 & i) == (a + b) / (a * b)
+135.     assert test1.simplify() == simplify(test1)
+136. 
+137.     test2 = (A**2 * s**4 / (4 * pi * k * m**3)) * i
+138.     test2 = simplify(test2)
+139.     assert (test2 & i) == (A**2 * s**4 / (4 * pi * k * m**3))
+140. 
+141.     test3 = ((4 + 4 * a - 2 * (2 + 2 * a)) / (2 + 2 * a)) * i
+142.     test3 = simplify(test3)
+143.     assert (test3 & i) == 0
+144. 
+145.     test4 = ((-4 * a * b**2 - 2 * b**3 - 2 * a**2 * b) / (a + b)**2) * i
+146.     test4 = simplify(test4)
+147.     assert (test4 & i) == -2 * b
+148. 
+149.     v = (sin(a)+cos(a))**2*i - j
+150.     assert trigsimp(v) == (2*sin(a + pi/4)**2)*i + (-1)*j
+151.     assert trigsimp(v) == v.trigsimp()
+152. 
+153.     assert simplify(Vector.zero) == Vector.zero
+154. 
+
+
+File: sympy/vector/tests/test_vector.py
+Line number range: 9 - 12
+Content:
+9. C = CoordSys3D('C')
+10. 
+11. i, j, k = C.base_vectors()
+12. a, b, c = symbols('a b c')
+
+
+File: sympy/vector/tests/test_printing.py
+Line number range: 169 - 177
+Content:
+169. def test_custom_names():
+170.     A = CoordSys3D('A', vector_names=['x', 'y', 'z'],
+171.                    variable_names=['i', 'j', 'k'])
+172.     assert A.i.__str__() == 'A.i'
+173.     assert A.x.__str__() == 'A.x'
+174.     assert A.i._pretty_form == 'A_i'
+175.     assert A.x._pretty_form == 'A_x'
+176.     assert A.i._latex_form == r'\mathbf{{i}_{A}}'
+177.     assert A.x._latex_form == r"\mathbf{\hat{x}_{A}}"
+
+--- END AGGREGATED CONTEXT ---
+
+Analyze if the current context is sufficient to complete the user query by considering:
+1. Do you understand the full scope and requirements of the user query?
+2. Do you have access to all relevant code that needs to be examined or modified?
+3. Are all critical dependencies and their interfaces visible?
+4. Is there enough context about the system architecture and design patterns?
+5. Do you have access to relevant documentation or tests if needed?
+
+Only request additional context if essential information is missing. Ensure you're not requesting:
+- Information already provided in previous queries
+- Nice-to-have but non-essential details
+- Implementation details that aren't relevant to the current task
+
+If additional context is needed:
+- Be specific about what you're looking for
+- Consider both code and documentation that might be relevant
+
+2025-09-11 15:54:19,883 - thread-140190471276224.prometheus.lang_graph.nodes.context_refine_node - DEBUG - reasoning="1. The user query is about finding existing test cases that could break when fixing a vector pretty printing issue. The issue involves incorrect baseline alignment and formatting when vectors are combined with expressions like (x/y)**t*e.j.\n\n2. The current context provides some test files from sympy/vector/tests/ but lacks critical information:\n   - The specific implementation of pretty printing for vector expressions\n   - How vector expressions with exponents and scalar multipliers are handled\n   - The structure of the pretty printing system in SymPy\n   - The actual implementation of vector pretty printing methods\n\n3. Key missing information:\n   - The implementation of __str__ and _pretty methods for Vector classes\n   - How the pretty printing system handles baseline alignment for vector expressions\n   - The specific code that handles expressions like (x/y)**t*e.j\n   - The structure of the vector module's printing functionality\n\n4. Without seeing the actual vector printing implementation, it's impossible to identify which existing tests would be most likely to break when fixing this issue.\n\n5. Need to see:\n   - The vector module's printing implementation\n   - How vector expressions are formatted in the pretty printing system\n   - The specific methods that handle baseline alignment for vector expressions" refined_query='Please provide the implementation files for vector pretty printing, specifically:\n1. sympy/vector/vector.py (especially the __str__ and _pretty methods)\n2. sympy/vector/printing.py (if it exists)\n3. sympy/vector/__init__.py to understand the module structure\n4. Any other files that contain vector printing logic, particularly those handling baseline alignment and expression formatting'
+2025-09-11 15:54:27,326 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="I'll help you find the implementation files for vector pretty printing. Let me start by exploring the vector module structure and then locate the specific files you mentioned." additional_kwargs={'tool_calls': [{'id': 'call_00_o4HeKRw7AuMqabzIcbNRCFmn', 'function': {'arguments': '{"relative_path": "sympy/vector/vector.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 56, 'prompt_tokens': 19167, 'total_tokens': 19223, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19072}, 'prompt_cache_hit_tokens': 19072, 'prompt_cache_miss_tokens': 95}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e024755e-922c-4d98-857f-6208c9799391-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'sympy/vector/vector.py'}, 'id': 'call_00_o4HeKRw7AuMqabzIcbNRCFmn', 'type': 'tool_call'}] usage_metadata={'input_tokens': 19167, 'output_tokens': 56, 'total_tokens': 19223, 'input_token_details': {'cache_read': 19072}, 'output_token_details': {}}
+2025-09-11 15:54:32,103 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_nYewpzRRiQYJ8sfUgEB6Ivpu', 'function': {'arguments': '{"relative_path": "sympy/vector/printing.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 25, 'prompt_tokens': 19263, 'total_tokens': 19288, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19200}, 'prompt_cache_hit_tokens': 19200, 'prompt_cache_miss_tokens': 63}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--65e5918d-4239-4862-825a-2b93eeb59534-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'sympy/vector/printing.py'}, 'id': 'call_00_nYewpzRRiQYJ8sfUgEB6Ivpu', 'type': 'tool_call'}] usage_metadata={'input_tokens': 19263, 'output_tokens': 25, 'total_tokens': 19288, 'input_token_details': {'cache_read': 19200}, 'output_token_details': {}}
+2025-09-11 15:54:36,723 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_QILvxveyHJQdE0nwfgcK4Bs2', 'function': {'arguments': '{"relative_path": "sympy/vector/__init__.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 27, 'prompt_tokens': 19303, 'total_tokens': 19330, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19264}, 'prompt_cache_hit_tokens': 19264, 'prompt_cache_miss_tokens': 39}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--bcc5fe19-bc81-4e0b-a0ba-f776d565062d-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'sympy/vector/__init__.py'}, 'id': 'call_00_QILvxveyHJQdE0nwfgcK4Bs2', 'type': 'tool_call'}] usage_metadata={'input_tokens': 19303, 'output_tokens': 27, 'total_tokens': 19330, 'input_token_details': {'cache_read': 19264}, 'output_token_details': {}}
+2025-09-11 15:54:41,916 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me check if there are any other files in the vector directory that might contain printing logic:' additional_kwargs={'tool_calls': [{'id': 'call_00_1DGYwLbqvKZYQccW7yXpgL87', 'function': {'arguments': '{"basename": "vector"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 39, 'prompt_tokens': 19373, 'total_tokens': 19412, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19328}, 'prompt_cache_hit_tokens': 19328, 'prompt_cache_miss_tokens': 45}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b6ed26f7-0f96-4dce-8908-a51308745fa4-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'vector'}, 'id': 'call_00_1DGYwLbqvKZYQccW7yXpgL87', 'type': 'tool_call'}] usage_metadata={'input_tokens': 19373, 'output_tokens': 39, 'total_tokens': 19412, 'input_token_details': {'cache_read': 19328}, 'output_token_details': {}}
+2025-09-11 15:54:47,774 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me explore the vector directory to see all files:' additional_kwargs={'tool_calls': [{'id': 'call_00_edYLwsFOX63w1bhda5JLUNbS', 'function': {'arguments': '{"relative_path": "sympy/vector/__init__.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 33, 'prompt_tokens': 19558, 'total_tokens': 19591, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19392}, 'prompt_cache_hit_tokens': 19392, 'prompt_cache_miss_tokens': 166}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7fe0f744-c8ef-4984-9843-6173f8d382df-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'sympy/vector/__init__.py'}, 'id': 'call_00_edYLwsFOX63w1bhda5JLUNbS', 'type': 'tool_call'}] usage_metadata={'input_tokens': 19558, 'output_tokens': 33, 'total_tokens': 19591, 'input_token_details': {'cache_read': 19392}, 'output_token_details': {}}
+2025-09-11 15:54:54,969 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me read the vector.py file to find the printing methods:' additional_kwargs={'tool_calls': [{'id': 'call_00_T5CI6IVT847CesJql3iVmIud', 'function': {'arguments': '{"relative_path": "sympy/vector/vector.py", "start_line": 1, "end_line": 100}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 52, 'prompt_tokens': 19915, 'total_tokens': 19967, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19584}, 'prompt_cache_hit_tokens': 19584, 'prompt_cache_miss_tokens': 331}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--44da646e-4b8c-4fea-b35f-d4e295dcbf64-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'sympy/vector/vector.py', 'start_line': 1, 'end_line': 100}, 'id': 'call_00_T5CI6IVT847CesJql3iVmIud', 'type': 'tool_call'}] usage_metadata={'input_tokens': 19915, 'output_tokens': 52, 'total_tokens': 19967, 'input_token_details': {'cache_read': 19584}, 'output_token_details': {}}
+2025-09-11 15:55:00,913 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me continue reading the vector.py file to find the printing methods:' additional_kwargs={'tool_calls': [{'id': 'call_00_No7UYKulWEcLHNl9CkUmlNt3', 'function': {'arguments': '{"relative_path": "sympy/vector/vector.py", "text": "__str__"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 21088, 'total_tokens': 21139, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 19904}, 'prompt_cache_hit_tokens': 19904, 'prompt_cache_miss_tokens': 1184}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--1922f841-47f8-41a0-bfe6-52e589fb3bb9-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/vector.py', 'text': '__str__'}, 'id': 'call_00_No7UYKulWEcLHNl9CkUmlNt3', 'type': 'tool_call'}] usage_metadata={'input_tokens': 21088, 'output_tokens': 51, 'total_tokens': 21139, 'input_token_details': {'cache_read': 19904}, 'output_token_details': {}}
+2025-09-11 15:55:07,060 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for `_pretty` methods in the vector.py file:' additional_kwargs={'tool_calls': [{'id': 'call_00_5JBOj5pvm7SBABNlPXCUr3ae', 'function': {'arguments': '{"relative_path": "sympy/vector/vector.py", "text": "_pretty"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 52, 'prompt_tokens': 21995, 'total_tokens': 22047, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 21120}, 'prompt_cache_hit_tokens': 21120, 'prompt_cache_miss_tokens': 875}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--33844211-e8fd-4be4-bc17-6017dd4fd930-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/vector.py', 'text': '_pretty'}, 'id': 'call_00_5JBOj5pvm7SBABNlPXCUr3ae', 'type': 'tool_call'}] usage_metadata={'input_tokens': 21995, 'output_tokens': 52, 'total_tokens': 22047, 'input_token_details': {'cache_read': 21120}, 'output_token_details': {}}
+2025-09-11 15:55:11,891 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me check if there are any printing-related files in the vector directory:' additional_kwargs={'tool_calls': [{'id': 'call_00_rkQjkbwxFkSak03Hz4a3Bc4N', 'function': {'arguments': '{"basename": "printing.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 35, 'prompt_tokens': 22774, 'total_tokens': 22809, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 22016}, 'prompt_cache_hit_tokens': 22016, 'prompt_cache_miss_tokens': 758}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--dd99e274-a33a-4ccb-9ef0-1906271134ed-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'printing.py'}, 'id': 'call_00_rkQjkbwxFkSak03Hz4a3Bc4N', 'type': 'tool_call'}] usage_metadata={'input_tokens': 22774, 'output_tokens': 35, 'total_tokens': 22809, 'input_token_details': {'cache_read': 22016}, 'output_token_details': {}}
+2025-09-11 15:55:16,940 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me check the physics vector printing module since it exists:' additional_kwargs={'tool_calls': [{'id': 'call_00_3RUrs6clhB1V1kpRS9QXMe2E', 'function': {'arguments': '{"relative_path": "sympy/physics/vector/printing.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 34, 'prompt_tokens': 22889, 'total_tokens': 22923, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 22784}, 'prompt_cache_hit_tokens': 22784, 'prompt_cache_miss_tokens': 105}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--fd0fc058-40e4-49e4-a7af-0bb3eafd4cba-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'sympy/physics/vector/printing.py'}, 'id': 'call_00_3RUrs6clhB1V1kpRS9QXMe2E', 'type': 'tool_call'}] usage_metadata={'input_tokens': 22889, 'output_tokens': 34, 'total_tokens': 22923, 'input_token_details': {'cache_read': 22784}, 'output_token_details': {}}
+2025-09-11 15:55:25,038 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me check if there are any printing methods in the main vector.py file by searching for more specific patterns:' additional_kwargs={'tool_calls': [{'id': 'call_00_YHn5e055ChBEaPyb456aY4jl', 'function': {'arguments': '{"relative_path": "sympy/vector/vector.py", "text": "def __str__"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 62, 'prompt_tokens': 28068, 'total_tokens': 28130, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 22912}, 'prompt_cache_hit_tokens': 22912, 'prompt_cache_miss_tokens': 5156}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--ff85f2a7-7476-4e4e-b548-5e5094eccea2-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/vector.py', 'text': 'def __str__'}, 'id': 'call_00_YHn5e055ChBEaPyb456aY4jl', 'type': 'tool_call'}] usage_metadata={'input_tokens': 28068, 'output_tokens': 62, 'total_tokens': 28130, 'input_token_details': {'cache_read': 22912}, 'output_token_details': {}}
+2025-09-11 15:55:31,100 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me check the basisdependent.py file since it seems to be the parent class for Vector:' additional_kwargs={'tool_calls': [{'id': 'call_00_W5y9snWUwBDVpZFVCLGLU3f7', 'function': {'arguments': '{"relative_path": "sympy/vector/basisdependent.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 46, 'prompt_tokens': 28986, 'total_tokens': 29032, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 28096}, 'prompt_cache_hit_tokens': 28096, 'prompt_cache_miss_tokens': 890}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--4423f949-7f17-4354-b013-0ec9ea888b84-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'sympy/vector/basisdependent.py'}, 'id': 'call_00_W5y9snWUwBDVpZFVCLGLU3f7', 'type': 'tool_call'}] usage_metadata={'input_tokens': 28986, 'output_tokens': 46, 'total_tokens': 29032, 'input_token_details': {'cache_read': 28096}, 'output_token_details': {}}
+2025-09-11 15:55:36,926 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_o76J8mss9WVkfm1yfFscAkNc', 'function': {'arguments': '{"relative_path": "sympy/vector/basisdependent.py", "text": "__str__"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 39, 'prompt_tokens': 29076, 'total_tokens': 29115, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 28992}, 'prompt_cache_hit_tokens': 28992, 'prompt_cache_miss_tokens': 84}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7416a903-60c3-48d7-96eb-9ef5d3ce1a99-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/basisdependent.py', 'text': '__str__'}, 'id': 'call_00_o76J8mss9WVkfm1yfFscAkNc', 'type': 'tool_call'}] usage_metadata={'input_tokens': 29076, 'output_tokens': 39, 'total_tokens': 29115, 'input_token_details': {'cache_read': 28992}, 'output_token_details': {}}
+2025-09-11 15:55:43,064 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me check if there are any `_pretty` methods in the basisdependent.py file:' additional_kwargs={'tool_calls': [{'id': 'call_00_9dTw7e5uDgA0Iv3XjIWeIQzp', 'function': {'arguments': '{"relative_path": "sympy/vector/basisdependent.py", "text": "_pretty"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 58, 'prompt_tokens': 30460, 'total_tokens': 30518, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 29056}, 'prompt_cache_hit_tokens': 29056, 'prompt_cache_miss_tokens': 1404}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--1ae098d0-3cca-4f20-9d13-177d0921c6eb-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/basisdependent.py', 'text': '_pretty'}, 'id': 'call_00_9dTw7e5uDgA0Iv3XjIWeIQzp', 'type': 'tool_call'}] usage_metadata={'input_tokens': 30460, 'output_tokens': 58, 'total_tokens': 30518, 'input_token_details': {'cache_read': 29056}, 'output_token_details': {}}
+2025-09-11 15:55:49,993 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me check the dyadic.py file since it was imported in vector.py:' additional_kwargs={'tool_calls': [{'id': 'call_00_lgoXhZ6RHT60qbznGKrIoL67', 'function': {'arguments': '{"relative_path": "sympy/vector/dyadic.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 42, 'prompt_tokens': 30533, 'total_tokens': 30575, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 30464}, 'prompt_cache_hit_tokens': 30464, 'prompt_cache_miss_tokens': 69}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--5f99dc07-f09e-4652-92a6-95e97c2b7bd8-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'sympy/vector/dyadic.py'}, 'id': 'call_00_lgoXhZ6RHT60qbznGKrIoL67', 'type': 'tool_call'}] usage_metadata={'input_tokens': 30533, 'output_tokens': 42, 'total_tokens': 30575, 'input_token_details': {'cache_read': 30464}, 'output_token_details': {}}
+2025-09-11 15:55:57,423 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_NJoj2VT3frOpm35xMUwTXarc', 'function': {'arguments': '{"relative_path": "sympy/vector/dyadic.py", "text": "__str__"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 38, 'prompt_tokens': 30617, 'total_tokens': 30655, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 30528}, 'prompt_cache_hit_tokens': 30528, 'prompt_cache_miss_tokens': 89}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f4efe073-35e7-44a2-a8c2-6e5d338b3ff7-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/dyadic.py', 'text': '__str__'}, 'id': 'call_00_NJoj2VT3frOpm35xMUwTXarc', 'type': 'tool_call'}] usage_metadata={'input_tokens': 30617, 'output_tokens': 38, 'total_tokens': 30655, 'input_token_details': {'cache_read': 30528}, 'output_token_details': {}}
+2025-09-11 15:56:04,189 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me also check the tests directory to see if there are any tests that might show how vector printing works:' additional_kwargs={'tool_calls': [{'id': 'call_00_naj81BuDobYxEPYP252iHKYd', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 49, 'prompt_tokens': 31379, 'total_tokens': 31428, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 30592}, 'prompt_cache_hit_tokens': 30592, 'prompt_cache_miss_tokens': 787}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--8d15e3a6-a7ba-4e14-946f-cb3bdb058a76-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py'}, 'id': 'call_00_naj81BuDobYxEPYP252iHKYd', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31379, 'output_tokens': 49, 'total_tokens': 31428, 'input_token_details': {'cache_read': 30592}, 'output_token_details': {}}
+2025-09-11 15:56:09,476 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_F46OCerjGfnyQHBz4jjyB5G2', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_vector.py", "text": "pretty"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 38, 'prompt_tokens': 31471, 'total_tokens': 31509, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31424}, 'prompt_cache_hit_tokens': 31424, 'prompt_cache_miss_tokens': 47}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--1f13fd5f-e8e1-43ad-a581-b3f888ed5222-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_vector.py', 'text': 'pretty'}, 'id': 'call_00_F46OCerjGfnyQHBz4jjyB5G2', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31471, 'output_tokens': 38, 'total_tokens': 31509, 'input_token_details': {'cache_read': 31424}, 'output_token_details': {}}
+2025-09-11 15:56:16,748 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me check the test printing file:' additional_kwargs={'tool_calls': [{'id': 'call_00_1pRZRB7xTwKTn0UJY62OifuW', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 36, 'prompt_tokens': 31524, 'total_tokens': 31560, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31488}, 'prompt_cache_hit_tokens': 31488, 'prompt_cache_miss_tokens': 36}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--720f2dd4-3ac6-4e80-b47b-f78d502f0682-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py'}, 'id': 'call_00_1pRZRB7xTwKTn0UJY62OifuW', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31524, 'output_tokens': 36, 'total_tokens': 31560, 'input_token_details': {'cache_read': 31488}, 'output_token_details': {}}
+2025-09-11 15:56:22,978 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_rtxdJx7x2mEZJHDAbTnjopYl', 'function': {'arguments': '{"relative_path": "sympy/vector/tests/test_printing.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 23, 'prompt_tokens': 31605, 'total_tokens': 31628, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31552}, 'prompt_cache_hit_tokens': 31552, 'prompt_cache_miss_tokens': 53}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--70b56be3-a3b3-4bdf-8c4b-87e8674a4d6c-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'sympy/vector/tests/test_printing.py'}, 'id': 'call_00_rtxdJx7x2mEZJHDAbTnjopYl', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31605, 'output_tokens': 23, 'total_tokens': 31628, 'input_token_details': {'cache_read': 31552}, 'output_token_details': {}}
+2025-09-11 15:56:32,412 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me check if there are any other files that might contain vector printing logic. Let me also check the main vector.py file more thoroughly:' additional_kwargs={'tool_calls': [{'id': 'call_00_o3nDWm50n4rhW8wHAs0tKjIt', 'function': {'arguments': '{"relative_path": "sympy/vector/vector.py", "start_line": 400, "end_line": 500}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 67, 'prompt_tokens': 34517, 'total_tokens': 34584, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31616}, 'prompt_cache_hit_tokens': 31616, 'prompt_cache_miss_tokens': 2901}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a598ccb7-9cc5-48b5-909b-47d82cac6ad5-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'sympy/vector/vector.py', 'start_line': 400, 'end_line': 500}, 'id': 'call_00_o3nDWm50n4rhW8wHAs0tKjIt', 'type': 'tool_call'}] usage_metadata={'input_tokens': 34517, 'output_tokens': 67, 'total_tokens': 34584, 'input_token_details': {'cache_read': 31616}, 'output_token_details': {}}
+2025-09-11 15:56:39,486 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me check if there are any `_pretty` methods in the basisdependent.py file by searching more broadly:' additional_kwargs={'tool_calls': [{'id': 'call_00_egW5cC1OO44zv2XM2m3ks2pu', 'function': {'arguments': '{"relative_path": "sympy/vector/basisdependent.py", "text": "pretty_form"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 62, 'prompt_tokens': 35764, 'total_tokens': 35826, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 34560}, 'prompt_cache_hit_tokens': 34560, 'prompt_cache_miss_tokens': 1204}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--76f0fec6-16e7-47a7-8b58-06bcb56a3382-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/vector/basisdependent.py', 'text': 'pretty_form'}, 'id': 'call_00_egW5cC1OO44zv2XM2m3ks2pu', 'type': 'tool_call'}] usage_metadata={'input_tokens': 35764, 'output_tokens': 62, 'total_tokens': 35826, 'input_token_details': {'cache_read': 34560}, 'output_token_details': {}}
+2025-09-11 15:56:46,276 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me check the entire basisdependent.py file to understand the inheritance structure:' additional_kwargs={'tool_calls': [{'id': 'call_00_7oHIohLKynDP7be9HOGOF0VT', 'function': {'arguments': '{"relative_path": "sympy/vector/basisdependent.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 37, 'prompt_tokens': 35841, 'total_tokens': 35878, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 35776}, 'prompt_cache_hit_tokens': 35776, 'prompt_cache_miss_tokens': 65}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--9cb809b7-7dd6-427c-abe4-7ec3a5bd6e4f-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'sympy/vector/basisdependent.py'}, 'id': 'call_00_7oHIohLKynDP7be9HOGOF0VT', 'type': 'tool_call'}] usage_metadata={'input_tokens': 35841, 'output_tokens': 37, 'total_tokens': 35878, 'input_token_details': {'cache_read': 35776}, 'output_token_details': {}}
+2025-09-11 15:56:55,290 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me check if there are any `_pretty` methods in the main sympy printing module that might handle vectors:' additional_kwargs={'tool_calls': [{'id': 'call_00_ua6MZUAwPj5852DxmukSVOAr', 'function': {'arguments': '{"relative_path": "sympy/printing/pretty/pretty.py", "text": "Vector"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 39940, 'total_tokens': 40003, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 35840}, 'prompt_cache_hit_tokens': 35840, 'prompt_cache_miss_tokens': 4100}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--88a98ec4-067a-44aa-98be-d66d3670c7e5-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/printing/pretty/pretty.py', 'text': 'Vector'}, 'id': 'call_00_ua6MZUAwPj5852DxmukSVOAr', 'type': 'tool_call'}] usage_metadata={'input_tokens': 39940, 'output_tokens': 63, 'total_tokens': 40003, 'input_token_details': {'cache_read': 35840}, 'output_token_details': {}}
+2025-09-11 15:57:12,404 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Perfect! I found the key method. Let me look at the `_print_BasisDependent` method more closely:' additional_kwargs={'tool_calls': [{'id': 'call_00_DAivJF0YjP4WlB584YvFP4tr', 'function': {'arguments': '{"relative_path": "sympy/printing/pretty/pretty.py", "start_line": 2000, "end_line": 2100}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 67, 'prompt_tokens': 63690, 'total_tokens': 63757, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 40000}, 'prompt_cache_hit_tokens': 40000, 'prompt_cache_miss_tokens': 23690}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--d6d7f0a1-f063-4879-ba3d-f023591941e8-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'sympy/printing/pretty/pretty.py', 'start_line': 2000, 'end_line': 2100}, 'id': 'call_00_DAivJF0YjP4WlB584YvFP4tr', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63690, 'output_tokens': 67, 'total_tokens': 63757, 'input_token_details': {'cache_read': 40000}, 'output_token_details': {}}
+2025-09-11 15:57:22,527 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me find the exact location of the `_print_BasisDependent` method:' additional_kwargs={'tool_calls': [{'id': 'call_00_S4luRtRzaF903dDku6lU2etD', 'function': {'arguments': '{"relative_path": "sympy/printing/pretty/pretty.py", "text": "_print_BasisDependent"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 60, 'prompt_tokens': 65226, 'total_tokens': 65286, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63744}, 'prompt_cache_hit_tokens': 63744, 'prompt_cache_miss_tokens': 1482}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e4f0556c-46d3-4f5f-befb-4562a104a41c-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/printing/pretty/pretty.py', 'text': '_print_BasisDependent'}, 'id': 'call_00_S4luRtRzaF903dDku6lU2etD', 'type': 'tool_call'}] usage_metadata={'input_tokens': 65226, 'output_tokens': 60, 'total_tokens': 65286, 'input_token_details': {'cache_read': 63744}, 'output_token_details': {}}
+2025-09-11 15:57:45,751 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me get the specific line numbers for the `_print_BasisDependent` method:' additional_kwargs={'tool_calls': [{'id': 'call_00_nhTxjVLbPZqZAHc0YOCTA3QB', 'function': {'arguments': '{"relative_path": "sympy/printing/pretty/pretty.py", "text": "def _print_BasisDependent"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 64, 'prompt_tokens': 88973, 'total_tokens': 89037, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 65280}, 'prompt_cache_hit_tokens': 65280, 'prompt_cache_miss_tokens': 23693}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b52d5b3d-7839-4867-aa82-147208f37c69-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/printing/pretty/pretty.py', 'text': 'def _print_BasisDependent'}, 'id': 'call_00_nhTxjVLbPZqZAHc0YOCTA3QB', 'type': 'tool_call'}] usage_metadata={'input_tokens': 88973, 'output_tokens': 64, 'total_tokens': 89037, 'input_token_details': {'cache_read': 65280}, 'output_token_details': {}}
+2025-09-11 15:58:18,839 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the specific line numbers of the `_print_BasisDependent` method:' additional_kwargs={'tool_calls': [{'id': 'call_00_lQDfGxlnAVPOk1f1hrJICuMD', 'function': {'arguments': '{"relative_path": "sympy/printing/pretty/pretty.py", "start_line": 2150, "end_line": 2220}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 62, 'prompt_tokens': 112724, 'total_tokens': 112786, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 89024}, 'prompt_cache_hit_tokens': 89024, 'prompt_cache_miss_tokens': 23700}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--8f12dd78-cb80-42b4-809d-1c6330cedc51-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'sympy/printing/pretty/pretty.py', 'start_line': 2150, 'end_line': 2220}, 'id': 'call_00_lQDfGxlnAVPOk1f1hrJICuMD', 'type': 'tool_call'}] usage_metadata={'input_tokens': 112724, 'output_tokens': 62, 'total_tokens': 112786, 'input_token_details': {'cache_read': 89024}, 'output_token_details': {}}
+2025-09-11 15:58:28,734 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the exact line numbers around the `_print_BasisDependent` method:' additional_kwargs={'tool_calls': [{'id': 'call_00_827nwYclRDlJp6auXWf8jm2B', 'function': {'arguments': '{"relative_path": "sympy/printing/pretty/pretty.py", "text": "def _print_BasisDependent"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 64, 'prompt_tokens': 113800, 'total_tokens': 113864, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 112768}, 'prompt_cache_hit_tokens': 112768, 'prompt_cache_miss_tokens': 1032}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--4323e517-506b-49c5-ba3f-64e4fcba523e-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'sympy/printing/pretty/pretty.py', 'text': 'def _print_BasisDependent'}, 'id': 'call_00_827nwYclRDlJp6auXWf8jm2B', 'type': 'tool_call'}] usage_metadata={'input_tokens': 113800, 'output_tokens': 64, 'total_tokens': 113864, 'input_token_details': {'cache_read': 112768}, 'output_token_details': {}}
+2025-09-11 15:58:29,615 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 15:58:39,736 - thread-140190471276224.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 145551 tokens (137551 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 145551 tokens (137551 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

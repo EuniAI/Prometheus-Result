@@ -1,0 +1,340 @@
+2025-09-11 11:33:01,050 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmpid9q8mv1/xarray
+2025-09-11 11:33:01,050 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 11:33:01,237 - thread-140190454490816.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 11:33:01,237 - thread-140190454490816.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 11:33:01,237 - thread-140190454490816.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 11:33:01,237 - thread-140190454490816.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 11:33:01,237 - thread-140190454490816.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 11:33:01,237 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.pydata_1776_xarray-4493:v1
+2025-09-11 11:33:02,130 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_eb900c790d
+2025-09-11 11:33:02,146 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_eb900c790d
+2025-09-11 11:33:02,299 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 11:33:02,520 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 11:33:02,520 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 11:33:02,731 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 11:33:02,731 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 11:33:04,432 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: numpy>=1.15 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.16.3.dev100+ga5f53e20) (1.23.0)
+Requirement already satisfied: pandas>=0.25 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.16.3.dev100+ga5f53e20) (1.5.3)
+Requirement already satisfied: setuptools>=40.4 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from xarray==0.16.3.dev100+ga5f53e20) (68.0.0)
+Requirement already satisfied: python-dateutil>=2.8.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.25->xarray==0.16.3.dev100+ga5f53e20) (2.8.2)
+Requirement already satisfied: pytz>=2020.1 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from pandas>=0.25->xarray==0.16.3.dev100+ga5f53e20) (2023.3)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.10/site-packages (from python-dateutil>=2.8.1->pandas>=0.25->xarray==0.16.3.dev100+ga5f53e20) (1.16.0)
+Installing collected packages: xarray
+  Attempting uninstall: xarray
+    Found existing installation: xarray 0.16.3.dev100+ga5f53e20
+    Uninstalling xarray-0.16.3.dev100+ga5f53e20:
+      Successfully uninstalled xarray-0.16.3.dev100+ga5f53e20
+  DEPRECATION: Legacy editable install of xarray==0.16.3.dev100+ga5f53e20 from file:///testbed (setup.py develop) is deprecated. pip 25.0 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
+  Running setup.py develop for xarray
+Successfully installed xarray
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 11:33:04,432 - thread-140190454490816.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 11:33:04,433 - thread-140190454490816.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 11:33:04,433 - thread-140190454490816.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+DataSet.update causes chunked dask DataArray to evalute its values eagerly 
+
+Issue description: 
+**What happened**:
+Used `DataSet.update` to update a chunked dask DataArray, but the DataArray is no longer chunked after the update.
+
+**What you expected to happen**:
+The chunked DataArray should still be chunked after the update
+
+**Minimal Complete Verifiable Example**:
+
+```python
+foo = xr.DataArray(np.random.randn(3, 3), dims=("x", "y")).chunk()  # foo is chunked
+ds = xr.Dataset({"foo": foo, "bar": ("x", [1, 2, 3])})  # foo is still chunked here
+ds  # you can verify that foo is chunked
+```
+```python
+update_dict = {"foo": (("x", "y"), ds.foo[1:, :]), "bar": ("x", ds.bar[1:])}
+update_dict["foo"][1]  # foo is still chunked
+```
+```python
+ds.update(update_dict)
+ds  # now foo is no longer chunked
+```
+
+**Environment**:
+
+<details><summary>Output of <tt>xr.show_versions()</tt></summary>
+
+```
+commit: None
+python: 3.8.3 (default, Jul  2 2020, 11:26:31) 
+[Clang 10.0.0 ]
+python-bits: 64
+OS: Darwin
+OS-release: 19.6.0
+machine: x86_64
+processor: i386
+byteorder: little
+LC_ALL: None
+LANG: en_US.UTF-8
+LOCALE: en_US.UTF-8
+libhdf5: 1.10.6
+libnetcdf: None
+
+xarray: 0.16.0
+pandas: 1.0.5
+numpy: 1.18.5
+scipy: 1.5.0
+netCDF4: None
+pydap: None
+h5netcdf: None
+h5py: 2.10.0
+Nio: None
+zarr: None
+cftime: None
+nc_time_axis: None
+PseudoNetCDF: None
+rasterio: None
+cfgrib: None
+iris: None
+bottleneck: None
+dask: 2.20.0
+distributed: 2.20.0
+matplotlib: 3.2.2
+cartopy: None
+seaborn: None
+numbagg: None
+pint: None
+setuptools: 49.2.0.post20200714
+pip: 20.1.1
+conda: None
+pytest: 5.4.3
+IPython: 7.16.1
+sphinx: None
+```
+
+</details>
+Dataset constructor with DataArray triggers computation
+Is it intentional that creating a Dataset with a DataArray and dimension names for a single variable causes computation of that variable?  In other words, why does ```xr.Dataset(dict(a=('d0', xr.DataArray(da.random.random(10)))))``` cause the dask array to compute?
+
+A longer example:
+
+```python
+import dask.array as da
+import xarray as xr
+x = da.random.randint(1, 10, size=(100, 25))
+ds = xr.Dataset(dict(a=xr.DataArray(x, dims=('x', 'y'))))
+type(ds.a.data)
+dask.array.core.Array
+
+# Recreate the dataset with the same array, but also redefine the dimensions
+ds2 = xr.Dataset(dict(a=(('x', 'y'), ds.a))
+type(ds2.a.data)
+numpy.ndarray
+```
+
+
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 11:33:04,433 - thread-140190454490816.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 11:33:04,434 - thread-140190454490816.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\nDataSet.update causes chunked dask DataArray to evalute its values eagerly \n\nIssue description: \n**What happened**:\nUsed `DataSet.update` to update a chunked dask DataArray, but the DataArray is no longer chunked after the update.\n\n**What you expected to happen**:\nThe chunked DataArray should still be chunked after the update\n\n**Minimal Complete Verifiable Example**:\n\n```python\nfoo = xr.DataArray(np.random.randn(3, 3), dims=("x", "y")).chunk()  # foo is chunked\nds = xr.Dataset({"foo": foo, "bar": ("x", [1, 2, 3])})  # foo is still chunked here\nds  # you can verify that foo is chunked\n```\n```python\nupdate_dict = {"foo": (("x", "y"), ds.foo[1:, :]), "bar": ("x", ds.bar[1:])}\nupdate_dict["foo"][1]  # foo is still chunked\n```\n```python\nds.update(update_dict)\nds  # now foo is no longer chunked\n```\n\n**Environment**:\n\n<details><summary>Output of <tt>xr.show_versions()</tt></summary>\n\n```\ncommit: None\npython: 3.8.3 (default, Jul  2 2020, 11:26:31) \n[Clang 10.0.0 ]\npython-bits: 64\nOS: Darwin\nOS-release: 19.6.0\nmachine: x86_64\nprocessor: i386\nbyteorder: little\nLC_ALL: None\nLANG: en_US.UTF-8\nLOCALE: en_US.UTF-8\nlibhdf5: 1.10.6\nlibnetcdf: None\n\nxarray: 0.16.0\npandas: 1.0.5\nnumpy: 1.18.5\nscipy: 1.5.0\nnetCDF4: None\npydap: None\nh5netcdf: None\nh5py: 2.10.0\nNio: None\nzarr: None\ncftime: None\nnc_time_axis: None\nPseudoNetCDF: None\nrasterio: None\ncfgrib: None\niris: None\nbottleneck: None\ndask: 2.20.0\ndistributed: 2.20.0\nmatplotlib: 3.2.2\ncartopy: None\nseaborn: None\nnumbagg: None\npint: None\nsetuptools: 49.2.0.post20200714\npip: 20.1.1\nconda: None\npytest: 5.4.3\nIPython: 7.16.1\nsphinx: None\n```\n\n</details>\nDataset constructor with DataArray triggers computation\nIs it intentional that creating a Dataset with a DataArray and dimension names for a single variable causes computation of that variable?  In other words, why does ```xr.Dataset(dict(a=(\'d0\', xr.DataArray(da.random.random(10)))))``` cause the dask array to compute?\n\nA longer example:\n\n```python\nimport dask.array as da\nimport xarray as xr\nx = da.random.randint(1, 10, size=(100, 25))\nds = xr.Dataset(dict(a=xr.DataArray(x, dims=(\'x\', \'y\'))))\ntype(ds.a.data)\ndask.array.core.Array\n\n# Recreate the dataset with the same array, but also redefine the dimensions\nds2 = xr.Dataset(dict(a=((\'x\', \'y\'), ds.a))\ntype(ds2.a.data)\nnumpy.ndarray\n```\n\n\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 11:33:09,021 - thread-140190454490816.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="I'll search for relevant test cases that would likely break if the DataSet.update issue with chunked dask DataArrays is fixed. Let me start by exploring the codebase structure and finding tests related to dataset updates, dask arrays, and chunking." additional_kwargs={'tool_calls': [{'id': 'call_00_wktmV7SMU2q79wBpQWbAbk4x', 'function': {'arguments': '{"basename": "test_dataset.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 73, 'prompt_tokens': 6140, 'total_tokens': 6213, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 6080}, 'prompt_cache_hit_tokens': 6080, 'prompt_cache_miss_tokens': 60}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--d08d21e9-3de3-43ad-98a8-b94b43b9fb52-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_dataset.py'}, 'id': 'call_00_wktmV7SMU2q79wBpQWbAbk4x', 'type': 'tool_call'}] usage_metadata={'input_tokens': 6140, 'output_tokens': 73, 'total_tokens': 6213, 'input_token_details': {'cache_read': 6080}, 'output_token_details': {}}
+2025-09-11 11:33:12,688 - thread-140190454490816.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_oQoibELQZAGUOxzjwAHgS0oj', 'function': {'arguments': '{"relative_path": "xarray/tests/test_dataset.py", "text": "def test_update"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 38, 'prompt_tokens': 6254, 'total_tokens': 6292, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 6208}, 'prompt_cache_hit_tokens': 6208, 'prompt_cache_miss_tokens': 46}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c9158a7e-7d36-4432-8f1f-a62696cb6272-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'xarray/tests/test_dataset.py', 'text': 'def test_update'}, 'id': 'call_00_oQoibELQZAGUOxzjwAHgS0oj', 'type': 'tool_call'}] usage_metadata={'input_tokens': 6254, 'output_tokens': 38, 'total_tokens': 6292, 'input_token_details': {'cache_read': 6208}, 'output_token_details': {}}
+2025-09-11 11:33:43,200 - thread-140190454490816.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for specific test cases related to `update` functionality and dask arrays:' additional_kwargs={'tool_calls': [{'id': 'call_00_hOxWMxPGbAONZHcy94CZzBNi', 'function': {'arguments': '{"relative_path": "xarray/tests/test_dataset.py", "text": "def test_update"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 57, 'prompt_tokens': 73543, 'total_tokens': 73600, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 384}, 'prompt_cache_hit_tokens': 384, 'prompt_cache_miss_tokens': 73159}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--75fcaf03-0195-482f-91b2-17c04efc8bb0-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'xarray/tests/test_dataset.py', 'text': 'def test_update'}, 'id': 'call_00_hOxWMxPGbAONZHcy94CZzBNi', 'type': 'tool_call'}] usage_metadata={'input_tokens': 73543, 'output_tokens': 57, 'total_tokens': 73600, 'input_token_details': {'cache_read': 384}, 'output_token_details': {}}
+2025-09-11 11:33:44,017 - thread-140190454490816.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 11:33:54,129 - thread-140190454490816.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 148851 tokens (140851 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 148851 tokens (140851 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

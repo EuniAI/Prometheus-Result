@@ -1,0 +1,278 @@
+2025-09-11 09:35:02,341 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmpwhs5g107/django
+2025-09-11 09:35:02,341 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 09:35:02,629 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 09:35:02,629 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 09:35:02,629 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 09:35:02,629 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 09:35:02,629 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 09:35:02,629 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.django_1776_django-16527:v1
+2025-09-11 09:35:03,460 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_5e5e5d4586
+2025-09-11 09:35:03,464 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_5e5e5d4586
+2025-09-11 09:35:04,972 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 09:35:05,152 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:35:05,152 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 09:35:05,313 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:35:05,313 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 09:35:08,229 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.6.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20230206094108) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from Django==5.0.dev20230206094108) (0.5.1)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-5.0.dev20230206094108-0.editable-py3-none-any.whl size=27416 sha256=5e3ec856201d5b80ca0aef8ec72afcabd68e441ed14d8ceca85d10e0e5d42a91
+  Stored in directory: /tmp/pip-ephem-wheel-cache-t_ufxrqu/wheels/49/5f/4f/01b7d31ea6ddac9643da788242d33e5fd3467d95d17b032c6b
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 5.0.dev20230206094108
+    Uninstalling Django-5.0.dev20230206094108:
+      Successfully uninstalled Django-5.0.dev20230206094108
+Successfully installed Django-5.0.dev20230206094108
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 09:35:08,229 - thread-140190471276224.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 09:35:08,230 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 09:35:08,231 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+"show_save_as_new" in admin can add without this permission
+
+Issue description: 
+Description
+	 
+		(last modified by Mariusz Felisiak)
+	 
+At "django/contrib/admin/templatetags/admin_modify.py" file, line 102, I think you must put one more verification for this tag: "and has_add_permission", because "save_as_new" is a add modification.
+I rewrite this for my project:
+			"show_save_as_new": not is_popup
+			and has_add_permission # This line that I put!!!
+			and has_change_permission
+			and change
+			and save_as,
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 09:35:08,231 - thread-140190471276224.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 09:35:08,232 - thread-140190471276224.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\n"show_save_as_new" in admin can add without this permission\n\nIssue description: \nDescription\n\t \n\t\t(last modified by Mariusz Felisiak)\n\t \nAt "django/contrib/admin/templatetags/admin_modify.py" file, line 102, I think you must put one more verification for this tag: "and has_add_permission", because "save_as_new" is a add modification.\nI rewrite this for my project:\n\t\t\t"show_save_as_new": not is_popup\n\t\t\tand has_add_permission # This line that I put!!!\n\t\t\tand has_change_permission\n\t\t\tand change\n\t\t\tand save_as,\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 09:35:29,028 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='I\'ll help you find relevant test cases for the admin "show_save_as_new" permission issue. Let me start by exploring the codebase to understand the current implementation and find related tests.' additional_kwargs={'tool_calls': [{'id': 'call_00_4stahw0JOvpAXMmZ67yURVWN', 'function': {'arguments': '{"relative_path": "django/contrib/admin/templatetags/admin_modify.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 71, 'prompt_tokens': 60403, 'total_tokens': 60474, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 33152}, 'prompt_cache_hit_tokens': 33152, 'prompt_cache_miss_tokens': 27251}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--65865c19-36e2-4290-be76-a1401a04200e-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'django/contrib/admin/templatetags/admin_modify.py'}, 'id': 'call_00_4stahw0JOvpAXMmZ67yURVWN', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60403, 'output_tokens': 71, 'total_tokens': 60474, 'input_token_details': {'cache_read': 33152}, 'output_token_details': {}}
+2025-09-11 09:35:34,326 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_RcrPEhuc5P2AsSUEFWKF5gJ5', 'function': {'arguments': '{"relative_path": "django/contrib/admin/templatetags/admin_modify.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 27, 'prompt_tokens': 60523, 'total_tokens': 60550, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60416}, 'prompt_cache_hit_tokens': 60416, 'prompt_cache_miss_tokens': 107}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a917cfeb-4bf8-4e2e-8b92-e8e345f26acd-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'django/contrib/admin/templatetags/admin_modify.py'}, 'id': 'call_00_RcrPEhuc5P2AsSUEFWKF5gJ5', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60523, 'output_tokens': 27, 'total_tokens': 60550, 'input_token_details': {'cache_read': 60416}, 'output_token_details': {}}
+2025-09-11 09:35:44,416 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me look at the specific line mentioned in the issue (line 102) and find related tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_O6QT1QZA7I7frwesRX0P28td', 'function': {'arguments': '{"basename": "admin_modify.py", "text": "show_save_as_new"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 59, 'prompt_tokens': 62247, 'total_tokens': 62306, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60544}, 'prompt_cache_hit_tokens': 60544, 'prompt_cache_miss_tokens': 1703}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--ff8467d1-3050-4169-a0b9-f7cea52633cd-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'admin_modify.py', 'text': 'show_save_as_new'}, 'id': 'call_00_O6QT1QZA7I7frwesRX0P28td', 'type': 'tool_call'}] usage_metadata={'input_tokens': 62247, 'output_tokens': 59, 'total_tokens': 62306, 'input_token_details': {'cache_read': 60544}, 'output_token_details': {}}
+2025-09-11 09:35:53,034 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for test files related to admin functionality:' additional_kwargs={'tool_calls': [{'id': 'call_00_WbZFY3XinCxpeFE11cF3IJaT', 'function': {'arguments': '{"basename": "test_admin"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 32, 'prompt_tokens': 62924, 'total_tokens': 62956, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 62272}, 'prompt_cache_hit_tokens': 62272, 'prompt_cache_miss_tokens': 652}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--1cbc98c1-f157-47fd-8341-fe5f98a7aca3-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_admin'}, 'id': 'call_00_WbZFY3XinCxpeFE11cF3IJaT', 'type': 'tool_call'}] usage_metadata={'input_tokens': 62924, 'output_tokens': 32, 'total_tokens': 62956, 'input_token_details': {'cache_read': 62272}, 'output_token_details': {}}
+2025-09-11 09:35:58,082 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_h2yvkiUs5QpXbH6cUiGelEMg', 'function': {'arguments': '{"basename": "admin_tests"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 21, 'prompt_tokens': 62971, 'total_tokens': 62992, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 62912}, 'prompt_cache_hit_tokens': 62912, 'prompt_cache_miss_tokens': 59}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--0cddd137-e229-4e6f-9ce5-82ea6fa9e6db-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'admin_tests'}, 'id': 'call_00_h2yvkiUs5QpXbH6cUiGelEMg', 'type': 'tool_call'}] usage_metadata={'input_tokens': 62971, 'output_tokens': 21, 'total_tokens': 62992, 'input_token_details': {'cache_read': 62912}, 'output_token_details': {}}
+2025-09-11 09:36:03,400 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_Nu9PCeDZGuVw14UuNlF1S78k', 'function': {'arguments': '{"basename": "admin"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 19, 'prompt_tokens': 63007, 'total_tokens': 63026, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 62976}, 'prompt_cache_hit_tokens': 62976, 'prompt_cache_miss_tokens': 31}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--ecea720b-6afb-43d0-aaa4-c862cd79c82b-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'admin'}, 'id': 'call_00_Nu9PCeDZGuVw14UuNlF1S78k', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63007, 'output_tokens': 19, 'total_tokens': 63026, 'input_token_details': {'cache_read': 62976}, 'output_token_details': {}}
+2025-09-11 09:36:09,323 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for test files that might contain tests for admin templatetags:' additional_kwargs={'tool_calls': [{'id': 'call_00_Oqu3aMNJVV4o9LQrkN5G2j5A', 'function': {'arguments': '{"text": "admin_modify"}', 'name': 'find_text_node_with_text'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 35, 'prompt_tokens': 63208, 'total_tokens': 63243, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 62976}, 'prompt_cache_hit_tokens': 62976, 'prompt_cache_miss_tokens': 232}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f0de6a5d-1d0f-47c9-bf7b-136d1d491768-0' tool_calls=[{'name': 'find_text_node_with_text', 'args': {'text': 'admin_modify'}, 'id': 'call_00_Oqu3aMNJVV4o9LQrkN5G2j5A', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63208, 'output_tokens': 35, 'total_tokens': 63243, 'input_token_details': {'cache_read': 62976}, 'output_token_details': {}}
+2025-09-11 09:36:14,982 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_clDAwlD8Jr7SlPOEmH9eU21Q', 'function': {'arguments': '{"text": "submit_row"}', 'name': 'find_text_node_with_text'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 17, 'prompt_tokens': 63258, 'total_tokens': 63275, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63232}, 'prompt_cache_hit_tokens': 63232, 'prompt_cache_miss_tokens': 26}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--62208ab5-1ca5-4458-9020-c6fce22cb423-0' tool_calls=[{'name': 'find_text_node_with_text', 'args': {'text': 'submit_row'}, 'id': 'call_00_clDAwlD8Jr7SlPOEmH9eU21Q', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63258, 'output_tokens': 17, 'total_tokens': 63275, 'input_token_details': {'cache_read': 63232}, 'output_token_details': {}}
+2025-09-11 09:36:21,904 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for test files that might test admin template tags:' additional_kwargs={'tool_calls': [{'id': 'call_00_cDFleXrMMWR8teyedHkr7JZa', 'function': {'arguments': '{"text": "show_save_as_new"}', 'name': 'find_text_node_with_text'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 33, 'prompt_tokens': 65402, 'total_tokens': 65435, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63232}, 'prompt_cache_hit_tokens': 63232, 'prompt_cache_miss_tokens': 2170}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--36bbfe16-b58d-4f74-a05b-86ea04829674-0' tool_calls=[{'name': 'find_text_node_with_text', 'args': {'text': 'show_save_as_new'}, 'id': 'call_00_cDFleXrMMWR8teyedHkr7JZa', 'type': 'tool_call'}] usage_metadata={'input_tokens': 65402, 'output_tokens': 33, 'total_tokens': 65435, 'input_token_details': {'cache_read': 63232}, 'output_token_details': {}}
+2025-09-11 09:36:28,719 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for admin view tests that might test the submit_row functionality:' additional_kwargs={'tool_calls': [{'id': 'call_00_9cFpq0lygWQbY8wRLk4rQtyx', 'function': {'arguments': '{"basename": "admin_views"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 36, 'prompt_tokens': 65450, 'total_tokens': 65486, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 65408}, 'prompt_cache_hit_tokens': 65408, 'prompt_cache_miss_tokens': 42}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--710f3eb6-b3f1-4fd4-bcde-8455eab163a9-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'admin_views'}, 'id': 'call_00_9cFpq0lygWQbY8wRLk4rQtyx', 'type': 'tool_call'}] usage_metadata={'input_tokens': 65450, 'output_tokens': 36, 'total_tokens': 65486, 'input_token_details': {'cache_read': 65408}, 'output_token_details': {}}
+2025-09-11 09:36:36,059 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_v9kjiepQNsOjiHVQX1qTt7n8', 'function': {'arguments': '{"relative_path": "tests/admin_views"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 22, 'prompt_tokens': 65566, 'total_tokens': 65588, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 65472}, 'prompt_cache_hit_tokens': 65472, 'prompt_cache_miss_tokens': 94}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b00097bb-2791-44fe-9c60-ae6a5bb95690-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/admin_views'}, 'id': 'call_00_v9kjiepQNsOjiHVQX1qTt7n8', 'type': 'tool_call'}] usage_metadata={'input_tokens': 65566, 'output_tokens': 22, 'total_tokens': 65588, 'input_token_details': {'cache_read': 65472}, 'output_token_details': {}}
+2025-09-11 09:36:42,989 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_g6FbbosYMWnwHako3wwlq23x', 'function': {'arguments': '{"basename": "tests.py", "relative_path": "tests/admin_views"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 30, 'prompt_tokens': 65626, 'total_tokens': 65656, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 65536}, 'prompt_cache_hit_tokens': 65536, 'prompt_cache_miss_tokens': 90}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--729b0c35-4eb7-4a74-afd2-02c6af9b8bf9-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'tests.py', 'relative_path': 'tests/admin_views'}, 'id': 'call_00_g6FbbosYMWnwHako3wwlq23x', 'type': 'tool_call'}] usage_metadata={'input_tokens': 65626, 'output_tokens': 30, 'total_tokens': 65656, 'input_token_details': {'cache_read': 65536}, 'output_token_details': {}}
+2025-09-11 09:36:48,507 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for test files in the admin_views directory:' additional_kwargs={'tool_calls': [{'id': 'call_00_tBQzNzjoJ2RYYMQt7mVOPfQJ', 'function': {'arguments': '{"relative_path": "tests/admin_views/tests.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 38, 'prompt_tokens': 65848, 'total_tokens': 65886, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 65600}, 'prompt_cache_hit_tokens': 65600, 'prompt_cache_miss_tokens': 248}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7d0acada-d50d-4b3b-afe1-52772f547f31-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/admin_views/tests.py'}, 'id': 'call_00_tBQzNzjoJ2RYYMQt7mVOPfQJ', 'type': 'tool_call'}] usage_metadata={'input_tokens': 65848, 'output_tokens': 38, 'total_tokens': 65886, 'input_token_details': {'cache_read': 65600}, 'output_token_details': {}}
+2025-09-11 09:36:54,399 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_DRz9OnMder2kCbTvAKSlD9qe', 'function': {'arguments': '{"relative_path": "tests/admin_views/tests.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 20, 'prompt_tokens': 65926, 'total_tokens': 65946, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 65856}, 'prompt_cache_hit_tokens': 65856, 'prompt_cache_miss_tokens': 70}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--2e85bff3-26ee-4af7-b731-43047cac9da3-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'tests/admin_views/tests.py'}, 'id': 'call_00_DRz9OnMder2kCbTvAKSlD9qe', 'type': 'tool_call'}] usage_metadata={'input_tokens': 65926, 'output_tokens': 20, 'total_tokens': 65946, 'input_token_details': {'cache_read': 65856}, 'output_token_details': {}}
+2025-09-11 09:37:09,489 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests related to save_as functionality:' additional_kwargs={'tool_calls': [{'id': 'call_00_Od4MshN0g5yOfFvW8DOoZjX1', 'function': {'arguments': '{"text": "save_as"}', 'name': 'find_text_node_with_text'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 28, 'prompt_tokens': 78530, 'total_tokens': 78558, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 65920}, 'prompt_cache_hit_tokens': 65920, 'prompt_cache_miss_tokens': 12610}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f81b63f6-ce24-4d7e-9a35-aef803672bfe-0' tool_calls=[{'name': 'find_text_node_with_text', 'args': {'text': 'save_as'}, 'id': 'call_00_Od4MshN0g5yOfFvW8DOoZjX1', 'type': 'tool_call'}] usage_metadata={'input_tokens': 78530, 'output_tokens': 28, 'total_tokens': 78558, 'input_token_details': {'cache_read': 65920}, 'output_token_details': {}}
+2025-09-11 09:37:24,633 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests specifically related to save_as functionality in the admin views:' additional_kwargs={'tool_calls': [{'id': 'call_00_iXwHwxQuouBZJSO0qNGIDBqL', 'function': {'arguments': '{"relative_path": "tests/admin_views/tests.py", "text": "save_as"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 53, 'prompt_tokens': 88666, 'total_tokens': 88719, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 78528}, 'prompt_cache_hit_tokens': 78528, 'prompt_cache_miss_tokens': 10138}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--cfa898d6-b60c-47ed-9871-89eb524f7cef-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/admin_views/tests.py', 'text': 'save_as'}, 'id': 'call_00_iXwHwxQuouBZJSO0qNGIDBqL', 'type': 'tool_call'}] usage_metadata={'input_tokens': 88666, 'output_tokens': 53, 'total_tokens': 88719, 'input_token_details': {'cache_read': 78528}, 'output_token_details': {}}
+2025-09-11 09:38:03,079 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that specifically test the show_save_as_new functionality:' additional_kwargs={'tool_calls': [{'id': 'call_00_dtUdm9Ru0EyVBYmepkm0YdBg', 'function': {'arguments': '{"relative_path": "tests/admin_views/tests.py", "text": "show_save_as_new"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 57, 'prompt_tokens': 116722, 'total_tokens': 116779, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 88640}, 'prompt_cache_hit_tokens': 88640, 'prompt_cache_miss_tokens': 28082}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--2bfa0812-630c-4e09-8bbc-6e547d0d0654-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/admin_views/tests.py', 'text': 'show_save_as_new'}, 'id': 'call_00_dtUdm9Ru0EyVBYmepkm0YdBg', 'type': 'tool_call'}] usage_metadata={'input_tokens': 116722, 'output_tokens': 57, 'total_tokens': 116779, 'input_token_details': {'cache_read': 88640}, 'output_token_details': {}}
+2025-09-11 09:38:13,157 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that specifically test permission-related functionality with save_as:' additional_kwargs={'tool_calls': [{'id': 'call_00_tHTcJrHTzP940HdaIas8hNN4', 'function': {'arguments': '{"relative_path": "tests/admin_views/tests.py", "text": "has_add_permission"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 118115, 'total_tokens': 118169, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 116736}, 'prompt_cache_hit_tokens': 116736, 'prompt_cache_miss_tokens': 1379}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--389f9f1d-5d29-46e1-939b-0dd3ad12b372-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/admin_views/tests.py', 'text': 'has_add_permission'}, 'id': 'call_00_tHTcJrHTzP940HdaIas8hNN4', 'type': 'tool_call'}] usage_metadata={'input_tokens': 118115, 'output_tokens': 54, 'total_tokens': 118169, 'input_token_details': {'cache_read': 116736}, 'output_token_details': {}}
+2025-09-11 09:38:21,150 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that test the change view with save_as functionality:' additional_kwargs={'tool_calls': [{'id': 'call_00_Oep9bfuWuOHruu7xJe9KX60y', 'function': {'arguments': '{"relative_path": "tests/admin_views/tests.py", "text": "change_view_save_as_new"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 56, 'prompt_tokens': 118184, 'total_tokens': 118240, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 118144}, 'prompt_cache_hit_tokens': 118144, 'prompt_cache_miss_tokens': 40}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--70659aa1-7fff-4d2f-96ab-e363455f63c3-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/admin_views/tests.py', 'text': 'change_view_save_as_new'}, 'id': 'call_00_Oep9bfuWuOHruu7xJe9KX60y', 'type': 'tool_call'}] usage_metadata={'input_tokens': 118184, 'output_tokens': 56, 'total_tokens': 118240, 'input_token_details': {'cache_read': 118144}, 'output_token_details': {}}
+2025-09-11 09:38:21,917 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 09:38:32,147 - thread-140190471276224.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 139728 tokens (131728 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 139728 tokens (131728 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

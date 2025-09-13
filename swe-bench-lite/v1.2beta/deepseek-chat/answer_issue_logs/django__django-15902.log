@@ -1,0 +1,263 @@
+2025-09-11 09:21:02,990 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmprgslyvr9/django
+2025-09-11 09:21:02,990 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 09:21:03,270 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 09:21:03,270 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 09:21:03,270 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 09:21:03,270 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 09:21:03,270 - thread-140190446098112.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 09:21:03,270 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.django_1776_django-15902:v1
+2025-09-11 09:21:04,183 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_a146afc397
+2025-09-11 09:21:04,188 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_a146afc397
+2025-09-11 09:21:05,680 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 09:21:05,844 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:21:05,844 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 09:21:06,014 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 09:21:06,015 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 09:21:10,365 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: asgiref>=3.5.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20220801182949) (3.8.1)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from Django==4.2.dev20220801182949) (0.5.1)
+Requirement already satisfied: typing-extensions>=4 in /opt/miniconda3/envs/testbed/lib/python3.9/site-packages (from asgiref>=3.5.2->Django==4.2.dev20220801182949) (4.12.2)
+Building wheels for collected packages: Django
+  Building editable for Django (pyproject.toml): started
+  Building editable for Django (pyproject.toml): finished with status 'done'
+  Created wheel for Django: filename=django-4.2.dev20220801182949-0.editable-py3-none-any.whl size=27192 sha256=e7efb1597e0ce6076562e642fa973e70912eddbe34e8ab19115cca889b2edadf
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xgiwsj6r/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built Django
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 4.2.dev20220801182949
+    Uninstalling Django-4.2.dev20220801182949:
+      Successfully uninstalled Django-4.2.dev20220801182949
+Successfully installed Django-4.2.dev20220801182949
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 09:21:10,365 - thread-140190446098112.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 09:21:10,366 - thread-140190446098112.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 09:21:10,366 - thread-140190446098112.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+"default.html" deprecation warning raised for ManagementForm's
+
+Issue description: 
+Description
+	
+I have a project where I never render forms with the {{ form }} expression. However, I'm still getting the new template deprecation warning because of the formset management form production, during which the template used is insignificant (only hidden inputs are produced).
+Is it worth special-casing this and avoid producing the warning for the management forms?
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 09:21:10,367 - thread-140190446098112.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 09:21:10,367 - thread-140190446098112.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\n"default.html" deprecation warning raised for ManagementForm\'s\n\nIssue description: \nDescription\n\t\nI have a project where I never render forms with the {{ form }} expression. However, I\'m still getting the new template deprecation warning because of the formset management form production, during which the template used is insignificant (only hidden inputs are produced).\nIs it worth special-casing this and avoid producing the warning for the management forms?\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 09:21:18,327 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='I need to investigate this issue about deprecation warnings for ManagementForm\'s "default.html" template. Let me search for relevant code and tests.' additional_kwargs={'tool_calls': [{'id': 'call_00_OSZAdPkXgw3N53koPfdbUEaS', 'function': {'arguments': '{"text": "ManagementForm"}', 'name': 'find_text_node_with_text'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 47, 'prompt_tokens': 60243, 'total_tokens': 60290, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60224}, 'prompt_cache_hit_tokens': 60224, 'prompt_cache_miss_tokens': 19}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--ba7cf85c-1f26-4464-a865-6493ea25e594-0' tool_calls=[{'name': 'find_text_node_with_text', 'args': {'text': 'ManagementForm'}, 'id': 'call_00_OSZAdPkXgw3N53koPfdbUEaS', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60243, 'output_tokens': 47, 'total_tokens': 60290, 'input_token_details': {'cache_read': 60224}, 'output_token_details': {}}
+2025-09-11 09:26:40,098 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_tqLwYomiexWvNBmcnqdYMZnU', 'function': {'arguments': '{"basename": "formsets.py", "text": "ManagementForm"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 33, 'prompt_tokens': 66391, 'total_tokens': 66424, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 33024}, 'prompt_cache_hit_tokens': 33024, 'prompt_cache_miss_tokens': 33367}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--51c4a61e-6ccf-415a-b03a-00064c272036-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'formsets.py', 'text': 'ManagementForm'}, 'id': 'call_00_tqLwYomiexWvNBmcnqdYMZnU', 'type': 'tool_call'}] usage_metadata={'input_tokens': 66391, 'output_tokens': 33, 'total_tokens': 66424, 'input_token_details': {'cache_read': 33024}, 'output_token_details': {}}
+2025-09-11 09:26:49,950 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_3qFLABU98hkAlCgxEBFOm8nB', 'function': {'arguments': '{"basename": "formsets.py", "text": "default.html"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 33, 'prompt_tokens': 71202, 'total_tokens': 71235, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 66368}, 'prompt_cache_hit_tokens': 66368, 'prompt_cache_miss_tokens': 4834}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--353e6998-5f0b-489c-b65c-a4e272ccb588-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'formsets.py', 'text': 'default.html'}, 'id': 'call_00_3qFLABU98hkAlCgxEBFOm8nB', 'type': 'tool_call'}] usage_metadata={'input_tokens': 71202, 'output_tokens': 33, 'total_tokens': 71235, 'input_token_details': {'cache_read': 66368}, 'output_token_details': {}}
+2025-09-11 09:26:58,908 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_s3spoKK96TzPsCZI19oW4tgE', 'function': {'arguments': '{"text": "default.html"}', 'name': 'find_text_node_with_text'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 17, 'prompt_tokens': 71250, 'total_tokens': 71267, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 71232}, 'prompt_cache_hit_tokens': 71232, 'prompt_cache_miss_tokens': 18}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--09d61afe-8476-4f0e-9b41-4e7bb451df7e-0' tool_calls=[{'name': 'find_text_node_with_text', 'args': {'text': 'default.html'}, 'id': 'call_00_s3spoKK96TzPsCZI19oW4tgE', 'type': 'tool_call'}] usage_metadata={'input_tokens': 71250, 'output_tokens': 17, 'total_tokens': 71267, 'input_token_details': {'cache_read': 71232}, 'output_token_details': {}}
+2025-09-11 09:27:13,005 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for test files related to formsets and management forms:' additional_kwargs={'tool_calls': [{'id': 'call_00_FYAYyqccsAiZYyns2imGeJb5', 'function': {'arguments': '{"basename": "test_formsets.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 38, 'prompt_tokens': 82496, 'total_tokens': 82534, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 71232}, 'prompt_cache_hit_tokens': 71232, 'prompt_cache_miss_tokens': 11264}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--714ccf67-c833-4b57-8361-b942d849359e-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_formsets.py'}, 'id': 'call_00_FYAYyqccsAiZYyns2imGeJb5', 'type': 'tool_call'}] usage_metadata={'input_tokens': 82496, 'output_tokens': 38, 'total_tokens': 82534, 'input_token_details': {'cache_read': 71232}, 'output_token_details': {}}
+2025-09-11 09:27:18,522 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_rSLjC7U5ucvYyq6VKn5wxOkt', 'function': {'arguments': '{"relative_path": "tests/forms_tests/tests/test_formsets.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 25, 'prompt_tokens': 82581, 'total_tokens': 82606, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 82496}, 'prompt_cache_hit_tokens': 82496, 'prompt_cache_miss_tokens': 85}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f9094d06-9b05-4c4d-bf51-36d5cb409edd-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'tests/forms_tests/tests/test_formsets.py'}, 'id': 'call_00_rSLjC7U5ucvYyq6VKn5wxOkt', 'type': 'tool_call'}] usage_metadata={'input_tokens': 82581, 'output_tokens': 25, 'total_tokens': 82606, 'input_token_details': {'cache_read': 82496}, 'output_token_details': {}}
+2025-09-11 09:27:41,056 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me continue reading the file to find more relevant tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_u1VnTvFxO9ysAH1C7ulSOISi', 'function': {'arguments': '{"relative_path": "tests/forms_tests/tests/test_formsets.py", "start_line": 1000, "end_line": 1500}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 57, 'prompt_tokens': 97209, 'total_tokens': 97266, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 82560}, 'prompt_cache_hit_tokens': 82560, 'prompt_cache_miss_tokens': 14649}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7ebbd028-bd73-4a59-a663-786459db0a53-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/forms_tests/tests/test_formsets.py', 'start_line': 1000, 'end_line': 1500}, 'id': 'call_00_u1VnTvFxO9ysAH1C7ulSOISi', 'type': 'tool_call'}] usage_metadata={'input_tokens': 97209, 'output_tokens': 57, 'total_tokens': 97266, 'input_token_details': {'cache_read': 82560}, 'output_token_details': {}}
+2025-09-11 09:27:56,287 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me continue reading to find more relevant tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_3nRKBT4zb1GN2S7dHq8rAQip', 'function': {'arguments': '{"relative_path": "tests/forms_tests/tests/test_formsets.py", "start_line": 1500, "end_line": 2000}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 55, 'prompt_tokens': 104646, 'total_tokens': 104701, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 97216}, 'prompt_cache_hit_tokens': 97216, 'prompt_cache_miss_tokens': 7430}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--52dfda22-a7cd-4ade-9a57-65804395dec5-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/forms_tests/tests/test_formsets.py', 'start_line': 1500, 'end_line': 2000}, 'id': 'call_00_3nRKBT4zb1GN2S7dHq8rAQip', 'type': 'tool_call'}] usage_metadata={'input_tokens': 104646, 'output_tokens': 55, 'total_tokens': 104701, 'input_token_details': {'cache_read': 97216}, 'output_token_details': {}}
+2025-09-11 09:28:13,142 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests specifically related to deprecation warnings and template rendering:' additional_kwargs={'tool_calls': [{'id': 'call_00_Ivh1N533hB3BpFnvzkiNeqK1', 'function': {'arguments': '{"basename": "test_formsets.py", "text": "DEFAULT_TEMPLATE_DEPRECATION_MSG"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 61, 'prompt_tokens': 110546, 'total_tokens': 110607, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 104640}, 'prompt_cache_hit_tokens': 104640, 'prompt_cache_miss_tokens': 5906}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--d6408130-f11e-43bc-bbc2-b10fe075bd55-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_formsets.py', 'text': 'DEFAULT_TEMPLATE_DEPRECATION_MSG'}, 'id': 'call_00_Ivh1N533hB3BpFnvzkiNeqK1', 'type': 'tool_call'}] usage_metadata={'input_tokens': 110546, 'output_tokens': 61, 'total_tokens': 110607, 'input_token_details': {'cache_read': 104640}, 'output_token_details': {}}
+2025-09-11 09:28:22,393 - thread-140190446098112.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for more tests related to template rendering and management forms:' additional_kwargs={'tool_calls': [{'id': 'call_00_WOuIPsUq9Gqe8NVusnUFP2xD', 'function': {'arguments': '{"basename": "test_formsets.py", "text": "management_form"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 49, 'prompt_tokens': 110829, 'total_tokens': 110878, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 110592}, 'prompt_cache_hit_tokens': 110592, 'prompt_cache_miss_tokens': 237}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c7506a78-b159-4107-96e5-1f8cde61c016-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_formsets.py', 'text': 'management_form'}, 'id': 'call_00_WOuIPsUq9Gqe8NVusnUFP2xD', 'type': 'tool_call'}] usage_metadata={'input_tokens': 110829, 'output_tokens': 49, 'total_tokens': 110878, 'input_token_details': {'cache_read': 110592}, 'output_token_details': {}}
+2025-09-11 09:28:23,170 - thread-140190446098112.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 09:28:33,445 - thread-140190446098112.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 140095 tokens (132095 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 140095 tokens (132095 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

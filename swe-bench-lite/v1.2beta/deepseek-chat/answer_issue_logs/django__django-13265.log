@@ -1,0 +1,311 @@
+2025-09-11 08:32:57,930 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmpm_5anzk3/django
+2025-09-11 08:32:57,930 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 08:32:58,224 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 08:32:58,224 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 08:32:58,224 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 08:32:58,224 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 08:32:58,224 - thread-140190471276224.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 08:32:58,224 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.django_1776_django-13265:v1
+2025-09-11 08:32:59,113 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_fa1980af32
+2025-09-11 08:32:59,147 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_fa1980af32
+2025-09-11 08:33:00,634 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 08:33:00,799 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 08:33:00,799 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 08:33:00,960 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 08:33:00,960 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+2025-09-11 08:33:02,286 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Generating locales (this might take a while)...
+  en_US.UTF-8... done
+Generation complete.
+
+2025-09-11 08:33:02,286 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: export LANG=en_US.UTF-8
+2025-09-11 08:33:02,385 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 08:33:02,385 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: export LANGUAGE=en_US:en
+2025-09-11 08:33:02,480 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 08:33:02,480 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: export LC_ALL=en_US.UTF-8
+2025-09-11 08:33:02,573 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 08:33:02,573 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 08:33:05,472 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+Requirement already satisfied: asgiref>=3.2.10 in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.2) (3.4.1)
+Requirement already satisfied: pytz in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.2) (2024.2)
+Requirement already satisfied: sqlparse>=0.2.2 in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from Django==3.2) (0.4.4)
+Requirement already satisfied: typing-extensions in /opt/miniconda3/envs/testbed/lib/python3.6/site-packages (from asgiref>=3.2.10->Django==3.2) (4.1.1)
+Installing collected packages: Django
+  Attempting uninstall: Django
+    Found existing installation: Django 3.2
+    Uninstalling Django-3.2:
+      Successfully uninstalled Django-3.2
+  Running setup.py develop for Django
+Successfully installed Django-3.2
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+
+2025-09-11 08:33:05,472 - thread-140190471276224.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 08:33:05,473 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 08:33:05,473 - thread-140190471276224.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+AlterOrderWithRespectTo() with ForeignKey crash when _order is included in Index().
+
+Issue description: 
+Description
+	
+	class Meta:
+		db_table = 'look_image'
+		order_with_respect_to = 'look'
+		indexes = [
+			models.Index(fields=['look', '_order']),
+			models.Index(fields=['created_at']),
+			models.Index(fields=['updated_at']),
+		]
+migrations.CreateModel(
+			name='LookImage',
+			fields=[
+				('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+				('look', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='posts.Look', verbose_name='LOOK')),
+				('image_url', models.URLField(blank=True, max_length=10000, null=True)),
+				('image', models.ImageField(max_length=2000, upload_to='')),
+				('deleted', models.DateTimeField(editable=False, null=True)),
+				('created_at', models.DateTimeField(auto_now_add=True)),
+				('updated_at', models.DateTimeField(auto_now=True)),
+			],
+		),
+		migrations.AddIndex(
+			model_name='lookimage',
+			index=models.Index(fields=['look', '_order'], name='look_image_look_id_eaff30_idx'),
+		),
+		migrations.AddIndex(
+			model_name='lookimage',
+			index=models.Index(fields=['created_at'], name='look_image_created_f746cf_idx'),
+		),
+		migrations.AddIndex(
+			model_name='lookimage',
+			index=models.Index(fields=['updated_at'], name='look_image_updated_aceaf9_idx'),
+		),
+		migrations.AlterOrderWithRespectTo(
+			name='lookimage',
+			order_with_respect_to='look',
+		),
+I added orders_with_respect_to in new model class's Meta class and also made index for '_order' field by combining with other field. And a new migration file based on the model looks like the code above.
+The problem is operation AlterOrderWithRespectTo after AddIndex of '_order' raising error because '_order' field had not been created yet.
+It seems to be AlterOrderWithRespectTo has to proceed before AddIndex of '_order'.
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 08:33:05,473 - thread-140190471276224.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 08:33:05,474 - thread-140190471276224.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\nAlterOrderWithRespectTo() with ForeignKey crash when _order is included in Index().\n\nIssue description: \nDescription\n\t\n\tclass Meta:\n\t\tdb_table = \'look_image\'\n\t\torder_with_respect_to = \'look\'\n\t\tindexes = [\n\t\t\tmodels.Index(fields=[\'look\', \'_order\']),\n\t\t\tmodels.Index(fields=[\'created_at\']),\n\t\t\tmodels.Index(fields=[\'updated_at\']),\n\t\t]\nmigrations.CreateModel(\n\t\t\tname=\'LookImage\',\n\t\t\tfields=[\n\t\t\t\t(\'id\', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name=\'ID\')),\n\t\t\t\t(\'look\', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name=\'images\', to=\'posts.Look\', verbose_name=\'LOOK\')),\n\t\t\t\t(\'image_url\', models.URLField(blank=True, max_length=10000, null=True)),\n\t\t\t\t(\'image\', models.ImageField(max_length=2000, upload_to=\'\')),\n\t\t\t\t(\'deleted\', models.DateTimeField(editable=False, null=True)),\n\t\t\t\t(\'created_at\', models.DateTimeField(auto_now_add=True)),\n\t\t\t\t(\'updated_at\', models.DateTimeField(auto_now=True)),\n\t\t\t],\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name=\'lookimage\',\n\t\t\tindex=models.Index(fields=[\'look\', \'_order\'], name=\'look_image_look_id_eaff30_idx\'),\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name=\'lookimage\',\n\t\t\tindex=models.Index(fields=[\'created_at\'], name=\'look_image_created_f746cf_idx\'),\n\t\t),\n\t\tmigrations.AddIndex(\n\t\t\tmodel_name=\'lookimage\',\n\t\t\tindex=models.Index(fields=[\'updated_at\'], name=\'look_image_updated_aceaf9_idx\'),\n\t\t),\n\t\tmigrations.AlterOrderWithRespectTo(\n\t\t\tname=\'lookimage\',\n\t\t\torder_with_respect_to=\'look\',\n\t\t),\nI added orders_with_respect_to in new model class\'s Meta class and also made index for \'_order\' field by combining with other field. And a new migration file based on the model looks like the code above.\nThe problem is operation AlterOrderWithRespectTo after AddIndex of \'_order\' raising error because \'_order\' field had not been created yet.\nIt seems to be AlterOrderWithRespectTo has to proceed before AddIndex of \'_order\'.\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 08:33:28,500 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="I'll search for relevant test cases related to the issue with `AlterOrderWithRespectTo()` and indexes containing the `_order` field. Let me start by exploring the test structure." additional_kwargs={'tool_calls': [{'id': 'call_00_E8SLgXIQup4wZn8FMvgQ557Z', 'function': {'arguments': '{"basename": "tests"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 59, 'prompt_tokens': 60309, 'total_tokens': 60368, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 704}, 'prompt_cache_hit_tokens': 704, 'prompt_cache_miss_tokens': 59605}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--940de578-abac-49f8-ab6d-eb5d1e3d9b48-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'tests'}, 'id': 'call_00_E8SLgXIQup4wZn8FMvgQ557Z', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60309, 'output_tokens': 59, 'total_tokens': 60368, 'input_token_details': {'cache_read': 704}, 'output_token_details': {}}
+2025-09-11 08:33:35,009 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_Xfd93k2Rt3uyuATxo1XhlFYE', 'function': {'arguments': '{"basename": "order_with_respect_to"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 23, 'prompt_tokens': 60510, 'total_tokens': 60533, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60352}, 'prompt_cache_hit_tokens': 60352, 'prompt_cache_miss_tokens': 158}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e35ee8e5-7d81-4f3a-b716-48352189dd94-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'order_with_respect_to'}, 'id': 'call_00_Xfd93k2Rt3uyuATxo1XhlFYE', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60510, 'output_tokens': 23, 'total_tokens': 60533, 'input_token_details': {'cache_read': 60352}, 'output_token_details': {}}
+2025-09-11 08:33:42,390 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_8alp0F64vma12Ns9OFnTuolq', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 25, 'prompt_tokens': 60575, 'total_tokens': 60600, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60480}, 'prompt_cache_hit_tokens': 60480, 'prompt_cache_miss_tokens': 95}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e61b1d62-3680-49fc-854e-f7f0f6f5b63b-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/order_with_respect_to'}, 'id': 'call_00_8alp0F64vma12Ns9OFnTuolq', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60575, 'output_tokens': 25, 'total_tokens': 60600, 'input_token_details': {'cache_read': 60480}, 'output_token_details': {}}
+2025-09-11 08:33:49,422 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_I1bODqPTiunL8DhtgjXjQJIM', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 20, 'prompt_tokens': 60642, 'total_tokens': 60662, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60544}, 'prompt_cache_hit_tokens': 60544, 'prompt_cache_miss_tokens': 98}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--bbe5a05b-4e98-450e-a04b-7f7e54a790a7-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'tests/order_with_respect_to'}, 'id': 'call_00_I1bODqPTiunL8DhtgjXjQJIM', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60642, 'output_tokens': 20, 'total_tokens': 60662, 'input_token_details': {'cache_read': 60544}, 'output_token_details': {}}
+2025-09-11 08:33:56,707 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_cVKyRXsJU36TcGrOhGffJ7bt', 'function': {'arguments': '{"basename": "tests.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 20, 'prompt_tokens': 60684, 'total_tokens': 60704, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60608}, 'prompt_cache_hit_tokens': 60608, 'prompt_cache_miss_tokens': 76}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e4899c25-84ac-4def-855c-a577907aa8ab-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'tests.py'}, 'id': 'call_00_cVKyRXsJU36TcGrOhGffJ7bt', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60684, 'output_tokens': 20, 'total_tokens': 60704, 'input_token_details': {'cache_read': 60608}, 'output_token_details': {}}
+2025-09-11 08:34:04,764 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_J1GJgPmTKsMPcbPI4qNSzOAI', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to/tests.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 28, 'prompt_tokens': 60889, 'total_tokens': 60917, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60672}, 'prompt_cache_hit_tokens': 60672, 'prompt_cache_miss_tokens': 217}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--1dbe3297-14f3-4137-bd0b-f5cf0cc45bdc-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/order_with_respect_to/tests.py'}, 'id': 'call_00_J1GJgPmTKsMPcbPI4qNSzOAI', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60889, 'output_tokens': 28, 'total_tokens': 60917, 'input_token_details': {'cache_read': 60672}, 'output_token_details': {}}
+2025-09-11 08:34:09,679 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_z1KdLNxsyARz31LfcNffKyRz', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to/tests.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 23, 'prompt_tokens': 60959, 'total_tokens': 60982, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60864}, 'prompt_cache_hit_tokens': 60864, 'prompt_cache_miss_tokens': 95}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b465cc45-eee4-4234-804c-b1db33cc9bfa-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'tests/order_with_respect_to/tests.py'}, 'id': 'call_00_z1KdLNxsyARz31LfcNffKyRz', 'type': 'tool_call'}] usage_metadata={'input_tokens': 60959, 'output_tokens': 23, 'total_tokens': 60982, 'input_token_details': {'cache_read': 60864}, 'output_token_details': {}}
+2025-09-11 08:34:17,997 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_ko6y3pdaUewsPmcS1erZyqPg', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to/base_tests.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 29, 'prompt_tokens': 61541, 'total_tokens': 61570, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 60928}, 'prompt_cache_hit_tokens': 60928, 'prompt_cache_miss_tokens': 613}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--0fec86c3-081c-473b-8160-4fa0ff4ada2d-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/order_with_respect_to/base_tests.py'}, 'id': 'call_00_ko6y3pdaUewsPmcS1erZyqPg', 'type': 'tool_call'}] usage_metadata={'input_tokens': 61541, 'output_tokens': 29, 'total_tokens': 61570, 'input_token_details': {'cache_read': 60928}, 'output_token_details': {}}
+2025-09-11 08:34:24,420 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_7BinGAaXrqw14ciXQOQELisH', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to/base_tests.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 24, 'prompt_tokens': 61615, 'total_tokens': 61639, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 61568}, 'prompt_cache_hit_tokens': 61568, 'prompt_cache_miss_tokens': 47}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f4563aed-b352-4d7c-9f30-216953dc6706-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'tests/order_with_respect_to/base_tests.py'}, 'id': 'call_00_7BinGAaXrqw14ciXQOQELisH', 'type': 'tool_call'}] usage_metadata={'input_tokens': 61615, 'output_tokens': 24, 'total_tokens': 61639, 'input_token_details': {'cache_read': 61568}, 'output_token_details': {}}
+2025-09-11 08:34:31,438 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_SMDc0FJFb5goHZcB4WLX3m7r', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to/models.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 27, 'prompt_tokens': 63191, 'total_tokens': 63218, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 61632}, 'prompt_cache_hit_tokens': 61632, 'prompt_cache_miss_tokens': 1559}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--8e63cd43-7079-4cbe-b0c1-8b4d752f026e-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/order_with_respect_to/models.py'}, 'id': 'call_00_SMDc0FJFb5goHZcB4WLX3m7r', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63191, 'output_tokens': 27, 'total_tokens': 63218, 'input_token_details': {'cache_read': 61632}, 'output_token_details': {}}
+2025-09-11 08:34:38,923 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_4upkiYCcZR4ZvUbVAUK00oze', 'function': {'arguments': '{"relative_path": "tests/order_with_respect_to/models.py"}', 'name': 'read_file'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 22, 'prompt_tokens': 63259, 'total_tokens': 63281, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63168}, 'prompt_cache_hit_tokens': 63168, 'prompt_cache_miss_tokens': 91}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f402b2f4-3ec0-4bdb-bcf4-0bd8dd7c814f-0' tool_calls=[{'name': 'read_file', 'args': {'relative_path': 'tests/order_with_respect_to/models.py'}, 'id': 'call_00_4upkiYCcZR4ZvUbVAUK00oze', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63259, 'output_tokens': 22, 'total_tokens': 63281, 'input_token_details': {'cache_read': 63168}, 'output_token_details': {}}
+2025-09-11 08:34:45,976 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for migration-related tests that might involve `AlterOrderWithRespectTo`:' additional_kwargs={'tool_calls': [{'id': 'call_00_slC7TZC4ymtaVZ2iYaQPYVwh', 'function': {'arguments': '{"basename": "tests.py", "text": "AlterOrderWithRespectTo"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 57, 'prompt_tokens': 63750, 'total_tokens': 63807, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63232}, 'prompt_cache_hit_tokens': 63232, 'prompt_cache_miss_tokens': 518}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--73c00b63-d41b-4bc2-b6ce-042221f2fd9c-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'tests.py', 'text': 'AlterOrderWithRespectTo'}, 'id': 'call_00_slC7TZC4ymtaVZ2iYaQPYVwh', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63750, 'output_tokens': 57, 'total_tokens': 63807, 'input_token_details': {'cache_read': 63232}, 'output_token_details': {}}
+2025-09-11 08:34:53,835 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_3TeLMZ4STVI3tOtTj9idUu0A', 'function': {'arguments': '{"basename": "tests.py", "text": "order_with_respect_to"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 35, 'prompt_tokens': 63822, 'total_tokens': 63857, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63744}, 'prompt_cache_hit_tokens': 63744, 'prompt_cache_miss_tokens': 78}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--8b0692ad-bf7f-48f5-bd7b-37208f87d46e-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'tests.py', 'text': 'order_with_respect_to'}, 'id': 'call_00_3TeLMZ4STVI3tOtTj9idUu0A', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63822, 'output_tokens': 35, 'total_tokens': 63857, 'input_token_details': {'cache_read': 63744}, 'output_token_details': {}}
+2025-09-11 08:35:01,627 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for migration tests that might involve indexes and order_with_respect_to:' additional_kwargs={'tool_calls': [{'id': 'call_00_bfwdKYZzzFn25lkcBmFQk2BC', 'function': {'arguments': '{"basename": "migrations"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 37, 'prompt_tokens': 64110, 'total_tokens': 64147, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63808}, 'prompt_cache_hit_tokens': 63808, 'prompt_cache_miss_tokens': 302}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--57fad72d-1216-4d8b-b537-b65db3948635-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'migrations'}, 'id': 'call_00_bfwdKYZzzFn25lkcBmFQk2BC', 'type': 'tool_call'}] usage_metadata={'input_tokens': 64110, 'output_tokens': 37, 'total_tokens': 64147, 'input_token_details': {'cache_read': 63808}, 'output_token_details': {}}
+2025-09-11 08:35:07,209 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_o1LbhuqBnmYlbFrXEB4kesza', 'function': {'arguments': '{"relative_path": "tests/migrations/tests.py"}', 'name': 'find_file_node_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 24, 'prompt_tokens': 64347, 'total_tokens': 64371, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 64128}, 'prompt_cache_hit_tokens': 64128, 'prompt_cache_miss_tokens': 219}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b5de7509-16a8-4ec1-98cd-558f8bcaf709-0' tool_calls=[{'name': 'find_file_node_with_relative_path', 'args': {'relative_path': 'tests/migrations/tests.py'}, 'id': 'call_00_o1LbhuqBnmYlbFrXEB4kesza', 'type': 'tool_call'}] usage_metadata={'input_tokens': 64347, 'output_tokens': 24, 'total_tokens': 64371, 'input_token_details': {'cache_read': 64128}, 'output_token_details': {}}
+2025-09-11 08:35:11,816 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_HGVy1S7KRpKPyBtIwDgwpnOC', 'function': {'arguments': '{"basename": "test_operations.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 22, 'prompt_tokens': 64386, 'total_tokens': 64408, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 64320}, 'prompt_cache_hit_tokens': 64320, 'prompt_cache_miss_tokens': 66}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e14cf8fc-c1d2-4a0b-afc3-6ce7caa6e7c3-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_operations.py'}, 'id': 'call_00_HGVy1S7KRpKPyBtIwDgwpnOC', 'type': 'tool_call'}] usage_metadata={'input_tokens': 64386, 'output_tokens': 22, 'total_tokens': 64408, 'input_token_details': {'cache_read': 64320}, 'output_token_details': {}}
+2025-09-11 08:35:20,062 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_DiW51PsrGe6qJHTLBpj8JkDG', 'function': {'arguments': '{"relative_path": "tests/migrations/test_operations.py", "text": "AlterOrderWithRespectTo"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 42, 'prompt_tokens': 64619, 'total_tokens': 64661, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 64384}, 'prompt_cache_hit_tokens': 64384, 'prompt_cache_miss_tokens': 235}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--6332138d-651d-4fcb-923c-df898643e9dd-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/migrations/test_operations.py', 'text': 'AlterOrderWithRespectTo'}, 'id': 'call_00_DiW51PsrGe6qJHTLBpj8JkDG', 'type': 'tool_call'}] usage_metadata={'input_tokens': 64619, 'output_tokens': 42, 'total_tokens': 64661, 'input_token_details': {'cache_read': 64384}, 'output_token_details': {}}
+2025-09-11 08:36:07,171 - thread-140190471276224.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for specific tests related to `AlterOrderWithRespectTo`:' additional_kwargs={'tool_calls': [{'id': 'call_00_lrG57jqNfpCZvoXJCJ93kz2E', 'function': {'arguments': '{"relative_path": "tests/migrations/test_operations.py", "text": "test_alter_order_with_respect_to"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 60, 'prompt_tokens': 106865, 'total_tokens': 106925, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 64640}, 'prompt_cache_hit_tokens': 64640, 'prompt_cache_miss_tokens': 42225}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--efdf7f44-19ed-4a92-8049-7503eab0f3e9-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/migrations/test_operations.py', 'text': 'test_alter_order_with_respect_to'}, 'id': 'call_00_lrG57jqNfpCZvoXJCJ93kz2E', 'type': 'tool_call'}] usage_metadata={'input_tokens': 106865, 'output_tokens': 60, 'total_tokens': 106925, 'input_token_details': {'cache_read': 64640}, 'output_token_details': {}}
+2025-09-11 08:36:08,037 - thread-140190471276224.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 08:36:18,243 - thread-140190471276224.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 157129 tokens (149129 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 157129 tokens (149129 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

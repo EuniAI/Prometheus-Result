@@ -1,0 +1,265 @@
+2025-09-11 11:27:35,556 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmp2yw1gzky/requests
+2025-09-11 11:27:35,556 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 11:27:35,691 - thread-140190429312704.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 11:27:35,691 - thread-140190429312704.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 11:27:35,691 - thread-140190429312704.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 11:27:35,691 - thread-140190429312704.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 11:27:35,692 - thread-140190429312704.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 11:27:35,692 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.psf_1776_requests-3362:v1
+2025-09-11 11:27:36,587 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_9aa754ba54
+2025-09-11 11:27:36,592 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_9aa754ba54
+2025-09-11 11:27:36,716 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 11:27:36,880 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 11:27:36,880 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 11:27:37,041 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 11:27:37,041 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install .
+2025-09-11 11:27:38,483 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Processing /testbed
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Building wheels for collected packages: requests
+  Building wheel for requests (setup.py): started
+  Building wheel for requests (setup.py): finished with status 'done'
+  Created wheel for requests: filename=requests-2.10.0-py3-none-any.whl size=497468 sha256=3f9f4699abed40f4e4b70b5196827b098f66e82b2d2502b077e3afdb4274dc8e
+  Stored in directory: /tmp/pip-ephem-wheel-cache-9p85gvke/wheels/7d/66/67/70d1ee2124ccf21d601c352e25cdca10f611f7c8b3f9ffb9e4
+Successfully built requests
+Installing collected packages: requests
+  Attempting uninstall: requests
+    Found existing installation: requests 2.10.0
+    Can't uninstall 'requests'. No files were found to uninstall.
+Successfully installed requests-2.10.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 11:27:38,483 - thread-140190429312704.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 11:27:38,485 - thread-140190429312704.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 11:27:38,485 - thread-140190429312704.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+Uncertain about content/text vs iter_content(decode_unicode=True/False)
+
+Issue description: 
+When requesting an application/json document, I'm seeing `next(r.iter_content(16*1024, decode_unicode=True))` returning bytes, whereas `r.text` returns unicode. My understanding was that both should return a unicode object. In essence, I thought "iter_content" was equivalent to "iter_text" when decode_unicode was True. Have I misunderstood something? I can provide an example if needed.
+
+For reference, I'm using python 3.5.1 and requests 2.10.0.
+
+Thanks!
+
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 11:27:38,485 - thread-140190429312704.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 11:27:38,486 - thread-140190429312704.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\nUncertain about content/text vs iter_content(decode_unicode=True/False)\n\nIssue description: \nWhen requesting an application/json document, I\'m seeing `next(r.iter_content(16*1024, decode_unicode=True))` returning bytes, whereas `r.text` returns unicode. My understanding was that both should return a unicode object. In essence, I thought "iter_content" was equivalent to "iter_text" when decode_unicode was True. Have I misunderstood something? I can provide an example if needed.\n\nFor reference, I\'m using python 3.5.1 and requests 2.10.0.\n\nThanks!\n\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 11:27:45,462 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="I'll help you find relevant existing tests for the issue about `iter_content(decode_unicode=True)` vs `text` behavior. Let me start by exploring the test structure and finding tests related to content handling." additional_kwargs={'tool_calls': [{'id': 'call_00_jXAy9haTWt2qC7NY161L66gE', 'function': {'arguments': '{"basename": "test_requests.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 65, 'prompt_tokens': 4585, 'total_tokens': 4650, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 384}, 'prompt_cache_hit_tokens': 384, 'prompt_cache_miss_tokens': 4201}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--cfc91910-836c-47e0-ae8b-291ae44e7ae4-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_requests.py'}, 'id': 'call_00_jXAy9haTWt2qC7NY161L66gE', 'type': 'tool_call'}] usage_metadata={'input_tokens': 4585, 'output_tokens': 65, 'total_tokens': 4650, 'input_token_details': {'cache_read': 384}, 'output_token_details': {}}
+2025-09-11 11:27:50,284 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_2BWthOPSVZjHrQOlzfPswvDO', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "iter_content"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 35, 'prompt_tokens': 4690, 'total_tokens': 4725, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 4608}, 'prompt_cache_hit_tokens': 4608, 'prompt_cache_miss_tokens': 82}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--3a6a3f84-3949-4d43-bcb5-f9c461e80206-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'iter_content'}, 'id': 'call_00_2BWthOPSVZjHrQOlzfPswvDO', 'type': 'tool_call'}] usage_metadata={'input_tokens': 4690, 'output_tokens': 35, 'total_tokens': 4725, 'input_token_details': {'cache_read': 4608}, 'output_token_details': {}}
+2025-09-11 11:27:57,522 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for more specific tests related to iter_content and decode_unicode:' additional_kwargs={'tool_calls': [{'id': 'call_00_pQLyhqxFocfZxpYJxCcdcMOS', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "decode_unicode"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 53, 'prompt_tokens': 18874, 'total_tokens': 18927, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 4672}, 'prompt_cache_hit_tokens': 4672, 'prompt_cache_miss_tokens': 14202}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--690521e6-3a2b-4c9a-9059-721941cb70ee-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'decode_unicode'}, 'id': 'call_00_pQLyhqxFocfZxpYJxCcdcMOS', 'type': 'tool_call'}] usage_metadata={'input_tokens': 18874, 'output_tokens': 53, 'total_tokens': 18927, 'input_token_details': {'cache_read': 4672}, 'output_token_details': {}}
+2025-09-11 11:28:07,434 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me read the specific test that contains decode_unicode functionality:' additional_kwargs={'tool_calls': [{'id': 'call_00_DJGRLMFMMRFhTxYIJBE1o1FG', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1180, "end_line": 1200}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 33076, 'total_tokens': 33127, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 18880}, 'prompt_cache_hit_tokens': 18880, 'prompt_cache_miss_tokens': 14196}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--64e732d9-d945-489b-8a14-efd78db4f9b2-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1180, 'end_line': 1200}, 'id': 'call_00_DJGRLMFMMRFhTxYIJBE1o1FG', 'type': 'tool_call'}] usage_metadata={'input_tokens': 33076, 'output_tokens': 51, 'total_tokens': 33127, 'input_token_details': {'cache_read': 18880}, 'output_token_details': {}}
+2025-09-11 11:28:13,753 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the specific test method that contains decode_unicode:' additional_kwargs={'tool_calls': [{'id': 'call_00_jABXPaC2WajYIPDZmL2p6lLS', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "test_response_decode_unicode"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 52, 'prompt_tokens': 33439, 'total_tokens': 33491, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 33088}, 'prompt_cache_hit_tokens': 33088, 'prompt_cache_miss_tokens': 351}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--715d51ed-5fed-4d28-b2d5-79ff68bb34e6-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'test_response_decode_unicode'}, 'id': 'call_00_jABXPaC2WajYIPDZmL2p6lLS', 'type': 'tool_call'}] usage_metadata={'input_tokens': 33439, 'output_tokens': 52, 'total_tokens': 33491, 'input_token_details': {'cache_read': 33088}, 'output_token_details': {}}
+2025-09-11 11:28:25,979 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me read the specific test method that contains the decode_unicode test:' additional_kwargs={'tool_calls': [{'id': 'call_00_vdIoxro37NNRRgQsBbW7RmBA', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1220, "end_line": 1240}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 47640, 'total_tokens': 47694, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 33472}, 'prompt_cache_hit_tokens': 33472, 'prompt_cache_miss_tokens': 14168}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--65269b0e-46fc-4f5f-ac91-ef4c48407c9a-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1220, 'end_line': 1240}, 'id': 'call_00_vdIoxro37NNRRgQsBbW7RmBA', 'type': 'tool_call'}] usage_metadata={'input_tokens': 47640, 'output_tokens': 54, 'total_tokens': 47694, 'input_token_details': {'cache_read': 33472}, 'output_token_details': {}}
+2025-09-11 11:28:34,771 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the exact line numbers of the test_response_decode_unicode method:' additional_kwargs={'tool_calls': [{'id': 'call_00_RfVhArjN5dKsIXQ8RpOzgB57', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "def test_response_decode_unicode"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 56, 'prompt_tokens': 48046, 'total_tokens': 48102, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 47680}, 'prompt_cache_hit_tokens': 47680, 'prompt_cache_miss_tokens': 366}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a93818a4-ea04-40a1-8b17-7ddcb36e1109-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'def test_response_decode_unicode'}, 'id': 'call_00_RfVhArjN5dKsIXQ8RpOzgB57', 'type': 'tool_call'}] usage_metadata={'input_tokens': 48046, 'output_tokens': 56, 'total_tokens': 48102, 'input_token_details': {'cache_read': 47680}, 'output_token_details': {}}
+2025-09-11 11:28:48,057 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the exact line numbers by looking for the specific test method:' additional_kwargs={'tool_calls': [{'id': 'call_00_qlMUcqrLGHtfgbmdRgfHcBns', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "type": "function_definition"}', 'name': 'find_ast_node_with_type_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 52, 'prompt_tokens': 62251, 'total_tokens': 62303, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 48064}, 'prompt_cache_hit_tokens': 48064, 'prompt_cache_miss_tokens': 14187}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a37a98a2-58fb-4d82-8c59-d2adef402e8d-0' tool_calls=[{'name': 'find_ast_node_with_type_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'type': 'function_definition'}, 'id': 'call_00_qlMUcqrLGHtfgbmdRgfHcBns', 'type': 'tool_call'}] usage_metadata={'input_tokens': 62251, 'output_tokens': 52, 'total_tokens': 62303, 'input_token_details': {'cache_read': 48064}, 'output_token_details': {}}
+2025-09-11 11:28:56,082 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search more specifically for the test_response_decode_unicode method:' additional_kwargs={'tool_calls': [{'id': 'call_00_Yx8Wf07qoTVmIncFlAbNAgKn', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "def test_response_decode_unicode"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 53, 'prompt_tokens': 63237, 'total_tokens': 63290, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 62272}, 'prompt_cache_hit_tokens': 62272, 'prompt_cache_miss_tokens': 965}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--3b5f1815-6ae7-435c-92d2-7f4fd50cfab3-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'def test_response_decode_unicode'}, 'id': 'call_00_Yx8Wf07qoTVmIncFlAbNAgKn', 'type': 'tool_call'}] usage_metadata={'input_tokens': 63237, 'output_tokens': 53, 'total_tokens': 63290, 'input_token_details': {'cache_read': 62272}, 'output_token_details': {}}
+2025-09-11 11:29:15,222 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the specific line numbers by looking at the content around the decode_unicode test:' additional_kwargs={'tool_calls': [{'id': 'call_00_eZZo1B8Dev7WTIW6DgYWrxpN', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1250, "end_line": 1280}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 58, 'prompt_tokens': 77439, 'total_tokens': 77497, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 63232}, 'prompt_cache_hit_tokens': 63232, 'prompt_cache_miss_tokens': 14207}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--2fcd6d02-9b80-417b-83c1-4e4eb7786cf6-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1250, 'end_line': 1280}, 'id': 'call_00_eZZo1B8Dev7WTIW6DgYWrxpN', 'type': 'tool_call'}] usage_metadata={'input_tokens': 77439, 'output_tokens': 58, 'total_tokens': 77497, 'input_token_details': {'cache_read': 63232}, 'output_token_details': {}}
+2025-09-11 11:29:21,665 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the test_response_decode_unicode method more specifically by looking at the content around line 1200-1250:' additional_kwargs={'tool_calls': [{'id': 'call_00_FMRNFS3k1fFpDprfWMSme1Np', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1200, "end_line": 1250}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 65, 'prompt_tokens': 77951, 'total_tokens': 78016, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 77440}, 'prompt_cache_hit_tokens': 77440, 'prompt_cache_miss_tokens': 511}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--cb08be08-3dbc-4ab6-9620-28a1d98de171-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1200, 'end_line': 1250}, 'id': 'call_00_FMRNFS3k1fFpDprfWMSme1Np', 'type': 'tool_call'}] usage_metadata={'input_tokens': 77951, 'output_tokens': 65, 'total_tokens': 78016, 'input_token_details': {'cache_read': 77440}, 'output_token_details': {}}
+2025-09-11 11:29:29,856 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the test_response_decode_unicode method by looking at the content around line 1150-1200:' additional_kwargs={'tool_calls': [{'id': 'call_00_3tR0BxtvnXUDWlhDrWO9sial', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1150, "end_line": 1200}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 78784, 'total_tokens': 78847, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 77952}, 'prompt_cache_hit_tokens': 77952, 'prompt_cache_miss_tokens': 832}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--3c70a3ec-df50-4652-a2a1-6d5378fb7c56-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1150, 'end_line': 1200}, 'id': 'call_00_3tR0BxtvnXUDWlhDrWO9sial', 'type': 'tool_call'}] usage_metadata={'input_tokens': 78784, 'output_tokens': 63, 'total_tokens': 78847, 'input_token_details': {'cache_read': 77952}, 'output_token_details': {}}
+2025-09-11 11:29:37,509 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the test_response_decode_unicode method by looking at the content around line 1100-1150:' additional_kwargs={'tool_calls': [{'id': 'call_00_gD2GNAouqQijO8RKZKWQNZk9', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1100, "end_line": 1150}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 79643, 'total_tokens': 79706, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 78784}, 'prompt_cache_hit_tokens': 78784, 'prompt_cache_miss_tokens': 859}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--98c7a228-7a38-4f36-87a8-4a321e400ac2-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1100, 'end_line': 1150}, 'id': 'call_00_gD2GNAouqQijO8RKZKWQNZk9', 'type': 'tool_call'}] usage_metadata={'input_tokens': 79643, 'output_tokens': 63, 'total_tokens': 79706, 'input_token_details': {'cache_read': 78784}, 'output_token_details': {}}
+2025-09-11 11:29:45,512 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the test_response_decode_unicode method by looking at the content around line 1050-1100:' additional_kwargs={'tool_calls': [{'id': 'call_00_HSgHoaKDYw3ktkiP7xpzUY2W', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1050, "end_line": 1100}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 80605, 'total_tokens': 80668, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 79680}, 'prompt_cache_hit_tokens': 79680, 'prompt_cache_miss_tokens': 925}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--26e64f35-7b81-4551-b067-06938de1407d-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1050, 'end_line': 1100}, 'id': 'call_00_HSgHoaKDYw3ktkiP7xpzUY2W', 'type': 'tool_call'}] usage_metadata={'input_tokens': 80605, 'output_tokens': 63, 'total_tokens': 80668, 'input_token_details': {'cache_read': 79680}, 'output_token_details': {}}
+2025-09-11 11:29:53,286 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the test_response_decode_unicode method by looking at the content around line 1000-1050:' additional_kwargs={'tool_calls': [{'id': 'call_00_9YbjN1zrDOOFJz0haWFIZSS1', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 1000, "end_line": 1050}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 63, 'prompt_tokens': 81425, 'total_tokens': 81488, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 80640}, 'prompt_cache_hit_tokens': 80640, 'prompt_cache_miss_tokens': 785}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e5456210-8e68-4cd5-9cf2-b2195b943ae3-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 1000, 'end_line': 1050}, 'id': 'call_00_9YbjN1zrDOOFJz0haWFIZSS1', 'type': 'tool_call'}] usage_metadata={'input_tokens': 81425, 'output_tokens': 63, 'total_tokens': 81488, 'input_token_details': {'cache_read': 80640}, 'output_token_details': {}}
+2025-09-11 11:29:59,760 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for the test_response_decode_unicode method by looking at the content around line 950-1000:' additional_kwargs={'tool_calls': [{'id': 'call_00_N8JqOcbqZCyfpq0lTzJ52zGP', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "start_line": 950, "end_line": 1000}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 61, 'prompt_tokens': 82255, 'total_tokens': 82316, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 81472}, 'prompt_cache_hit_tokens': 81472, 'prompt_cache_miss_tokens': 783}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--b1781480-b5a4-4e47-9d61-829e5e79ff59-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'start_line': 950, 'end_line': 1000}, 'id': 'call_00_N8JqOcbqZCyfpq0lTzJ52zGP', 'type': 'tool_call'}] usage_metadata={'input_tokens': 82255, 'output_tokens': 61, 'total_tokens': 82316, 'input_token_details': {'cache_read': 81472}, 'output_token_details': {}}
+2025-09-11 11:30:06,928 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Perfect! I found the test_response_decode_unicode method. Now let me also search for other tests related to iter_content and text handling. Let me look for more tests:' additional_kwargs={'tool_calls': [{'id': 'call_00_j6VLYvGBy3eJ8KsPs29i6Od5', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "iter_content"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 70, 'prompt_tokens': 82952, 'total_tokens': 83022, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 82304}, 'prompt_cache_hit_tokens': 82304, 'prompt_cache_miss_tokens': 648}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--edc851cf-aa30-41c5-aef7-cce788fabcfa-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'iter_content'}, 'id': 'call_00_j6VLYvGBy3eJ8KsPs29i6Od5', 'type': 'tool_call'}] usage_metadata={'input_tokens': 82952, 'output_tokens': 70, 'total_tokens': 83022, 'input_token_details': {'cache_read': 82304}, 'output_token_details': {}}
+2025-09-11 11:30:26,448 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests related to text content and encoding:' additional_kwargs={'tool_calls': [{'id': 'call_00_PgsbkPySO4lmwkT6d1apgwbK', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "test_response_text"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 49, 'prompt_tokens': 97171, 'total_tokens': 97220, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 83008}, 'prompt_cache_hit_tokens': 83008, 'prompt_cache_miss_tokens': 14163}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c8cd90f2-15ee-40f7-abf8-01fe08cbaab5-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'test_response_text'}, 'id': 'call_00_PgsbkPySO4lmwkT6d1apgwbK', 'type': 'tool_call'}] usage_metadata={'input_tokens': 97171, 'output_tokens': 49, 'total_tokens': 97220, 'input_token_details': {'cache_read': 83008}, 'output_token_details': {}}
+2025-09-11 11:30:33,184 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests related to text and content:' additional_kwargs={'tool_calls': [{'id': 'call_00_JTK7Wv8cGXaX2GyKuuuFVADr', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "r.text"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 46, 'prompt_tokens': 97235, 'total_tokens': 97281, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 97216}, 'prompt_cache_hit_tokens': 97216, 'prompt_cache_miss_tokens': 19}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a0d2f68f-3143-46f1-924c-647551d31e03-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'r.text'}, 'id': 'call_00_JTK7Wv8cGXaX2GyKuuuFVADr', 'type': 'tool_call'}] usage_metadata={'input_tokens': 97235, 'output_tokens': 46, 'total_tokens': 97281, 'input_token_details': {'cache_read': 97216}, 'output_token_details': {}}
+2025-09-11 11:30:56,550 - thread-140190429312704.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests related to encoding and content handling:' additional_kwargs={'tool_calls': [{'id': 'call_00_41TaeJc1eoBMgiw3F5SDv3h1', 'function': {'arguments': '{"relative_path": "tests/test_requests.py", "text": "encoding"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 47, 'prompt_tokens': 111430, 'total_tokens': 111477, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 97216}, 'prompt_cache_hit_tokens': 97216, 'prompt_cache_miss_tokens': 14214}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--1f7eda4d-0135-4724-ae3a-b4fe818153d7-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'tests/test_requests.py', 'text': 'encoding'}, 'id': 'call_00_41TaeJc1eoBMgiw3F5SDv3h1', 'type': 'tool_call'}] usage_metadata={'input_tokens': 111430, 'output_tokens': 47, 'total_tokens': 111477, 'input_token_details': {'cache_read': 97216}, 'output_token_details': {}}
+2025-09-11 11:30:58,324 - thread-140190429312704.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 11:31:08,464 - thread-140190429312704.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 133626 tokens (125626 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 133626 tokens (125626 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+

@@ -1,0 +1,2951 @@
+2025-09-11 10:18:29,307 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Created temporary project directory: /tmp/tmpr31heu2k/matplotlib
+2025-09-11 10:18:29,307 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Using workdir: /testbed
+2025-09-11 10:18:29,507 - thread-140190462883520.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_build: True
+2025-09-11 10:18:29,507 - thread-140190462883520.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_existing_test: False
+2025-09-11 10:18:29,507 - thread-140190462883520.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_regression_test: True
+2025-09-11 10:18:29,507 - thread-140190462883520.prometheus.lang_graph.nodes.noop_node - DEBUG - State run_reproduce_test: True
+2025-09-11 10:18:29,507 - thread-140190462883520.prometheus.lang_graph.nodes.noop_node - DEBUG - State number_of_candidate_patch: 5
+2025-09-11 10:18:29,507 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Pulling docker image: swebench/sweb.eval.x86_64.matplotlib_1776_matplotlib-24149:v1
+2025-09-11 10:18:30,367 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Tagging pulled image as: prometheus_user_defined_container_9dee9a2c3d
+2025-09-11 10:18:30,373 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Starting container from image prometheus_user_defined_container_9dee9a2c3d
+2025-09-11 10:18:32,906 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: . /opt/miniconda3/bin/activate
+2025-09-11 10:18:33,070 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 10:18:33,070 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: conda activate testbed
+2025-09-11 10:18:33,233 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+
+2025-09-11 10:18:33,233 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Running command in container: python -m pip install -e .
+2025-09-11 10:19:11,082 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - DEBUG - Command output:
+Obtaining file:///testbed
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: contourpy>=1.0.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (1.1.0)
+Requirement already satisfied: cycler>=0.10 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (4.42.1)
+Requirement already satisfied: kiwisolver>=1.0.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (1.4.5)
+Requirement already satisfied: numpy>=1.19 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (1.25.2)
+Requirement already satisfied: packaging>=20.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (23.1)
+Requirement already satisfied: pillow>=6.2.0 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (10.0.0)
+Requirement already satisfied: pyparsing>=2.2.1 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (3.0.9)
+Requirement already satisfied: python-dateutil>=2.7 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (2.8.2)
+Requirement already satisfied: setuptools_scm>=7 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from matplotlib==3.7.0.dev342+gaf39f1edf) (7.1.0)
+Requirement already satisfied: six>=1.5 in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from python-dateutil>=2.7->matplotlib==3.7.0.dev342+gaf39f1edf) (1.16.0)
+Requirement already satisfied: setuptools in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.7.0.dev342+gaf39f1edf) (68.1.2)
+Requirement already satisfied: typing-extensions in /opt/miniconda3/envs/testbed/lib/python3.11/site-packages (from setuptools_scm>=7->matplotlib==3.7.0.dev342+gaf39f1edf) (4.7.1)
+Building wheels for collected packages: matplotlib
+  Building editable for matplotlib (pyproject.toml): started
+  Building editable for matplotlib (pyproject.toml): finished with status 'done'
+  Created wheel for matplotlib: filename=matplotlib-3.7.0.dev342+gaf39f1edf-0.editable-cp311-cp311-linux_x86_64.whl size=23641 sha256=2caeb55b234c259757b151bba77fee19f70054bc990db092c24e6238ba89cfbe
+  Stored in directory: /tmp/pip-ephem-wheel-cache-1ysx570_/wheels/49/5f/4f/01b7d31ea6ddac9643da788242d33e5fd3467d95d17b032c6b
+Successfully built matplotlib
+Installing collected packages: matplotlib
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.7.0.dev342+gaf39f1edff
+    Uninstalling matplotlib-3.7.0.dev342+gaf39f1edff:
+      Successfully uninstalled matplotlib-3.7.0.dev342+gaf39f1edff
+Successfully installed matplotlib-3.7.0.dev342+gaf39f1edf
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+
+2025-09-11 10:19:11,082 - thread-140190462883520.prometheus.lang_graph.nodes.issue_bug_subgraph_node - INFO - Enter IssueBugSubgraphNode
+2025-09-11 10:19:11,082 - thread-140190462883520.prometheus.lang_graph.nodes.bug_get_regression_tests_subgraph_node - INFO - Enter bug_get_regression_tests_subgraph_node
+2025-09-11 10:19:11,083 - thread-140190462883520.prometheus.lang_graph.nodes.bug_get_regression_context_message_node - DEBUG - Sending query to context provider subgraph:
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+[Bug]: ax.bar raises for all-nan data on matplotlib 3.6.1 
+
+Issue description: 
+### Bug summary
+
+`ax.bar` raises an exception in 3.6.1 when passed only nan data. This irrevocably breaks seaborn's histogram function (which draws and then removes a "phantom" bar to trip the color cycle).
+
+### Code for reproduction
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+f, ax = plt.subplots()
+ax.bar([np.nan], [np.nan])
+```
+
+
+### Actual outcome
+
+```python-traceback
+---------------------------------------------------------------------------
+StopIteration                             Traceback (most recent call last)
+Cell In [1], line 4
+      2 import matplotlib.pyplot as plt
+      3 f, ax = plt.subplots()
+----> 4 ax.bar([np.nan], [np.nan])[0].get_x()
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/__init__.py:1423, in _preprocess_data.<locals>.inner(ax, data, *args, **kwargs)
+   1420 @functools.wraps(func)
+   1421 def inner(ax, *args, data=None, **kwargs):
+   1422     if data is None:
+-> 1423         return func(ax, *map(sanitize_sequence, args), **kwargs)
+   1425     bound = new_sig.bind(ax, *args, **kwargs)
+   1426     auto_label = (bound.arguments.get(label_namer)
+   1427                   or bound.kwargs.get(label_namer))
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2373, in Axes.bar(self, x, height, width, bottom, align, **kwargs)
+   2371 x0 = x
+   2372 x = np.asarray(self.convert_xunits(x))
+-> 2373 width = self._convert_dx(width, x0, x, self.convert_xunits)
+   2374 if xerr is not None:
+   2375     xerr = self._convert_dx(xerr, x0, x, self.convert_xunits)
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2182, in Axes._convert_dx(dx, x0, xconv, convert)
+   2170 try:
+   2171     # attempt to add the width to x0; this works for
+   2172     # datetime+timedelta, for instance
+   (...)
+   2179     # removes the units from unit packages like `pint` that
+   2180     # wrap numpy arrays.
+   2181     try:
+-> 2182         x0 = cbook._safe_first_finite(x0)
+   2183     except (TypeError, IndexError, KeyError):
+   2184         pass
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/cbook/__init__.py:1749, in _safe_first_finite(obj, skip_nonfinite)
+   1746     raise RuntimeError("matplotlib does not "
+   1747                        "support generators as input")
+   1748 else:
+-> 1749     return next(val for val in obj if safe_isfinite(val))
+
+StopIteration: 
+```
+
+### Expected outcome
+
+On 3.6.0 this returns a `BarCollection` with one Rectangle, having `nan` for `x` and `height`.
+
+### Additional information
+
+I assume it's related to this bullet in the release notes:
+
+- Fix barplot being empty when first element is NaN
+
+But I don't know the context for it to investigate further (could these link to PRs?)
+
+Further debugging:
+
+```python
+ax.bar([np.nan], [0])  # Raises
+ax.bar([0], [np.nan])  # Works
+```
+
+So it's about the x position specifically.
+
+### Operating system
+
+Macos
+
+### Matplotlib Version
+
+3.6.1
+
+### Matplotlib Backend
+
+_No response_
+
+### Python version
+
+_No response_
+
+### Jupyter version
+
+_No response_
+
+### Installation
+
+pip
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+2025-09-11 10:19:11,083 - thread-140190462883520.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-09-11 10:19:11,084 - thread-140190462883520.prometheus.lang_graph.nodes.context_query_message_node - DEBUG - Sending query to ContextProviderNode:
+content='We are currently solving the following issue within our repository. Here is the issue text:\n\n--- BEGIN ISSUE ---\nIssue title:\n[Bug]: ax.bar raises for all-nan data on matplotlib 3.6.1 \n\nIssue description: \n### Bug summary\n\n`ax.bar` raises an exception in 3.6.1 when passed only nan data. This irrevocably breaks seaborn\'s histogram function (which draws and then removes a "phantom" bar to trip the color cycle).\n\n### Code for reproduction\n\n```python\nimport numpy as np\nimport matplotlib.pyplot as plt\nf, ax = plt.subplots()\nax.bar([np.nan], [np.nan])\n```\n\n\n### Actual outcome\n\n```python-traceback\n---------------------------------------------------------------------------\nStopIteration                             Traceback (most recent call last)\nCell In [1], line 4\n      2 import matplotlib.pyplot as plt\n      3 f, ax = plt.subplots()\n----> 4 ax.bar([np.nan], [np.nan])[0].get_x()\n\nFile ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/__init__.py:1423, in _preprocess_data.<locals>.inner(ax, data, *args, **kwargs)\n   1420 @functools.wraps(func)\n   1421 def inner(ax, *args, data=None, **kwargs):\n   1422     if data is None:\n-> 1423         return func(ax, *map(sanitize_sequence, args), **kwargs)\n   1425     bound = new_sig.bind(ax, *args, **kwargs)\n   1426     auto_label = (bound.arguments.get(label_namer)\n   1427                   or bound.kwargs.get(label_namer))\n\nFile ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2373, in Axes.bar(self, x, height, width, bottom, align, **kwargs)\n   2371 x0 = x\n   2372 x = np.asarray(self.convert_xunits(x))\n-> 2373 width = self._convert_dx(width, x0, x, self.convert_xunits)\n   2374 if xerr is not None:\n   2375     xerr = self._convert_dx(xerr, x0, x, self.convert_xunits)\n\nFile ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2182, in Axes._convert_dx(dx, x0, xconv, convert)\n   2170 try:\n   2171     # attempt to add the width to x0; this works for\n   2172     # datetime+timedelta, for instance\n   (...)\n   2179     # removes the units from unit packages like `pint` that\n   2180     # wrap numpy arrays.\n   2181     try:\n-> 2182         x0 = cbook._safe_first_finite(x0)\n   2183     except (TypeError, IndexError, KeyError):\n   2184         pass\n\nFile ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/cbook/__init__.py:1749, in _safe_first_finite(obj, skip_nonfinite)\n   1746     raise RuntimeError("matplotlib does not "\n   1747                        "support generators as input")\n   1748 else:\n-> 1749     return next(val for val in obj if safe_isfinite(val))\n\nStopIteration: \n```\n\n### Expected outcome\n\nOn 3.6.0 this returns a `BarCollection` with one Rectangle, having `nan` for `x` and `height`.\n\n### Additional information\n\nI assume it\'s related to this bullet in the release notes:\n\n- Fix barplot being empty when first element is NaN\n\nBut I don\'t know the context for it to investigate further (could these link to PRs?)\n\nFurther debugging:\n\n```python\nax.bar([np.nan], [0])  # Raises\nax.bar([0], [np.nan])  # Works\n```\n\nSo it\'s about the x position specifically.\n\n### Operating system\n\nMacos\n\n### Matplotlib Version\n\n3.6.1\n\n### Matplotlib Backend\n\n_No response_\n\n### Python version\n\n_No response_\n\n### Jupyter version\n\n_No response_\n\n### Installation\n\npip\n\nIssue comments:\n\n--- END ISSUE ---\n\nAnd we need to find relevant existing tests that can be used as regression tests for this issue.\n\nOBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\nincluding ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.\n\n<reasoning>\n1. Analyze bug characteristics:\n   - Core functionality being tested\n   - Input parameters and configurations\n   - Expected error conditions\n   - Environmental dependencies\n\n2. Search requirements:\n   - Required imports and dependencies\n   - Test files exercising similar functionality\n   - Mock/fixture setup patterns\n   - Assertion styles\n   - Error handling tests\n\n3. Focus areas:\n   - All necessary imports (standard library, testing frameworks, mocking utilities)\n   - Dependencies and third-party packages\n   - Test setup and teardown\n   - Mock object configuration\n   - Network/external service simulation\n   - Error condition verification\n</reasoning>\n\nREQUIREMENTS:\n- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.\n- Must include the identification of the test case (e.g., class name and method name)\n- Must preserve exact file paths and line numbers\n\n<examples>\n--- BEGIN ISSUE ---\nTitle: parse_iso8601 drops timezone information for \'Z\' suffix\nBody: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with \'Z\' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.\nExpected: Return timezone-aware datetime in UTC for \'Z\' inputs and preserve offsets like "+09:00".\n--- END ISSUE ---\n--- BEGIN TEST CASES ---\nFile: tests/test_datetime.py\nLine Number: 118-156\nContent:\nimport datetime\nimport pytest\n\nfrom utils.datetime import parse_iso8601  # target under test\n\ndef test_z_suffix_returns_utc_aware(self):\n    # Input ending with \'Z\' should be interpreted as UTC and be timezone-aware\n    s = "2024-10-12T09:15:00Z"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    # Use UTC comparison that works across pytz/zoneinfo\n    assert dt.utcoffset() == datetime.timedelta(0)\n\ndef test_offset_preserved(self):\n    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)\n    s = "2024-10-12T18:00:00+09:00"\n    dt = parse_iso8601(s)\n\n    assert isinstance(dt, datetime.datetime)\n    assert dt.tzinfo is not None\n    assert dt.utcoffset() == datetime.timedelta(hours=9)\n--- END TEST CASES ---\n</example>\n' additional_kwargs={} response_metadata={}
+2025-09-11 10:19:19,156 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="I'll help you find relevant existing test cases for the bar plot NaN handling issue. Let me start by exploring the test structure and finding tests related to bar plots and NaN handling." additional_kwargs={'tool_calls': [{'id': 'call_00_OjoLBwoG8di9w7QwoYmyZqii', 'function': {'arguments': '{"basename": "test_axes.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 58, 'prompt_tokens': 22897, 'total_tokens': 22955, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 704}, 'prompt_cache_hit_tokens': 704, 'prompt_cache_miss_tokens': 22193}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--7609e85d-7b09-470e-ac82-2e7b276c828d-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': 'test_axes.py'}, 'id': 'call_00_OjoLBwoG8di9w7QwoYmyZqii', 'type': 'tool_call'}] usage_metadata={'input_tokens': 22897, 'output_tokens': 58, 'total_tokens': 22955, 'input_token_details': {'cache_read': 704}, 'output_token_details': {}}
+2025-09-11 10:19:25,144 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_Jf3gOIKJREq3obULLLvM7U8I', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "text": "bar"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 39, 'prompt_tokens': 23000, 'total_tokens': 23039, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 22912}, 'prompt_cache_hit_tokens': 22912, 'prompt_cache_miss_tokens': 88}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e16ae163-7b5e-4a3d-b85b-b070d30c7de3-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'text': 'bar'}, 'id': 'call_00_Jf3gOIKJREq3obULLLvM7U8I', 'type': 'tool_call'}] usage_metadata={'input_tokens': 23000, 'output_tokens': 39, 'total_tokens': 23039, 'input_token_details': {'cache_read': 22912}, 'output_token_details': {}}
+2025-09-11 10:19:32,173 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Great! I found a test specifically for NaN bar values. Let me examine this test and look for more related tests.' additional_kwargs={'tool_calls': [{'id': 'call_00_HWc1tvJBGKPdC2ZUfm8zE29S', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "start_line": 1710, "end_line": 1730}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 67, 'prompt_tokens': 23695, 'total_tokens': 23762, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 22976}, 'prompt_cache_hit_tokens': 22976, 'prompt_cache_miss_tokens': 719}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--3d5ff110-e11d-44de-9616-0ac9086168d5-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'start_line': 1710, 'end_line': 1730}, 'id': 'call_00_HWc1tvJBGKPdC2ZUfm8zE29S', 'type': 'tool_call'}] usage_metadata={'input_tokens': 23695, 'output_tokens': 67, 'total_tokens': 23762, 'input_token_details': {'cache_read': 22976}, 'output_token_details': {}}
+2025-09-11 10:19:39,519 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for more tests related to NaN handling and bar plots:' additional_kwargs={'tool_calls': [{'id': 'call_00_h7nieBZgTpCYBOJA6MvikpSI', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "text": "nan"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 24130, 'total_tokens': 24184, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 23744}, 'prompt_cache_hit_tokens': 23744, 'prompt_cache_miss_tokens': 386}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c76b5e75-15ec-4eff-866c-03f929e6df02-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'text': 'nan'}, 'id': 'call_00_h7nieBZgTpCYBOJA6MvikpSI', 'type': 'tool_call'}] usage_metadata={'input_tokens': 24130, 'output_tokens': 54, 'total_tokens': 24184, 'input_token_details': {'cache_read': 23744}, 'output_token_details': {}}
+2025-09-11 10:19:48,265 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Excellent! I found a test specifically for bar labels with NaN ydata. Let me also search for tests related to `_safe_first_finite` which is mentioned in the error traceback:' additional_kwargs={'tool_calls': [{'id': 'call_00_Px8eogE9BxxFMQyMoIZ0lYSk', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "_safe_first_finite"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 75, 'prompt_tokens': 24961, 'total_tokens': 25036, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 24128}, 'prompt_cache_hit_tokens': 24128, 'prompt_cache_miss_tokens': 833}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--83bae568-0be9-464b-8c5e-f0dfe91316cf-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': '_safe_first_finite'}, 'id': 'call_00_Px8eogE9BxxFMQyMoIZ0lYSk', 'type': 'tool_call'}] usage_metadata={'input_tokens': 24961, 'output_tokens': 75, 'total_tokens': 25036, 'input_token_details': {'cache_read': 24128}, 'output_token_details': {}}
+2025-09-11 10:19:54,037 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for more tests related to `_safe_first_finite` and NaN handling:' additional_kwargs={'tool_calls': [{'id': 'call_00_0sgAoGypAp5TcasZrhDtYVxp', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "StopIteration"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 25513, 'total_tokens': 25567, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 25024}, 'prompt_cache_hit_tokens': 25024, 'prompt_cache_miss_tokens': 489}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--426c03d7-14af-4093-b10d-3a665e500214-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'StopIteration'}, 'id': 'call_00_0sgAoGypAp5TcasZrhDtYVxp', 'type': 'tool_call'}] usage_metadata={'input_tokens': 25513, 'output_tokens': 54, 'total_tokens': 25567, 'input_token_details': {'cache_read': 25024}, 'output_token_details': {}}
+2025-09-11 10:20:01,618 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might handle empty or all-NaN data:' additional_kwargs={'tool_calls': [{'id': 'call_00_o5gEGlpZyHHkEf8aCzWAyMKy', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "nan"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 49, 'prompt_tokens': 25582, 'total_tokens': 25631, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 25536}, 'prompt_cache_hit_tokens': 25536, 'prompt_cache_miss_tokens': 46}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--2db94e12-bbb6-4f77-8960-33ff11f37567-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'nan'}, 'id': 'call_00_o5gEGlpZyHHkEf8aCzWAyMKy', 'type': 'tool_call'}] usage_metadata={'input_tokens': 25582, 'output_tokens': 49, 'total_tokens': 25631, 'input_token_details': {'cache_read': 25536}, 'output_token_details': {}}
+2025-09-11 10:20:08,122 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might handle empty generators or sequences:' additional_kwargs={'tool_calls': [{'id': 'call_00_WQ9Vu0ZkzzapuKOrISdpemnT', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "empty"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 46, 'prompt_tokens': 26248, 'total_tokens': 26294, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 25600}, 'prompt_cache_hit_tokens': 25600, 'prompt_cache_miss_tokens': 648}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e8623376-aaf8-4cfa-9f77-a8993ec22fb0-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'empty'}, 'id': 'call_00_WQ9Vu0ZkzzapuKOrISdpemnT', 'type': 'tool_call'}] usage_metadata={'input_tokens': 26248, 'output_tokens': 46, 'total_tokens': 26294, 'input_token_details': {'cache_read': 25600}, 'output_token_details': {}}
+2025-09-11 10:20:15,112 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me look for tests that specifically test the bar functionality with edge cases:' additional_kwargs={'tool_calls': [{'id': 'call_00_WFg8K4edePTGARHLkAlE0g43', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "text": "StopIteration"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 57, 'prompt_tokens': 27825, 'total_tokens': 27882, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 26240}, 'prompt_cache_hit_tokens': 26240, 'prompt_cache_miss_tokens': 1585}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--115172f8-594a-4686-94be-225a67881308-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'text': 'StopIteration'}, 'id': 'call_00_WFg8K4edePTGARHLkAlE0g43', 'type': 'tool_call'}] usage_metadata={'input_tokens': 27825, 'output_tokens': 57, 'total_tokens': 27882, 'input_token_details': {'cache_read': 26240}, 'output_token_details': {}}
+2025-09-11 10:20:23,043 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might test error conditions with bar plots:' additional_kwargs={'tool_calls': [{'id': 'call_00_q1MH09UoSDQocFNJYxkvYHwo', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "text": "pytest.raises"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 57, 'prompt_tokens': 27897, 'total_tokens': 27954, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 27840}, 'prompt_cache_hit_tokens': 27840, 'prompt_cache_miss_tokens': 57}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--da1d7e9d-95ed-495e-95cb-e05373e0de17-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'text': 'pytest.raises'}, 'id': 'call_00_q1MH09UoSDQocFNJYxkvYHwo', 'type': 'tool_call'}] usage_metadata={'input_tokens': 27897, 'output_tokens': 57, 'total_tokens': 27954, 'input_token_details': {'cache_read': 27840}, 'output_token_details': {}}
+2025-09-11 10:20:29,710 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might test the specific `_convert_dx` method mentioned in the traceback:' additional_kwargs={'tool_calls': [{'id': 'call_00_BMn8Q8ceTOqUXEsN7GMMudZD', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "text": "_convert_dx"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 64, 'prompt_tokens': 28606, 'total_tokens': 28670, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 27904}, 'prompt_cache_hit_tokens': 27904, 'prompt_cache_miss_tokens': 702}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--f331d54e-5816-4463-b932-5906d9c1d7df-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'text': '_convert_dx'}, 'id': 'call_00_BMn8Q8ceTOqUXEsN7GMMudZD', 'type': 'tool_call'}] usage_metadata={'input_tokens': 28606, 'output_tokens': 64, 'total_tokens': 28670, 'input_token_details': {'cache_read': 27904}, 'output_token_details': {}}
+2025-09-11 10:20:35,764 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me look for tests that might test edge cases with empty data or all-NaN data:' additional_kwargs={'tool_calls': [{'id': 'call_00_qlVLxICakRpM7pPTYEV8gUVm', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "text": "empty"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 59, 'prompt_tokens': 28685, 'total_tokens': 28744, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 28608}, 'prompt_cache_hit_tokens': 28608, 'prompt_cache_miss_tokens': 77}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--03a762e9-8cb6-430a-b89d-ebf6080d8065-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'text': 'empty'}, 'id': 'call_00_qlVLxICakRpM7pPTYEV8gUVm', 'type': 'tool_call'}] usage_metadata={'input_tokens': 28685, 'output_tokens': 59, 'total_tokens': 28744, 'input_token_details': {'cache_read': 28608}, 'output_token_details': {}}
+2025-09-11 10:20:42,117 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me look at the specific test for bar labels with NaN data to understand the pattern:' additional_kwargs={'tool_calls': [{'id': 'call_00_aL9OTAHgemvpVKBaPLj4NY1K', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_axes.py", "start_line": 7890, "end_line": 7905}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 62, 'prompt_tokens': 29391, 'total_tokens': 29453, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 28736}, 'prompt_cache_hit_tokens': 28736, 'prompt_cache_miss_tokens': 655}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--69930fc6-4f49-4970-b803-7af35fe20435-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_axes.py', 'start_line': 7890, 'end_line': 7905}, 'id': 'call_00_aL9OTAHgemvpVKBaPLj4NY1K', 'type': 'tool_call'}] usage_metadata={'input_tokens': 29391, 'output_tokens': 62, 'total_tokens': 29453, 'input_token_details': {'cache_read': 28736}, 'output_token_details': {}}
+2025-09-11 10:20:48,084 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me also check if there are tests for the `_axes.py` file that might test the bar method directly:' additional_kwargs={'tool_calls': [{'id': 'call_00_flsJGjIp9glwjorzbBeQlJQ1', 'function': {'arguments': '{"basename": "_axes.py"}', 'name': 'find_file_node_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 44, 'prompt_tokens': 29740, 'total_tokens': 29784, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 29440}, 'prompt_cache_hit_tokens': 29440, 'prompt_cache_miss_tokens': 300}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--cae57c96-794e-446f-a857-ab992ee19839-0' tool_calls=[{'name': 'find_file_node_with_basename', 'args': {'basename': '_axes.py'}, 'id': 'call_00_flsJGjIp9glwjorzbBeQlJQ1', 'type': 'tool_call'}] usage_metadata={'input_tokens': 29740, 'output_tokens': 44, 'total_tokens': 29784, 'input_token_details': {'cache_read': 29440}, 'output_token_details': {}}
+2025-09-11 10:20:54,201 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might test the specific bar method implementation:' additional_kwargs={'tool_calls': [{'id': 'call_00_rgy4Vy17sYoQVtSN7DoKXJG3', 'function': {'arguments': '{"basename": "test_axes.py", "text": "def test_bar"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 49, 'prompt_tokens': 29826, 'total_tokens': 29875, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 29760}, 'prompt_cache_hit_tokens': 29760, 'prompt_cache_miss_tokens': 66}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--75c53607-10c8-42b3-b019-d4baf20acecf-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_axes.py', 'text': 'def test_bar'}, 'id': 'call_00_rgy4Vy17sYoQVtSN7DoKXJG3', 'type': 'tool_call'}] usage_metadata={'input_tokens': 29826, 'output_tokens': 49, 'total_tokens': 29875, 'input_token_details': {'cache_read': 29760}, 'output_token_details': {}}
+2025-09-11 10:21:00,212 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me also check for tests that might test error conditions with generators or empty sequences:' additional_kwargs={'tool_calls': [{'id': 'call_00_6vcU5yln2SIh7b9SDwv3Gaia', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "generator"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 30665, 'total_tokens': 30716, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 29824}, 'prompt_cache_hit_tokens': 29824, 'prompt_cache_miss_tokens': 841}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--c190008d-d126-4cff-a9b6-326063095d09-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'generator'}, 'id': 'call_00_6vcU5yln2SIh7b9SDwv3Gaia', 'type': 'tool_call'}] usage_metadata={'input_tokens': 30665, 'output_tokens': 51, 'total_tokens': 30716, 'input_token_details': {'cache_read': 29824}, 'output_token_details': {}}
+2025-09-11 10:21:05,659 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might test the specific error condition mentioned in the issue:' additional_kwargs={'tool_calls': [{'id': 'call_00_BuZTaxcKXGdOSiNvOCSk7UwY', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "RuntimeError"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 30731, 'total_tokens': 30782, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 30656}, 'prompt_cache_hit_tokens': 30656, 'prompt_cache_miss_tokens': 75}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--a9061644-db5f-483e-8868-d07deec7a346-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'RuntimeError'}, 'id': 'call_00_BuZTaxcKXGdOSiNvOCSk7UwY', 'type': 'tool_call'}] usage_metadata={'input_tokens': 30731, 'output_tokens': 51, 'total_tokens': 30782, 'input_token_details': {'cache_read': 30656}, 'output_token_details': {}}
+2025-09-11 10:21:12,547 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me look at the specific `_safe_first_finite` tests to understand how they handle edge cases:' additional_kwargs={'tool_calls': [{'id': 'call_00_u40sLZ4B4LLmWGJhAIWjG3ds', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_cbook.py", "start_line": 595, "end_line": 615}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 64, 'prompt_tokens': 31106, 'total_tokens': 31170, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 30720}, 'prompt_cache_hit_tokens': 30720, 'prompt_cache_miss_tokens': 386}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--add41e59-04c5-49a0-8650-d4e82d1639a1-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_cbook.py', 'start_line': 595, 'end_line': 615}, 'id': 'call_00_u40sLZ4B4LLmWGJhAIWjG3ds', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31106, 'output_tokens': 64, 'total_tokens': 31170, 'input_token_details': {'cache_read': 30720}, 'output_token_details': {}}
+2025-09-11 10:21:17,731 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me also check the pandas series test:' additional_kwargs={'tool_calls': [{'id': 'call_00_yRj8Z2ZK8MK5yopknvxACdAK', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_cbook.py", "start_line": 755, "end_line": 765}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 50, 'prompt_tokens': 31426, 'total_tokens': 31476, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31168}, 'prompt_cache_hit_tokens': 31168, 'prompt_cache_miss_tokens': 258}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--5db5ca68-8829-4b4f-bdd1-e8f32a251758-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_cbook.py', 'start_line': 755, 'end_line': 765}, 'id': 'call_00_yRj8Z2ZK8MK5yopknvxACdAK', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31426, 'output_tokens': 50, 'total_tokens': 31476, 'input_token_details': {'cache_read': 31168}, 'output_token_details': {}}
+2025-09-11 10:21:25,082 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me also check the test with None values:' additional_kwargs={'tool_calls': [{'id': 'call_00_WnEp1ye2NLkoaQfl8ChWRwYr', 'function': {'arguments': '{"relative_path": "lib/matplotlib/tests/test_cbook.py", "start_line": 890, "end_line": 900}', 'name': 'read_code_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 31669, 'total_tokens': 31720, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31424}, 'prompt_cache_hit_tokens': 31424, 'prompt_cache_miss_tokens': 245}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--22bad8c6-1706-405a-8ab4-1d0f07b388e4-0' tool_calls=[{'name': 'read_code_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/tests/test_cbook.py', 'start_line': 890, 'end_line': 900}, 'id': 'call_00_WnEp1ye2NLkoaQfl8ChWRwYr', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31669, 'output_tokens': 51, 'total_tokens': 31720, 'input_token_details': {'cache_read': 31424}, 'output_token_details': {}}
+2025-09-11 10:21:30,903 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me search for tests that might test the specific error condition with all-NaN data:' additional_kwargs={'tool_calls': [{'id': 'call_00_MxsuWtbIfbhF3QOVyGMySIHf', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "allnan"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 31952, 'total_tokens': 32006, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 31680}, 'prompt_cache_hit_tokens': 31680, 'prompt_cache_miss_tokens': 272}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--ea60b3bc-a534-4280-b0eb-453a0ec87f56-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'allnan'}, 'id': 'call_00_MxsuWtbIfbhF3QOVyGMySIHf', 'type': 'tool_call'}] usage_metadata={'input_tokens': 31952, 'output_tokens': 54, 'total_tokens': 32006, 'input_token_details': {'cache_read': 31680}, 'output_token_details': {}}
+2025-09-11 10:21:36,968 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might test the specific case where no finite values are found:' additional_kwargs={'tool_calls': [{'id': 'call_00_0uOZT0xRse1ASddmEneIlwF5', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "finite"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 51, 'prompt_tokens': 32021, 'total_tokens': 32072, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 32000}, 'prompt_cache_hit_tokens': 32000, 'prompt_cache_miss_tokens': 21}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--386558d4-b73a-4964-b60c-34d3bb933714-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'finite'}, 'id': 'call_00_0uOZT0xRse1ASddmEneIlwF5', 'type': 'tool_call'}] usage_metadata={'input_tokens': 32021, 'output_tokens': 51, 'total_tokens': 32072, 'input_token_details': {'cache_read': 32000}, 'output_token_details': {}}
+2025-09-11 10:21:43,923 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Now let me look for tests that might test error conditions with empty sequences or generators:' additional_kwargs={'tool_calls': [{'id': 'call_00_AAamt25QJq7wSNYmvA6C8vHB', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "except StopIteration"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 53, 'prompt_tokens': 32549, 'total_tokens': 32602, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 32064}, 'prompt_cache_hit_tokens': 32064, 'prompt_cache_miss_tokens': 485}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--90bc0756-e9e3-4163-9cc8-816aecd4ba45-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'except StopIteration'}, 'id': 'call_00_AAamt25QJq7wSNYmvA6C8vHB', 'type': 'tool_call'}] usage_metadata={'input_tokens': 32549, 'output_tokens': 53, 'total_tokens': 32602, 'input_token_details': {'cache_read': 32064}, 'output_token_details': {}}
+2025-09-11 10:21:50,204 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Let me search for tests that might test the specific error handling in `_safe_first_finite`:' additional_kwargs={'tool_calls': [{'id': 'call_00_MRXEzRouwqYQIVAeHzXDGgC7', 'function': {'arguments': '{"basename": "test_cbook.py", "text": "TypeError"}', 'name': 'find_ast_node_with_text_in_file_with_basename'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 54, 'prompt_tokens': 32617, 'total_tokens': 32671, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 32576}, 'prompt_cache_hit_tokens': 32576, 'prompt_cache_miss_tokens': 41}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--5c1199c6-037e-4d47-b456-a2d057fbfadc-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_basename', 'args': {'basename': 'test_cbook.py', 'text': 'TypeError'}, 'id': 'call_00_MRXEzRouwqYQIVAeHzXDGgC7', 'type': 'tool_call'}] usage_metadata={'input_tokens': 32617, 'output_tokens': 54, 'total_tokens': 32671, 'input_token_details': {'cache_read': 32576}, 'output_token_details': {}}
+2025-09-11 10:22:29,258 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='Based on my analysis, I\'ve found several relevant test cases that could break if the NaN handling issue is fixed. Let me now provide the 8 most relevant test cases:\n\n--- BEGIN TEST CASES ---\n\n**File: lib/matplotlib/tests/test_axes.py**\n**Line Number: 1715-1717**\n```python\ndef test_nan_bar_values():\n    fig, ax = plt.subplots()\n    ax.bar([0, 1], [np.nan, 4])\n```\n\n**File: lib/matplotlib/tests/test_axes.py**\n**Line Number: 7894-7900**\n```python\ndef test_bar_label_nan_ydata():\n    ax = plt.gca()\n    bars = ax.bar([2, 3], [np.nan, 1])\n    labels = ax.bar_label(bars)\n    assert [l.get_text() for l in labels] == [\'\', \'1\']\n    assert labels[0].xy == (2, 0)\n    assert labels[0].get_va() == \'bottom\'\n```\n\n**File: lib/matplotlib/tests/test_axes.py**\n**Line Number: 1720-1722**\n```python\ndef test_bar_ticklabel_fail():\n    fig, ax = plt.subplots()\n    ax.bar([], [])\n```\n\n**File: lib/matplotlib/tests/test_axes.py**\n**Line Number: 6387-6389**\n```python\ndef test_broken_barh_empty():\n    fig, ax = plt.subplots()\n    ax.broken_barh([], (.1, .5))\n```\n\n**File: lib/matplotlib/tests/test_axes.py**\n**Line Number: 4347-4349**\n```python\ndef test_hist_emptydata():\n    fig, ax = plt.subplots()\n    ax.hist([[], range(10), range(10)], histtype="step")\n```\n\n**File: lib/matplotlib/tests/test_axes.py**\n**Line Number: 4824-4826**\n```python\ndef test_scatter_empty_data():\n    # making sure this does not raise an exception\n    plt.scatter([], [])\n    plt.scatter([], [], s=[], c=[])\n```\n\n**File: lib/matplotlib/tests/test_cbook.py**\n**Line Number: 600-609**\n```python\ndef test_flatiter():\n    x = np.arange(5)\n    it = x.flat\n    assert 0 == next(it)\n    assert 1 == next(it)\n    ret = cbook._safe_first_finite(it)\n    assert ret == 0\n\n    assert 0 == next(it)\n    assert 1 == next(it)\n```\n\n**File: lib/matplotlib/tests/test_cbook.py**\n**Line Number: 893-897**\n```python\ndef test_safe_first_element_with_none():\n    datetime_lst = [date.today() + timedelta(days=i) for i in range(10)]\n    datetime_lst[0] = None\n    actual = cbook._safe_first_finite(datetime_lst)\n    assert actual is not None and actual == datetime_lst[1]\n```\n\n--- END TEST CASES ---\n\n## Summary\n\nI found 8 relevant existing test cases that are most likely to break if the NaN handling issue in bar plots is fixed. These tests cover:\n\n1. **Direct NaN bar value handling** - Tests that specifically handle NaN values in bar plots\n2. **Bar label functionality with NaN data** - Tests that verify bar labels work correctly with NaN y-values\n3. **Empty data handling** - Tests that handle empty arrays and sequences\n4. **Edge case handling** - Tests for various edge cases including flat iterators and None values\n5. **`_safe_first_finite` functionality** - Tests for the core function mentioned in the error traceback\n\nThese tests are critical because they currently expect certain behavior when dealing with NaN values, empty data, or edge cases. If the fix changes how these scenarios are handled, these tests would need to be updated to maintain compatibility.' additional_kwargs={'refusal': None} response_metadata={'token_usage': {'completion_tokens': 867, 'prompt_tokens': 33127, 'total_tokens': 33994, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 32640}, 'prompt_cache_hit_tokens': 32640, 'prompt_cache_miss_tokens': 487}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'stop', 'logprobs': None} id='run--c6dd8a89-547b-4acf-aba8-d10e0fca36de-0' usage_metadata={'input_tokens': 33127, 'output_tokens': 867, 'total_tokens': 33994, 'input_token_details': {'cache_read': 32640}, 'output_token_details': {}}
+2025-09-11 10:22:29,259 - thread-140190462883520.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-09-11 10:22:29,260 - thread-140190462883520.prometheus.lang_graph.nodes.context_extraction_node - DEBUG - This is the original user query:
+
+--- BEGIN ORIGINAL QUERY ---
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+[Bug]: ax.bar raises for all-nan data on matplotlib 3.6.1 
+
+Issue description: 
+### Bug summary
+
+`ax.bar` raises an exception in 3.6.1 when passed only nan data. This irrevocably breaks seaborn's histogram function (which draws and then removes a "phantom" bar to trip the color cycle).
+
+### Code for reproduction
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+f, ax = plt.subplots()
+ax.bar([np.nan], [np.nan])
+```
+
+
+### Actual outcome
+
+```python-traceback
+---------------------------------------------------------------------------
+StopIteration                             Traceback (most recent call last)
+Cell In [1], line 4
+      2 import matplotlib.pyplot as plt
+      3 f, ax = plt.subplots()
+----> 4 ax.bar([np.nan], [np.nan])[0].get_x()
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/__init__.py:1423, in _preprocess_data.<locals>.inner(ax, data, *args, **kwargs)
+   1420 @functools.wraps(func)
+   1421 def inner(ax, *args, data=None, **kwargs):
+   1422     if data is None:
+-> 1423         return func(ax, *map(sanitize_sequence, args), **kwargs)
+   1425     bound = new_sig.bind(ax, *args, **kwargs)
+   1426     auto_label = (bound.arguments.get(label_namer)
+   1427                   or bound.kwargs.get(label_namer))
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2373, in Axes.bar(self, x, height, width, bottom, align, **kwargs)
+   2371 x0 = x
+   2372 x = np.asarray(self.convert_xunits(x))
+-> 2373 width = self._convert_dx(width, x0, x, self.convert_xunits)
+   2374 if xerr is not None:
+   2375     xerr = self._convert_dx(xerr, x0, x, self.convert_xunits)
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2182, in Axes._convert_dx(dx, x0, xconv, convert)
+   2170 try:
+   2171     # attempt to add the width to x0; this works for
+   2172     # datetime+timedelta, for instance
+   (...)
+   2179     # removes the units from unit packages like `pint` that
+   2180     # wrap numpy arrays.
+   2181     try:
+-> 2182         x0 = cbook._safe_first_finite(x0)
+   2183     except (TypeError, IndexError, KeyError):
+   2184         pass
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/cbook/__init__.py:1749, in _safe_first_finite(obj, skip_nonfinite)
+   1746     raise RuntimeError("matplotlib does not "
+   1747                        "support generators as input")
+   1748 else:
+-> 1749     return next(val for val in obj if safe_isfinite(val))
+
+StopIteration: 
+```
+
+### Expected outcome
+
+On 3.6.0 this returns a `BarCollection` with one Rectangle, having `nan` for `x` and `height`.
+
+### Additional information
+
+I assume it's related to this bullet in the release notes:
+
+- Fix barplot being empty when first element is NaN
+
+But I don't know the context for it to investigate further (could these link to PRs?)
+
+Further debugging:
+
+```python
+ax.bar([np.nan], [0])  # Raises
+ax.bar([0], [np.nan])  # Works
+```
+
+So it's about the x position specifically.
+
+### Operating system
+
+Macos
+
+### Matplotlib Version
+
+3.6.1
+
+### Matplotlib Backend
+
+_No response_
+
+### Python version
+
+_No response_
+
+### Jupyter version
+
+_No response_
+
+### Installation
+
+pip
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+--- END ORIGINAL QUERY ---
+
+The context or file content that you have seen so far (Some of the context may be IRRELEVANT to the query!!!):
+
+--- BEGIN CONTEXT ---
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 6387 - 6389
+Content:
+def test_broken_barh_empty():
+    fig, ax = plt.subplots()
+    ax.broken_barh([], (.1, .5))
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 6164 - 6168
+Content:
+@pytest.mark.parametrize('kwargs', generate_errorbar_inputs())
+def test_errorbar_inputs_shotgun(kwargs):
+    ax = plt.gca()
+    eb = ax.errorbar(**kwargs)
+    eb.remove()
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 4341 - 4344
+Content:
+def test_hist_barstacked_bottom_unchanged():
+    b = np.array([10, 20])
+    plt.hist([[0, 1], [0, 1]], 2, histtype="barstacked", bottom=b)
+    assert b.tolist() == [10, 20]
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 1710 - 1730
+Content:
+1710.     fig, ax = plt.subplots()
+1711.     ax = plt.gca()
+1712.     ax.bar("a", "b", align='edge', tick_label='0', data=data)
+1713. 
+1714. 
+1715. def test_nan_bar_values():
+1716.     fig, ax = plt.subplots()
+1717.     ax.bar([0, 1], [np.nan, 4])
+1718. 
+1719. 
+1720. def test_bar_ticklabel_fail():
+1721.     fig, ax = plt.subplots()
+1722.     ax.bar([], [])
+1723. 
+1724. 
+1725. @image_comparison(['bar_tick_label_multiple.png'])
+1726. def test_bar_tick_label_multiple():
+1727.     # From 2516: plot bar with array of string labels for x axis
+1728.     ax = plt.gca()
+1729.     ax.bar([1, 2.5], [1, 2], width=[0.2, 0.5], tick_label=['a', 'b'],
+1730.            align='center')
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 2260 - 2262
+Content:
+def test_stairs_invalid_nan():
+    with pytest.raises(ValueError, match='Nan values in "edges"'):
+        plt.stairs([1, 2], [0, np.nan, 1])
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 2270 - 2273
+Content:
+def test_stairs_invalid_update():
+    h = plt.stairs([1, 2], [0, 1, 2])
+    with pytest.raises(ValueError, match='Nan values in "edges"'):
+        h.set_data(edges=[1, np.nan, 2])
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 7062 - 7067
+Content:
+def test_gettightbbox_ignore_nan():
+    fig, ax = plt.subplots()
+    remove_ticks_and_titles(fig)
+    ax.text(np.NaN, 1, 'Boo')
+    renderer = fig.canvas.get_renderer()
+    np.testing.assert_allclose(ax.get_tightbbox(renderer).width, 496)
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 19 - 50
+Content:
+class Test_delete_masked_points:
+    def test_bad_first_arg(self):
+        with pytest.raises(ValueError):
+            delete_masked_points('a string', np.arange(1.0, 7.0))
+
+    def test_string_seq(self):
+        a1 = ['a', 'b', 'c', 'd', 'e', 'f']
+        a2 = [1, 2, 3, np.nan, np.nan, 6]
+        result1, result2 = delete_masked_points(a1, a2)
+        ind = [0, 1, 2, 5]
+        assert_array_equal(result1, np.array(a1)[ind])
+        assert_array_equal(result2, np.array(a2)[ind])
+
+    def test_datetime(self):
+        dates = [datetime(2008, 1, 1), datetime(2008, 1, 2),
+                 datetime(2008, 1, 3), datetime(2008, 1, 4),
+                 datetime(2008, 1, 5), datetime(2008, 1, 6)]
+        a_masked = np.ma.array([1, 2, 3, np.nan, np.nan, 6],
+                               mask=[False, False, True, True, False, False])
+        actual = delete_masked_points(dates, a_masked)
+        ind = [0, 1, 5]
+        assert_array_equal(actual[0], np.array(dates)[ind])
+        assert_array_equal(actual[1], a_masked[ind].compressed())
+
+    def test_rgba(self):
+        a_masked = np.ma.array([1, 2, 3, np.nan, np.nan, 6],
+                               mask=[False, False, True, True, False, False])
+        a_rgba = mcolors.to_rgba_array(['r', 'g', 'b', 'c', 'm', 'y'])
+        actual = delete_masked_points(a_masked, a_rgba)
+        ind = [0, 1, 5]
+        assert_array_equal(actual[0], a_masked[ind].compressed())
+        assert_array_equal(actual[1], a_rgba[ind])
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 498 - 500
+Content:
+def test_to_prestep_empty():
+    steps = cbook.pts_to_prestep([], [])
+    assert steps.shape == (2, 0)
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 548 - 550
+Content:
+def test_to_midstep_empty():
+    steps = cbook.pts_to_midstep([], [])
+    assert steps.shape == (2, 0)
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 523 - 525
+Content:
+def test_to_poststep_empty():
+    steps = cbook.pts_to_poststep([], [])
+    assert steps.shape == (2, 0)
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 179 - 302
+Content:
+class Test_callback_registry:
+    def setup(self):
+        self.signal = 'test'
+        self.callbacks = cbook.CallbackRegistry()
+
+    def connect(self, s, func, pickle):
+        if pickle:
+            return self.callbacks.connect(s, func)
+        else:
+            return self.callbacks._connect_picklable(s, func)
+
+    def disconnect(self, cid):
+        return self.callbacks.disconnect(cid)
+
+    def count(self):
+        count1 = len(self.callbacks._func_cid_map.get(self.signal, []))
+        count2 = len(self.callbacks.callbacks.get(self.signal))
+        assert count1 == count2
+        return count1
+
+    def is_empty(self):
+        np.testing.break_cycles()
+        assert self.callbacks._func_cid_map == {}
+        assert self.callbacks.callbacks == {}
+        assert self.callbacks._pickled_cids == set()
+
+    def is_not_empty(self):
+        np.testing.break_cycles()
+        assert self.callbacks._func_cid_map != {}
+        assert self.callbacks.callbacks != {}
+
+    @pytest.mark.parametrize('pickle', [True, False])
+    def test_callback_complete(self, pickle):
+        # ensure we start with an empty registry
+        self.is_empty()
+
+        # create a class for testing
+        mini_me = Test_callback_registry()
+
+        # test that we can add a callback
+        cid1 = self.connect(self.signal, mini_me.dummy, pickle)
+        assert type(cid1) == int
+        self.is_not_empty()
+
+        # test that we don't add a second callback
+        cid2 = self.connect(self.signal, mini_me.dummy, pickle)
+        assert cid1 == cid2
+        self.is_not_empty()
+        assert len(self.callbacks._func_cid_map) == 1
+        assert len(self.callbacks.callbacks) == 1
+
+        del mini_me
+
+        # check we now have no callbacks registered
+        self.is_empty()
+
+    @pytest.mark.parametrize('pickle', [True, False])
+    def test_callback_disconnect(self, pickle):
+        # ensure we start with an empty registry
+        self.is_empty()
+
+        # create a class for testing
+        mini_me = Test_callback_registry()
+
+        # test that we can add a callback
+        cid1 = self.connect(self.signal, mini_me.dummy, pickle)
+        assert type(cid1) == int
+        self.is_not_empty()
+
+        self.disconnect(cid1)
+
+        # check we now have no callbacks registered
+        self.is_empty()
+
+    @pytest.mark.parametrize('pickle', [True, False])
+    def test_callback_wrong_disconnect(self, pickle):
+        # ensure we start with an empty registry
+        self.is_empty()
+
+        # create a class for testing
+        mini_me = Test_callback_registry()
+
+        # test that we can add a callback
+        cid1 = self.connect(self.signal, mini_me.dummy, pickle)
+        assert type(cid1) == int
+        self.is_not_empty()
+
+        self.disconnect("foo")
+
+        # check we still have callbacks registered
+        self.is_not_empty()
+
+    @pytest.mark.parametrize('pickle', [True, False])
+    def test_registration_on_non_empty_registry(self, pickle):
+        # ensure we start with an empty registry
+        self.is_empty()
+
+        # setup the registry with a callback
+        mini_me = Test_callback_registry()
+        self.connect(self.signal, mini_me.dummy, pickle)
+
+        # Add another callback
+        mini_me2 = Test_callback_registry()
+        self.connect(self.signal, mini_me2.dummy, pickle)
+
+        # Remove and add the second callback
+        mini_me2 = Test_callback_registry()
+        self.connect(self.signal, mini_me2.dummy, pickle)
+
+        # We still have 2 references
+        self.is_not_empty()
+        assert self.count() == 2
+
+        # Removing the last 2 references
+        mini_me = None
+        mini_me2 = None
+        self.is_empty()
+
+    def dummy(self):
+        pass
+
+    def test_pickling(self):
+        assert hasattr(pickle.loads(pickle.dumps(cbook.CallbackRegistry())),
+                       "callbacks")
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 3119 - 3121
+Content:
+def test_bxp_bad_widths():
+    with pytest.raises(ValueError):
+        _bxp_test_helper(bxp_kwargs=dict(widths=[1]))
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 3143 - 3145
+Content:
+def test_bxp_bad_capwidths():
+    with pytest.raises(ValueError):
+        _bxp_test_helper(bxp_kwargs=dict(capwidths=[1]))
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 3124 - 3126
+Content:
+def test_bxp_bad_positions():
+    with pytest.raises(ValueError):
+        _bxp_test_helper(bxp_kwargs=dict(positions=[2, 3]))
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 2265 - 2267
+Content:
+def test_stairs_invalid_mismatch():
+    with pytest.raises(ValueError, match='Size mismatch'):
+        plt.stairs([1, 2], [0, 1])
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 4347 - 4349
+Content:
+def test_hist_emptydata():
+    fig, ax = plt.subplots()
+    ax.hist([[], range(10), range(10)], histtype="step")
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 687 - 690
+Content:
+def test_arrow_empty():
+    _, ax = plt.subplots()
+    # Create an empty FancyArrow
+    ax.arrow(0, 0, 0, 0, head_length=0)
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 4591 - 4594
+Content:
+def test_empty_eventplot():
+    fig, ax = plt.subplots(1, 1)
+    ax.eventplot([[]], colors=[(0.0, 0.0, 0.0, 0.0)])
+    plt.draw()
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 7079 - 7082
+Content:
+def test_scatter_empty_data():
+    # making sure this does not raise an exception
+    plt.scatter([], [])
+    plt.scatter([], [], s=[], c=[])
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 7890 - 7905
+Content:
+7890.     assert labels[0].get_text() == 'A'
+7891.     assert labels[1].get_text() == 'B'
+7892. 
+7893. 
+7894. def test_bar_label_nan_ydata():
+7895.     ax = plt.gca()
+7896.     bars = ax.bar([2, 3], [np.nan, 1])
+7897.     labels = ax.bar_label(bars)
+7898.     assert [l.get_text() for l in labels] == ['', '1']
+7899.     assert labels[0].xy == (2, 0)
+7900.     assert labels[0].get_va() == 'bottom'
+7901. 
+7902. 
+7903. def test_bar_label_nan_ydata_inverted():
+7904.     ax = plt.gca()
+7905.     ax.yaxis_inverted()
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 7879 - 7883
+Content:
+def test_bar_label_fmt_error():
+    ax = plt.gca()
+    rects = ax.bar([1, 2], [3, -4])
+    with pytest.raises(TypeError, match='str or callable'):
+        _ = ax.bar_label(rects, fmt=10)
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 6534 - 6538
+Content:
+def test_bar_uint8():
+    xs = [0, 1, 2, 3]
+    b = plt.bar(np.array(xs, dtype=np.uint8), [2, 3, 4, 5], align="edge")
+    for (patch, x) in zip(b.patches, xs):
+        assert patch.xy[0] == x
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 7886 - 7891
+Content:
+def test_bar_label_labels():
+    ax = plt.gca()
+    rects = ax.bar([1, 2], [3, -4])
+    labels = ax.bar_label(rects, labels=['A', 'B'])
+    assert labels[0].get_text() == 'A'
+    assert labels[1].get_text() == 'B'
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 1923 - 1928
+Content:
+def test_bar_pandas_indexed(pd):
+    # Smoke test for indexed pandas
+    df = pd.DataFrame({"x": [1., 2., 3.], "width": [.2, .4, .6]},
+                      index=[1, 2, 3])
+    fig, ax = plt.subplots()
+    ax.bar(df.x, 1., width=df.width)
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 324 - 354
+Content:
+def raising_cb_reg(func):
+    class TestException(Exception):
+        pass
+
+    def raise_runtime_error():
+        raise RuntimeError
+
+    def raise_value_error():
+        raise ValueError
+
+    def transformer(excp):
+        if isinstance(excp, RuntimeError):
+            raise TestException
+        raise excp
+
+    # old default
+    cb_old = cbook.CallbackRegistry(exception_handler=None)
+    cb_old.connect('foo', raise_runtime_error)
+
+    # filter
+    cb_filt = cbook.CallbackRegistry(exception_handler=transformer)
+    cb_filt.connect('foo', raise_runtime_error)
+
+    # filter
+    cb_filt_pass = cbook.CallbackRegistry(exception_handler=transformer)
+    cb_filt_pass.connect('foo', raise_value_error)
+
+    return pytest.mark.parametrize('cb, excp',
+                                   [[cb_old, RuntimeError],
+                                    [cb_filt, TestException],
+                                    [cb_filt_pass, ValueError]])(func)
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 595 - 615
+Content:
+595.     base_set = mapping[ref(objs[0])]
+596.     for o in objs[1:]:
+597.         assert mapping[ref(o)] is base_set
+598. 
+599. 
+600. def test_flatiter():
+601.     x = np.arange(5)
+602.     it = x.flat
+603.     assert 0 == next(it)
+604.     assert 1 == next(it)
+605.     ret = cbook._safe_first_finite(it)
+606.     assert ret == 0
+607. 
+608.     assert 0 == next(it)
+609.     assert 1 == next(it)
+610. 
+611. 
+612. def test_reshape2d():
+613. 
+614.     class Dummy:
+615.         pass
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 755 - 765
+Content:
+755.     assert cbook.contiguous_regions([]) == []
+756. 
+757. 
+758. def test_safe_first_element_pandas_series(pd):
+759.     # deliberately create a pandas series with index not starting from 0
+760.     s = pd.Series(range(5), index=range(10, 15))
+761.     actual = cbook._safe_first_finite(s)
+762.     assert actual == 0
+763. 
+764. 
+765. def test_warn_external(recwarn):
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 890 - 900
+Content:
+890.     assert f(0.0012345600001, 8) == f(0.0012345600001, 10) == '0.00123456'
+891. 
+892. 
+893. def test_safe_first_element_with_none():
+894.     datetime_lst = [date.today() + timedelta(days=i) for i in range(10)]
+895.     datetime_lst[0] = None
+896.     actual = cbook._safe_first_finite(datetime_lst)
+897.     assert actual is not None and actual == datetime_lst[1]
+898. 
+899. 
+900. @pytest.mark.parametrize('fmt, value, result', [
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 456 - 460
+Content:
+@pytest.mark.parametrize('inp, kwargs_to_norm', fail_mapping)
+def test_normalize_kwargs_fail(inp, kwargs_to_norm):
+    with pytest.raises(TypeError), \
+         _api.suppress_matplotlib_deprecation_warning():
+        cbook.normalize_kwargs(inp, **kwargs_to_norm)
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 305 - 321
+Content:
+def test_callbackregistry_default_exception_handler(capsys, monkeypatch):
+    cb = cbook.CallbackRegistry()
+    cb.connect("foo", lambda: None)
+
+    monkeypatch.setattr(
+        cbook, "_get_running_interactive_framework", lambda: None)
+    with pytest.raises(TypeError):
+        cb.process("foo", "argument mismatch")
+    outerr = capsys.readouterr()
+    assert outerr.out == outerr.err == ""
+
+    monkeypatch.setattr(
+        cbook, "_get_running_interactive_framework", lambda: "not-none")
+    cb.process("foo", "argument mismatch")  # No error in that case.
+    outerr = capsys.readouterr()
+    assert outerr.out == ""
+    assert "takes 0 positional arguments but 1 was given" in outerr.err
+
+
+--- END CONTEXT ---
+
+REMEMBER: Your task is to summarize the relevant contexts to a given query and return it in the specified format!
+
+2025-09-11 10:23:09,046 - thread-140190462883520.prometheus.lang_graph.nodes.context_extraction_node - DEBUG - Model response: context=[ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue is about ax.bar raising StopIteration for all-NaN data\n   - Test shows bar with NaN values in y-data but valid x-values\n   - This is directly related to the issue but tests partial NaN case\n2. Extended relevance:\n   - This test demonstrates handling of NaN values in bar plots\n   - Shows that bar can handle some NaN values but not all-NaN', relative_path='lib/matplotlib/tests/test_axes.py', start_line=1715, end_line=1718), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue mentions empty bar data handling\n   - This test creates empty bar plot which could be related to edge cases\n2. Extended relevance:\n   - Empty data handling might share similar code paths with all-NaN data\n   - Tests boundary conditions for bar plotting', relative_path='lib/matplotlib/tests/test_axes.py', start_line=1720, end_line=1723), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves NaN handling in bar plots\n   - This test specifically handles NaN y-data with bar labels\n2. Extended relevance:\n   - Shows how NaN values are processed in bar labeling\n   - Demonstrates expected behavior for partial NaN data', relative_path='lib/matplotlib/tests/test_axes.py', start_line=7894, end_line=7901), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves _safe_first_finite function which is called in bar plotting\n   - This test shows _safe_first_finite behavior with iterators\n2. Extended relevance:\n   - The StopIteration error originates from _safe_first_finite\n   - Understanding this function is critical to fixing the issue', relative_path='lib/matplotlib/tests/test_cbook.py', start_line=600, end_line=610), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves _safe_first_finite function with None values\n   - This test shows handling of None values in _safe_first_finite\n2. Extended relevance:\n   - Demonstrates how _safe_first_finite skips None values\n   - Similar logic might be needed for NaN values', relative_path='lib/matplotlib/tests/test_cbook.py', start_line=893, end_line=898), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves NaN handling in data processing\n   - This test shows delete_masked_points function handling NaN values\n2. Extended relevance:\n   - Shows pattern for filtering out NaN values from arrays\n   - Similar approach might be needed for bar plot data processing', relative_path='lib/matplotlib/tests/test_cbook.py', start_line=19, end_line=50), ContextOutput(reasoning='1. Query requirement analysis:\n   - Issue involves empty data handling in various plot types\n   - This test shows empty scatter plot handling\n2. Extended relevance:\n   - Demonstrates how matplotlib handles empty data arrays\n   - Similar patterns might apply to bar plots', relative_path='lib/matplotlib/tests/test_axes.py', start_line=7079, end_line=7082), ContextOutput(reasoning="1. Query requirement analysis:\n   - Issue involves invalid NaN values in stairs plots\n   - This test shows error handling for NaN in edges\n2. Extended relevance:\n   - Shows matplotlib's pattern for validating and rejecting NaN values\n   - Similar validation might be needed for bar plot positions", relative_path='lib/matplotlib/tests/test_axes.py', start_line=2260, end_line=2262)]
+2025-09-11 10:23:09,050 - thread-140190462883520.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context [Context(relative_path='lib/matplotlib/tests/test_axes.py', content='1715. def test_nan_bar_values():\n1716.     fig, ax = plt.subplots()\n1717.     ax.bar([0, 1], [np.nan, 4])\n1718. ', start_line_number=1715, end_line_number=1718), Context(relative_path='lib/matplotlib/tests/test_axes.py', content='1720. def test_bar_ticklabel_fail():\n1721.     fig, ax = plt.subplots()\n1722.     ax.bar([], [])\n1723. ', start_line_number=1720, end_line_number=1723), Context(relative_path='lib/matplotlib/tests/test_axes.py', content="7894. def test_bar_label_nan_ydata():\n7895.     ax = plt.gca()\n7896.     bars = ax.bar([2, 3], [np.nan, 1])\n7897.     labels = ax.bar_label(bars)\n7898.     assert [l.get_text() for l in labels] == ['', '1']\n7899.     assert labels[0].xy == (2, 0)\n7900.     assert labels[0].get_va() == 'bottom'\n7901. ", start_line_number=7894, end_line_number=7901), Context(relative_path='lib/matplotlib/tests/test_cbook.py', content='600. def test_flatiter():\n601.     x = np.arange(5)\n602.     it = x.flat\n603.     assert 0 == next(it)\n604.     assert 1 == next(it)\n605.     ret = cbook._safe_first_finite(it)\n606.     assert ret == 0\n607. \n608.     assert 0 == next(it)\n609.     assert 1 == next(it)\n610. ', start_line_number=600, end_line_number=610), Context(relative_path='lib/matplotlib/tests/test_cbook.py', content='893. def test_safe_first_element_with_none():\n894.     datetime_lst = [date.today() + timedelta(days=i) for i in range(10)]\n895.     datetime_lst[0] = None\n896.     actual = cbook._safe_first_finite(datetime_lst)\n897.     assert actual is not None and actual == datetime_lst[1]\n898. ', start_line_number=893, end_line_number=898), Context(relative_path='lib/matplotlib/tests/test_cbook.py', content="19. class Test_delete_masked_points:\n20.     def test_bad_first_arg(self):\n21.         with pytest.raises(ValueError):\n22.             delete_masked_points('a string', np.arange(1.0, 7.0))\n23. \n24.     def test_string_seq(self):\n25.         a1 = ['a', 'b', 'c', 'd', 'e', 'f']\n26.         a2 = [1, 2, 3, np.nan, np.nan, 6]\n27.         result1, result2 = delete_masked_points(a1, a2)\n28.         ind = [0, 1, 2, 5]\n29.         assert_array_equal(result1, np.array(a1)[ind])\n30.         assert_array_equal(result2, np.array(a2)[ind])\n31. \n32.     def test_datetime(self):\n33.         dates = [datetime(2008, 1, 1), datetime(2008, 1, 2),\n34.                  datetime(2008, 1, 3), datetime(2008, 1, 4),\n35.                  datetime(2008, 1, 5), datetime(2008, 1, 6)]\n36.         a_masked = np.ma.array([1, 2, 3, np.nan, np.nan, 6],\n37.                                mask=[False, False, True, True, False, False])\n38.         actual = delete_masked_points(dates, a_masked)\n39.         ind = [0, 1, 5]\n40.         assert_array_equal(actual[0], np.array(dates)[ind])\n41.         assert_array_equal(actual[1], a_masked[ind].compressed())\n42. \n43.     def test_rgba(self):\n44.         a_masked = np.ma.array([1, 2, 3, np.nan, np.nan, 6],\n45.                                mask=[False, False, True, True, False, False])\n46.         a_rgba = mcolors.to_rgba_array(['r', 'g', 'b', 'c', 'm', 'y'])\n47.         actual = delete_masked_points(a_masked, a_rgba)\n48.         ind = [0, 1, 5]\n49.         assert_array_equal(actual[0], a_masked[ind].compressed())\n50.         assert_array_equal(actual[1], a_rgba[ind])", start_line_number=19, end_line_number=50), Context(relative_path='lib/matplotlib/tests/test_axes.py', content='7079. def test_scatter_empty_data():\n7080.     # making sure this does not raise an exception\n7081.     plt.scatter([], [])\n7082.     plt.scatter([], [], s=[], c=[])', start_line_number=7079, end_line_number=7082), Context(relative_path='lib/matplotlib/tests/test_axes.py', content='2260. def test_stairs_invalid_nan():\n2261.     with pytest.raises(ValueError, match=\'Nan values in "edges"\'):\n2262.         plt.stairs([1, 2], [0, np.nan, 1])', start_line_number=2260, end_line_number=2262)]
+2025-09-11 10:23:09,050 - thread-140190462883520.prometheus.lang_graph.nodes.reset_messages_node - DEBUG - Resetting context_provider_messages in state.
+2025-09-11 10:23:09,051 - thread-140190462883520.prometheus.lang_graph.nodes.context_refine_node - DEBUG - This is the codebase structure:
+--- BEGIN FILE TREE ---
+matplotlib
+├── .appveyor.yml
+├── .circleci
+|   ├── config.yml
+|   └── deploy-docs.sh
+├── .git_archival.txt
+├── .github
+|   ├── CONTRIBUTING.md
+|   ├── FUNDING.yml
+|   ├── ISSUE_TEMPLATE
+|   |   ├── bug_report.yml
+|   |   ├── config.yml
+|   |   ├── documentation.yml
+|   |   ├── feature_request.yml
+|   |   └── maintenance.yml
+|   ├── PULL_REQUEST_TEMPLATE.md
+|   ├── codecov.yml
+|   ├── dependabot.yml
+|   └── workflows
+|       ├── cibuildsdist.yml
+|       ├── cibuildwheel.yml
+|       ├── circleci.yml
+|       ├── clean_pr.yml
+|       ├── nightlies.yml
+|       ├── pr_welcome.yml
+|       ├── reviewdog.yml
+|       └── tests.yml
+├── .lgtm.yml
+├── .meeseeksdev.yml
+├── .pre-commit-config.yaml
+├── CODE_OF_CONDUCT.md
+├── INSTALL.rst
+├── LICENSE
+├── README.md
+├── SECURITY.md
+├── azure-pipelines.yml
+├── ci
+|   ├── check_version_number.py
+|   ├── check_wheel_licenses.py
+|   └── codespell-ignore-words.txt
+├── doc
+|   ├── README.txt
+|   ├── _static
+|   |   ├── fa
+|   |   ├── markers
+|   |   └── zenodo_cache
+|   ├── _templates
+|   |   ├── autofunctions.rst
+|   |   ├── automodule.rst
+|   |   ├── autosummary.rst
+|   |   └── function.rst
+|   ├── api
+|   |   ├── _api_api.rst
+|   |   ├── _enums_api.rst
+|   |   ├── afm_api.rst
+|   |   ├── animation_api.rst
+|   |   ├── artist_api.rst
+|   |   ├── axes_api.rst
+|   |   ├── axis_api.rst
+|   |   ├── backend_agg_api.rst
+|   |   ├── backend_bases_api.rst
+|   |   ├── backend_cairo_api.rst
+|   |   ├── backend_gtk3_api.rst
+|   |   ├── backend_gtk4_api.rst
+|   |   ├── backend_managers_api.rst
+|   |   ├── backend_mixed_api.rst
+|   |   ├── backend_nbagg_api.rst
+|   |   ├── backend_pdf_api.rst
+|   |   ├── backend_pgf_api.rst
+|   |   ├── backend_ps_api.rst
+|   |   ├── backend_qt_api.rst
+|   |   ├── backend_svg_api.rst
+|   |   ├── backend_template_api.rst
+|   |   ├── backend_tk_api.rst
+|   |   ├── backend_tools_api.rst
+|   |   ├── backend_webagg_api.rst
+|   |   ├── backend_wx_api.rst
+|   |   ├── bezier_api.rst
+|   |   ├── blocking_input_api.rst
+|   |   ├── category_api.rst
+|   |   ├── cbook_api.rst
+|   |   ├── cm_api.rst
+|   |   ├── collections_api.rst
+|   |   ├── colorbar_api.rst
+|   |   ├── colors_api.rst
+|   |   ├── container_api.rst
+|   |   ├── contour_api.rst
+|   |   ├── dates_api.rst
+|   |   ├── docstring_api.rst
+|   |   ├── dviread.rst
+|   |   ├── figure_api.rst
+|   |   ├── font_manager_api.rst
+|   |   ├── fontconfig_pattern_api.rst
+|   |   ├── ft2font.rst
+|   |   ├── gridspec_api.rst
+|   |   ├── hatch_api.rst
+|   |   ├── image_api.rst
+|   |   ├── index.rst
+|   |   ├── index_backend_api.rst
+|   |   ├── layout_engine_api.rst
+|   |   ├── legend_api.rst
+|   |   ├── legend_handler_api.rst
+|   |   ├── lines_api.rst
+|   |   ├── markers_api.rst
+|   |   ├── mathtext_api.rst
+|   |   ├── matplotlib_configuration_api.rst
+|   |   ├── mlab_api.rst
+|   |   ├── next_api_changes
+|   |   |   ├── README.rst
+|   |   |   ├── behavior
+|   |   |   |   ├── 00001-ABC.rst
+|   |   |   |   ├── 23579-AL.rst
+|   |   |   |   └── 23710-ES.rst
+|   |   |   ├── deprecations
+|   |   |   |   ├── 00001-ABC.rst
+|   |   |   |   ├── 23449-SS.rst
+|   |   |   |   ├── 23720-RS.rst
+|   |   |   |   ├── 23735-ES.rst
+|   |   |   |   ├── 23824-OG.rst
+|   |   |   |   ├── 24088-JMK.rst
+|   |   |   |   └── 24140-AL.rst
+|   |   |   ├── development
+|   |   |   |   └── 00001-ABC.rst
+|   |   |   └── removals
+|   |   |       ├── 00001-ABC.rst
+|   |   |       └── 24128-OG.rst
+|   |   ├── next_api_changes.rst
+|   |   ├── offsetbox_api.rst
+|   |   ├── patches_api.rst
+|   |   ├── path_api.rst
+|   |   ├── patheffects_api.rst
+|   |   ├── prev_api_changes
+|   |   |   ├── api_changes_0.40.rst
+|   |   |   ├── api_changes_0.42.rst
+|   |   |   ├── api_changes_0.50.rst
+|   |   |   ├── api_changes_0.54.3.rst
+|   |   |   ├── api_changes_0.54.rst
+|   |   |   ├── api_changes_0.60.rst
+|   |   |   ├── api_changes_0.61.rst
+|   |   |   ├── api_changes_0.63.rst
+|   |   |   ├── api_changes_0.65.1.rst
+|   |   |   ├── api_changes_0.65.rst
+|   |   |   ├── api_changes_0.70.rst
+|   |   |   ├── api_changes_0.71.rst
+|   |   |   ├── api_changes_0.72.rst
+|   |   |   ├── api_changes_0.73.rst
+|   |   |   ├── api_changes_0.80.rst
+|   |   |   ├── api_changes_0.81.rst
+|   |   |   ├── api_changes_0.82.rst
+|   |   |   ├── api_changes_0.83.rst
+|   |   |   ├── api_changes_0.84.rst
+|   |   |   ├── api_changes_0.85.rst
+|   |   |   ├── api_changes_0.86.rst
+|   |   |   ├── api_changes_0.87.7.rst
+|   |   |   ├── api_changes_0.90.0.rst
+|   |   |   ├── api_changes_0.90.1.rst
+|   |   |   ├── api_changes_0.91.0.rst
+|   |   |   ├── api_changes_0.91.2.rst
+|   |   |   ├── api_changes_0.98.0.rst
+|   |   |   ├── api_changes_0.98.1.rst
+|   |   |   ├── api_changes_0.98.x.rst
+|   |   |   ├── api_changes_0.99.rst
+|   |   |   ├── api_changes_0.99.x.rst
+|   |   |   ├── api_changes_1.1.x.rst
+|   |   |   ├── api_changes_1.2.x.rst
+|   |   |   ├── api_changes_1.3.x.rst
+|   |   |   ├── api_changes_1.4.x.rst
+|   |   |   ├── api_changes_1.5.0.rst
+|   |   |   ├── api_changes_1.5.2.rst
+|   |   |   ├── api_changes_1.5.3.rst
+|   |   |   ├── api_changes_2.0.0.rst
+|   |   |   ├── api_changes_2.0.1.rst
+|   |   |   ├── api_changes_2.1.0.rst
+|   |   |   ├── api_changes_2.1.1.rst
+|   |   |   ├── api_changes_2.1.2.rst
+|   |   |   ├── api_changes_2.2.0.rst
+|   |   |   ├── api_changes_3.0.0.rst
+|   |   |   ├── api_changes_3.0.1.rst
+|   |   |   ├── api_changes_3.1.0.rst
+|   |   |   ├── api_changes_3.1.1.rst
+|   |   |   ├── api_changes_3.2.0
+|   |   |   |   ├── behavior.rst
+|   |   |   |   ├── deprecations.rst
+|   |   |   |   ├── development.rst
+|   |   |   |   └── removals.rst
+|   |   |   ├── api_changes_3.2.0.rst
+|   |   |   ├── api_changes_3.3.0
+|   |   |   |   ├── behaviour.rst
+|   |   |   |   ├── deprecations.rst
+|   |   |   |   ├── development.rst
+|   |   |   |   └── removals.rst
+|   |   |   ├── api_changes_3.3.0.rst
+|   |   |   ├── api_changes_3.3.1.rst
+|   |   |   ├── api_changes_3.4.0
+|   |   |   |   ├── behaviour.rst
+|   |   |   |   ├── deprecations.rst
+|   |   |   |   ├── development.rst
+|   |   |   |   └── removals.rst
+|   |   |   ├── api_changes_3.4.0.rst
+|   |   |   ├── api_changes_3.4.2.rst
+|   |   |   ├── api_changes_3.5.0
+|   |   |   |   ├── behaviour.rst
+|   |   |   |   ├── deprecations.rst
+|   |   |   |   ├── development.rst
+|   |   |   |   └── removals.rst
+|   |   |   ├── api_changes_3.5.0.rst
+|   |   |   ├── api_changes_3.5.2.rst
+|   |   |   ├── api_changes_3.5.3.rst
+|   |   |   ├── api_changes_3.6.0
+|   |   |   |   ├── behaviour.rst
+|   |   |   |   ├── deprecations.rst
+|   |   |   |   ├── development.rst
+|   |   |   |   └── removals.rst
+|   |   |   └── api_changes_3.6.0.rst
+|   |   ├── projections_api.rst
+|   |   ├── pyplot_summary.rst
+|   |   ├── quiver_api.rst
+|   |   ├── rcsetup_api.rst
+|   |   ├── sankey_api.rst
+|   |   ├── scale_api.rst
+|   |   ├── sphinxext_mathmpl_api.rst
+|   |   ├── sphinxext_plot_directive_api.rst
+|   |   ├── spines_api.rst
+|   |   ├── style_api.rst
+|   |   ├── table_api.rst
+|   |   ├── testing_api.rst
+|   |   ├── texmanager_api.rst
+|   |   ├── text_api.rst
+|   |   ├── textpath_api.rst
+|   |   ├── ticker_api.rst
+|   |   ├── tight_bbox_api.rst
+|   |   ├── tight_layout_api.rst
+|   |   ├── toolkits
+|   |   |   ├── axes_grid1.rst
+|   |   |   ├── axisartist.rst
+|   |   |   ├── mplot3d
+|   |   |   |   ├── faq.rst
+|   |   |   |   └── view_angles.rst
+|   |   |   └── mplot3d.rst
+|   |   ├── transformations.rst
+|   |   ├── tri_api.rst
+|   |   ├── type1font.rst
+|   |   ├── units_api.rst
+|   |   └── widgets_api.rst
+|   ├── conf.py
+|   ├── devel
+|   |   ├── MEP
+|   |   |   ├── MEP08.rst
+|   |   |   ├── MEP09.rst
+|   |   |   ├── MEP10.rst
+|   |   |   ├── MEP11.rst
+|   |   |   ├── MEP12.rst
+|   |   |   ├── MEP13.rst
+|   |   |   ├── MEP14.rst
+|   |   |   ├── MEP15.rst
+|   |   |   ├── MEP19.rst
+|   |   |   ├── MEP21.rst
+|   |   |   ├── MEP22.rst
+|   |   |   ├── MEP23.rst
+|   |   |   ├── MEP24.rst
+|   |   |   ├── MEP25.rst
+|   |   |   ├── MEP26.rst
+|   |   |   ├── MEP27.rst
+|   |   |   ├── MEP28.rst
+|   |   |   ├── MEP29.rst
+|   |   |   ├── README.rst
+|   |   |   ├── index.rst
+|   |   |   └── template.rst
+|   |   ├── README.txt
+|   |   ├── coding_guide.rst
+|   |   ├── color_changes.rst
+|   |   ├── contributing.rst
+|   |   ├── dependencies.rst
+|   |   ├── development_setup.rst
+|   |   ├── documenting_mpl.rst
+|   |   ├── gitwash
+|   |   |   ├── configure_git.rst
+|   |   |   ├── development_workflow.rst
+|   |   |   ├── dot2_dot3.rst
+|   |   |   ├── following_latest.rst
+|   |   |   ├── forking_hell.rst
+|   |   |   ├── git_development.rst
+|   |   |   ├── git_install.rst
+|   |   |   ├── git_intro.rst
+|   |   |   ├── git_resources.rst
+|   |   |   ├── index.rst
+|   |   |   ├── maintainer_workflow.rst
+|   |   |   ├── patching.rst
+|   |   |   └── set_up_fork.rst
+|   |   ├── index.rst
+|   |   ├── license.rst
+|   |   ├── min_dep_policy.rst
+|   |   ├── release_guide.rst
+|   |   ├── style_guide.rst
+|   |   ├── testing.rst
+|   |   └── triage.rst
+|   ├── index.rst
+|   ├── sphinxext
+|   |   ├── __init__.py
+|   |   ├── custom_roles.py
+|   |   ├── gallery_order.py
+|   |   ├── github.py
+|   |   ├── math_symbol_table.py
+|   |   ├── missing_references.py
+|   |   ├── mock_gui_toolkits.py
+|   |   ├── redirect_from.py
+|   |   └── skip_deprecated.py
+|   ├── thirdpartypackages
+|   |   └── index.rst
+|   └── users
+|       ├── explain
+|       |   ├── api_interfaces.rst
+|       |   ├── backends.rst
+|       |   ├── event_handling.rst
+|       |   ├── fonts.rst
+|       |   ├── index.rst
+|       |   ├── interactive.rst
+|       |   ├── interactive_guide.rst
+|       |   └── performance.rst
+|       ├── faq
+|       |   ├── environment_variables_faq.rst
+|       |   ├── howto_faq.rst
+|       |   ├── index.rst
+|       |   └── troubleshooting_faq.rst
+|       ├── generate_credits.py
+|       ├── getting_started
+|       |   └── index.rst
+|       ├── github_stats.rst
+|       ├── index.rst
+|       ├── installing
+|       |   └── index.rst
+|       ├── next_whats_new
+|       |   ├── 3d_plot_aspects_adjustable_keyword.rst
+|       |   ├── 3d_plot_pan_zoom.rst
+|       |   ├── README.rst
+|       |   ├── bar_label_formatting.rst
+|       |   └── polar_errorbar_caps.rst
+|       ├── next_whats_new.rst
+|       ├── prev_whats_new
+|       |   ├── changelog.rst
+|       |   ├── dflt_style_changes.rst
+|       |   ├── github_stats_3.0.0.rst
+|       |   ├── github_stats_3.0.1.rst
+|       |   ├── github_stats_3.0.2.rst
+|       |   ├── github_stats_3.0.3.rst
+|       |   ├── github_stats_3.1.0.rst
+|       |   ├── github_stats_3.1.1.rst
+|       |   ├── github_stats_3.1.2.rst
+|       |   ├── github_stats_3.1.3.rst
+|       |   ├── github_stats_3.2.0.rst
+|       |   ├── github_stats_3.2.1.rst
+|       |   ├── github_stats_3.2.2.rst
+|       |   ├── github_stats_3.3.0.rst
+|       |   ├── github_stats_3.3.1.rst
+|       |   ├── github_stats_3.3.2.rst
+|       |   ├── github_stats_3.3.3.rst
+|       |   ├── github_stats_3.3.4.rst
+|       |   ├── github_stats_3.4.0.rst
+|       |   ├── github_stats_3.4.1.rst
+|       |   ├── github_stats_3.4.2.rst
+|       |   ├── github_stats_3.4.3.rst
+|       |   ├── github_stats_3.5.0.rst
+|       |   ├── github_stats_3.5.1.rst
+|       |   ├── github_stats_3.5.2.rst
+|       |   ├── github_stats_3.5.3.rst
+|       |   ├── whats_new_0.98.4.rst
+|       |   ├── whats_new_0.99.rst
+|       |   ├── whats_new_1.0.rst
+|       |   ├── whats_new_1.1.rst
+|       |   ├── whats_new_1.2.2.rst
+|       |   ├── whats_new_1.2.rst
+|       |   ├── whats_new_1.3.rst
+|       |   ├── whats_new_1.4.rst
+|       |   ├── whats_new_1.5.rst
+|       |   ├── whats_new_2.0.0.rst
+|       |   ├── whats_new_2.1.0.rst
+|       |   ├── whats_new_2.2.rst
+|       |   ├── whats_new_3.0.rst
+|       |   ├── whats_new_3.1.0.rst
+|       |   ├── whats_new_3.2.0.rst
+|       |   ├── whats_new_3.3.0.rst
+|       |   ├── whats_new_3.4.0.rst
+|       |   ├── whats_new_3.5.0.rst
+|       |   ├── whats_new_3.5.2.rst
+|       |   └── whats_new_3.6.0.rst
+|       ├── project
+|       |   ├── citing.rst
+|       |   ├── credits.rst
+|       |   ├── history.rst
+|       |   ├── index.rst
+|       |   ├── license.rst
+|       |   └── mission.rst
+|       ├── release_notes.rst
+|       ├── release_notes_next.rst
+|       └── resources
+|           └── index.rst
+├── environment.yml
+├── examples
+|   ├── README.txt
+|   ├── animation
+|   |   ├── README.txt
+|   |   ├── animate_decay.py
+|   |   ├── animated_histogram.py
+|   |   ├── animation_demo.py
+|   |   ├── bayes_update.py
+|   |   ├── double_pendulum.py
+|   |   ├── dynamic_image.py
+|   |   ├── frame_grabbing_sgskip.py
+|   |   ├── multiple_axes.py
+|   |   ├── pause_resume.py
+|   |   ├── rain.py
+|   |   ├── random_walk.py
+|   |   ├── simple_anim.py
+|   |   ├── strip_chart.py
+|   |   └── unchained.py
+|   ├── axes_grid1
+|   |   ├── README.txt
+|   |   ├── demo_anchored_direction_arrows.py
+|   |   ├── demo_axes_divider.py
+|   |   ├── demo_axes_grid.py
+|   |   ├── demo_axes_grid2.py
+|   |   ├── demo_axes_hbox_divider.py
+|   |   ├── demo_axes_rgb.py
+|   |   ├── demo_colorbar_of_inset_axes.py
+|   |   ├── demo_colorbar_with_axes_divider.py
+|   |   ├── demo_colorbar_with_inset_locator.py
+|   |   ├── demo_edge_colorbar.py
+|   |   ├── demo_fixed_size_axes.py
+|   |   ├── demo_imagegrid_aspect.py
+|   |   ├── inset_locator_demo.py
+|   |   ├── inset_locator_demo2.py
+|   |   ├── make_room_for_ylabel_using_axesgrid.py
+|   |   ├── parasite_simple.py
+|   |   ├── parasite_simple2.py
+|   |   ├── scatter_hist_locatable_axes.py
+|   |   ├── simple_anchored_artists.py
+|   |   ├── simple_axes_divider1.py
+|   |   ├── simple_axes_divider3.py
+|   |   ├── simple_axesgrid.py
+|   |   ├── simple_axesgrid2.py
+|   |   ├── simple_axisline4.py
+|   |   └── simple_colorbar.py
+|   ├── axisartist
+|   |   ├── README.txt
+|   |   ├── axis_direction.py
+|   |   ├── demo_axis_direction.py
+|   |   ├── demo_axisline_style.py
+|   |   ├── demo_curvelinear_grid.py
+|   |   ├── demo_curvelinear_grid2.py
+|   |   ├── demo_floating_axes.py
+|   |   ├── demo_floating_axis.py
+|   |   ├── demo_parasite_axes.py
+|   |   ├── demo_parasite_axes2.py
+|   |   ├── demo_ticklabel_alignment.py
+|   |   ├── demo_ticklabel_direction.py
+|   |   ├── simple_axis_direction01.py
+|   |   ├── simple_axis_direction03.py
+|   |   ├── simple_axis_pad.py
+|   |   ├── simple_axisartist1.py
+|   |   ├── simple_axisline.py
+|   |   └── simple_axisline3.py
+|   ├── color
+|   |   ├── README.txt
+|   |   ├── color_by_yvalue.py
+|   |   ├── color_cycle_default.py
+|   |   ├── color_demo.py
+|   |   ├── colorbar_basics.py
+|   |   ├── colormap_reference.py
+|   |   ├── custom_cmap.py
+|   |   └── named_colors.py
+|   ├── event_handling
+|   |   ├── README.txt
+|   |   ├── close_event.py
+|   |   ├── coords_demo.py
+|   |   ├── cursor_demo.py
+|   |   ├── data_browser.py
+|   |   ├── figure_axes_enter_leave.py
+|   |   ├── ginput_manual_clabel_sgskip.py
+|   |   ├── image_slices_viewer.py
+|   |   ├── keypress_demo.py
+|   |   ├── lasso_demo.py
+|   |   ├── legend_picking.py
+|   |   ├── looking_glass.py
+|   |   ├── path_editor.py
+|   |   ├── pick_event_demo.py
+|   |   ├── pick_event_demo2.py
+|   |   ├── poly_editor.py
+|   |   ├── pong_sgskip.py
+|   |   ├── resample.py
+|   |   ├── timers.py
+|   |   ├── trifinder_event_demo.py
+|   |   ├── viewlims.py
+|   |   └── zoom_window.py
+|   ├── images_contours_and_fields
+|   |   ├── README.txt
+|   |   ├── affine_image.py
+|   |   ├── barb_demo.py
+|   |   ├── barcode_demo.py
+|   |   ├── colormap_interactive_adjustment.py
+|   |   ├── colormap_normalizations.py
+|   |   ├── colormap_normalizations_symlognorm.py
+|   |   ├── contour_corner_mask.py
+|   |   ├── contour_demo.py
+|   |   ├── contour_image.py
+|   |   ├── contour_label_demo.py
+|   |   ├── contourf_demo.py
+|   |   ├── contourf_hatching.py
+|   |   ├── contourf_log.py
+|   |   ├── contours_in_optimization_demo.py
+|   |   ├── demo_bboximage.py
+|   |   ├── figimage_demo.py
+|   |   ├── image_annotated_heatmap.py
+|   |   ├── image_antialiasing.py
+|   |   ├── image_clip_path.py
+|   |   ├── image_demo.py
+|   |   ├── image_masked.py
+|   |   ├── image_nonuniform.py
+|   |   ├── image_transparency_blend.py
+|   |   ├── image_zcoord.py
+|   |   ├── interpolation_methods.py
+|   |   ├── irregulardatagrid.py
+|   |   ├── layer_images.py
+|   |   ├── matshow.py
+|   |   ├── multi_image.py
+|   |   ├── pcolor_demo.py
+|   |   ├── pcolormesh_grids.py
+|   |   ├── pcolormesh_levels.py
+|   |   ├── plot_streamplot.py
+|   |   ├── quadmesh_demo.py
+|   |   ├── quiver_demo.py
+|   |   ├── quiver_simple_demo.py
+|   |   ├── shading_example.py
+|   |   ├── specgram_demo.py
+|   |   ├── spy_demos.py
+|   |   ├── tricontour_demo.py
+|   |   ├── tricontour_smooth_delaunay.py
+|   |   ├── tricontour_smooth_user.py
+|   |   ├── trigradient_demo.py
+|   |   ├── triinterp_demo.py
+|   |   ├── tripcolor_demo.py
+|   |   ├── triplot_demo.py
+|   |   └── watermark_image.py
+|   ├── lines_bars_and_markers
+|   |   ├── README.txt
+|   |   ├── bar_colors.py
+|   |   ├── bar_label_demo.py
+|   |   ├── bar_stacked.py
+|   |   ├── barchart.py
+|   |   ├── barh.py
+|   |   ├── broken_barh.py
+|   |   ├── capstyle.py
+|   |   ├── categorical_variables.py
+|   |   ├── cohere.py
+|   |   ├── csd_demo.py
+|   |   ├── curve_error_band.py
+|   |   ├── errorbar_limits_simple.py
+|   |   ├── errorbar_subsample.py
+|   |   ├── eventcollection_demo.py
+|   |   ├── eventplot_demo.py
+|   |   ├── fill.py
+|   |   ├── fill_between_alpha.py
+|   |   ├── fill_between_demo.py
+|   |   ├── fill_betweenx_demo.py
+|   |   ├── filled_step.py
+|   |   ├── gradient_bar.py
+|   |   ├── hat_graph.py
+|   |   ├── horizontal_barchart_distribution.py
+|   |   ├── joinstyle.py
+|   |   ├── line_demo_dash_control.py
+|   |   ├── lines_with_ticks_demo.py
+|   |   ├── linestyles.py
+|   |   ├── marker_reference.py
+|   |   ├── markevery_demo.py
+|   |   ├── masked_demo.py
+|   |   ├── multicolored_line.py
+|   |   ├── multivariate_marker_plot.py
+|   |   ├── psd_demo.py
+|   |   ├── scatter_custom_symbol.py
+|   |   ├── scatter_demo2.py
+|   |   ├── scatter_hist.py
+|   |   ├── scatter_masked.py
+|   |   ├── scatter_star_poly.py
+|   |   ├── scatter_with_legend.py
+|   |   ├── simple_plot.py
+|   |   ├── span_regions.py
+|   |   ├── spectrum_demo.py
+|   |   ├── stackplot_demo.py
+|   |   ├── stairs_demo.py
+|   |   ├── stem_plot.py
+|   |   ├── step_demo.py
+|   |   ├── timeline.py
+|   |   ├── vline_hline_demo.py
+|   |   └── xcorr_acorr_demo.py
+|   ├── misc
+|   |   ├── README.txt
+|   |   ├── anchored_artists.py
+|   |   ├── bbox_intersect.py
+|   |   ├── contour_manual.py
+|   |   ├── coords_report.py
+|   |   ├── custom_projection.py
+|   |   ├── customize_rc.py
+|   |   ├── demo_agg_filter.py
+|   |   ├── demo_ribbon_box.py
+|   |   ├── fig_x.py
+|   |   ├── fill_spiral.py
+|   |   ├── findobj_demo.py
+|   |   ├── font_indexing.py
+|   |   ├── ftface_props.py
+|   |   ├── histogram_path.py
+|   |   ├── hyperlinks_sgskip.py
+|   |   ├── image_thumbnail_sgskip.py
+|   |   ├── keyword_plotting.py
+|   |   ├── logos2.py
+|   |   ├── multipage_pdf.py
+|   |   ├── multiprocess_sgskip.py
+|   |   ├── packed_bubbles.py
+|   |   ├── patheffect_demo.py
+|   |   ├── print_stdout_sgskip.py
+|   |   ├── pythonic_matplotlib.py
+|   |   ├── rasterization_demo.py
+|   |   ├── set_and_get.py
+|   |   ├── svg_filter_line.py
+|   |   ├── svg_filter_pie.py
+|   |   ├── table_demo.py
+|   |   ├── tickedstroke_demo.py
+|   |   ├── transoffset.py
+|   |   └── zorder_demo.py
+|   ├── mplot3d
+|   |   ├── 2dcollections3d.py
+|   |   ├── 3d_bars.py
+|   |   ├── README.txt
+|   |   ├── bars3d.py
+|   |   ├── box3d.py
+|   |   ├── contour3d.py
+|   |   ├── contour3d_2.py
+|   |   ├── contour3d_3.py
+|   |   ├── contourf3d.py
+|   |   ├── contourf3d_2.py
+|   |   ├── custom_shaded_3d_surface.py
+|   |   ├── errorbar3d.py
+|   |   ├── hist3d.py
+|   |   ├── lines3d.py
+|   |   ├── lorenz_attractor.py
+|   |   ├── mixed_subplots.py
+|   |   ├── offset.py
+|   |   ├── pathpatch3d.py
+|   |   ├── polys3d.py
+|   |   ├── projections.py
+|   |   ├── quiver3d.py
+|   |   ├── rotate_axes3d_sgskip.py
+|   |   ├── scatter3d.py
+|   |   ├── stem3d_demo.py
+|   |   ├── subplot3d.py
+|   |   ├── surface3d.py
+|   |   ├── surface3d_2.py
+|   |   ├── surface3d_3.py
+|   |   ├── surface3d_radial.py
+|   |   ├── text3d.py
+|   |   ├── tricontour3d.py
+|   |   ├── tricontourf3d.py
+|   |   ├── trisurf3d.py
+|   |   ├── trisurf3d_2.py
+|   |   ├── view_planes_3d.py
+|   |   ├── voxels.py
+|   |   ├── voxels_numpy_logo.py
+|   |   ├── voxels_rgb.py
+|   |   ├── voxels_torus.py
+|   |   ├── wire3d.py
+|   |   ├── wire3d_animation_sgskip.py
+|   |   └── wire3d_zero_stride.py
+|   ├── pie_and_polar_charts
+|   |   ├── README.txt
+|   |   ├── bar_of_pie.py
+|   |   ├── nested_pie.py
+|   |   ├── pie_and_donut_labels.py
+|   |   ├── pie_demo2.py
+|   |   ├── pie_features.py
+|   |   ├── polar_bar.py
+|   |   ├── polar_demo.py
+|   |   ├── polar_error_caps.py
+|   |   ├── polar_legend.py
+|   |   └── polar_scatter.py
+|   ├── pyplots
+|   |   ├── README.txt
+|   |   ├── axline.py
+|   |   ├── pyplot_mathtext.py
+|   |   ├── pyplot_simple.py
+|   |   ├── pyplot_text.py
+|   |   ├── pyplot_three.py
+|   |   └── pyplot_two_subplots.py
+|   ├── scales
+|   |   ├── README.txt
+|   |   ├── asinh_demo.py
+|   |   ├── aspect_loglog.py
+|   |   ├── custom_scale.py
+|   |   ├── log_bar.py
+|   |   ├── log_demo.py
+|   |   ├── logit_demo.py
+|   |   ├── power_norm.py
+|   |   ├── scales.py
+|   |   ├── semilogx_demo.py
+|   |   └── symlog_demo.py
+|   ├── shapes_and_collections
+|   |   ├── README.txt
+|   |   ├── arrow_guide.py
+|   |   ├── artist_reference.py
+|   |   ├── collections.py
+|   |   ├── compound_path.py
+|   |   ├── dolphin.py
+|   |   ├── donut.py
+|   |   ├── ellipse_collection.py
+|   |   ├── ellipse_demo.py
+|   |   ├── fancybox_demo.py
+|   |   ├── hatch_demo.py
+|   |   ├── hatch_style_reference.py
+|   |   ├── line_collection.py
+|   |   ├── patch_collection.py
+|   |   ├── path_patch.py
+|   |   ├── quad_bezier.py
+|   |   └── scatter.py
+|   ├── showcase
+|   |   ├── README.txt
+|   |   ├── anatomy.py
+|   |   ├── firefox.py
+|   |   ├── integral.py
+|   |   ├── mandelbrot.py
+|   |   ├── stock_prices.py
+|   |   └── xkcd.py
+|   ├── specialty_plots
+|   |   ├── README.txt
+|   |   ├── advanced_hillshading.py
+|   |   ├── anscombe.py
+|   |   ├── hinton_demo.py
+|   |   ├── leftventricle_bulleye.py
+|   |   ├── mri_demo.py
+|   |   ├── mri_with_eeg.py
+|   |   ├── radar_chart.py
+|   |   ├── sankey_basics.py
+|   |   ├── sankey_links.py
+|   |   ├── sankey_rankine.py
+|   |   ├── skewt.py
+|   |   └── topographic_hillshading.py
+|   ├── spines
+|   |   ├── README.txt
+|   |   ├── centered_spines_with_arrows.py
+|   |   ├── multiple_yaxis_with_spines.py
+|   |   ├── spine_placement_demo.py
+|   |   ├── spines.py
+|   |   ├── spines_bounds.py
+|   |   └── spines_dropped.py
+|   ├── statistics
+|   |   ├── README.txt
+|   |   ├── barchart_demo.py
+|   |   ├── boxplot.py
+|   |   ├── boxplot_color.py
+|   |   ├── boxplot_demo.py
+|   |   ├── boxplot_vs_violin.py
+|   |   ├── bxp.py
+|   |   ├── confidence_ellipse.py
+|   |   ├── customized_violin.py
+|   |   ├── errorbar.py
+|   |   ├── errorbar_features.py
+|   |   ├── errorbar_limits.py
+|   |   ├── errorbars_and_boxes.py
+|   |   ├── hexbin_demo.py
+|   |   ├── hist.py
+|   |   ├── histogram_cumulative.py
+|   |   ├── histogram_features.py
+|   |   ├── histogram_histtypes.py
+|   |   ├── histogram_multihist.py
+|   |   ├── multiple_histograms_side_by_side.py
+|   |   ├── time_series_histogram.py
+|   |   └── violinplot.py
+|   ├── style_sheets
+|   |   ├── README.txt
+|   |   ├── bmh.py
+|   |   ├── dark_background.py
+|   |   ├── fivethirtyeight.py
+|   |   ├── ggplot.py
+|   |   ├── grayscale.py
+|   |   ├── plot_solarizedlight2.py
+|   |   └── style_sheets_reference.py
+|   ├── subplots_axes_and_figures
+|   |   ├── README.txt
+|   |   ├── align_labels_demo.py
+|   |   ├── auto_subplots_adjust.py
+|   |   ├── axes_box_aspect.py
+|   |   ├── axes_demo.py
+|   |   ├── axes_margins.py
+|   |   ├── axes_props.py
+|   |   ├── axes_zoom_effect.py
+|   |   ├── axhspan_demo.py
+|   |   ├── axis_equal_demo.py
+|   |   ├── axis_labels_demo.py
+|   |   ├── broken_axis.py
+|   |   ├── colorbar_placement.py
+|   |   ├── custom_figure_class.py
+|   |   ├── demo_constrained_layout.py
+|   |   ├── demo_tight_layout.py
+|   |   ├── fahrenheit_celsius_scales.py
+|   |   ├── figure_size_units.py
+|   |   ├── figure_title.py
+|   |   ├── ganged_plots.py
+|   |   ├── geo_demo.py
+|   |   ├── gridspec_and_subplots.py
+|   |   ├── gridspec_multicolumn.py
+|   |   ├── gridspec_nested.py
+|   |   ├── invert_axes.py
+|   |   ├── multiple_figs_demo.py
+|   |   ├── secondary_axis.py
+|   |   ├── share_axis_lims_views.py
+|   |   ├── shared_axis_demo.py
+|   |   ├── subfigures.py
+|   |   ├── subplot.py
+|   |   ├── subplots_adjust.py
+|   |   ├── subplots_demo.py
+|   |   ├── two_scales.py
+|   |   └── zoom_inset_axes.py
+|   ├── text_labels_and_annotations
+|   |   ├── README.txt
+|   |   ├── accented_text.py
+|   |   ├── align_ylabels.py
+|   |   ├── angle_annotation.py
+|   |   ├── annotate_transform.py
+|   |   ├── annotation_basic.py
+|   |   ├── annotation_demo.py
+|   |   ├── annotation_polar.py
+|   |   ├── arrow_demo.py
+|   |   ├── autowrap.py
+|   |   ├── custom_legends.py
+|   |   ├── date.py
+|   |   ├── demo_annotation_box.py
+|   |   ├── demo_text_path.py
+|   |   ├── demo_text_rotation_mode.py
+|   |   ├── dfrac_demo.py
+|   |   ├── engineering_formatter.py
+|   |   ├── fancyarrow_demo.py
+|   |   ├── fancytextbox_demo.py
+|   |   ├── figlegend_demo.py
+|   |   ├── font_family_rc.py
+|   |   ├── font_file.py
+|   |   ├── font_table.py
+|   |   ├── fonts_demo.py
+|   |   ├── fonts_demo_kw.py
+|   |   ├── label_subplots.py
+|   |   ├── legend.py
+|   |   ├── legend_demo.py
+|   |   ├── line_with_text.py
+|   |   ├── mathtext_asarray.py
+|   |   ├── mathtext_demo.py
+|   |   ├── mathtext_examples.py
+|   |   ├── mathtext_fontfamily_example.py
+|   |   ├── multiline.py
+|   |   ├── placing_text_boxes.py
+|   |   ├── rainbow_text.py
+|   |   ├── stix_fonts_demo.py
+|   |   ├── tex_demo.py
+|   |   ├── text_alignment.py
+|   |   ├── text_commands.py
+|   |   ├── text_fontdict.py
+|   |   ├── text_rotation.py
+|   |   ├── text_rotation_relative_to_line.py
+|   |   ├── titles_demo.py
+|   |   ├── unicode_minus.py
+|   |   ├── usetex_baseline_test.py
+|   |   ├── usetex_fonteffects.py
+|   |   └── watermark_text.py
+|   ├── ticks
+|   |   ├── README.txt
+|   |   ├── auto_ticks.py
+|   |   ├── centered_ticklabels.py
+|   |   ├── colorbar_tick_labelling_demo.py
+|   |   ├── custom_ticker1.py
+|   |   ├── date_concise_formatter.py
+|   |   ├── date_demo_convert.py
+|   |   ├── date_demo_rrule.py
+|   |   ├── date_formatters_locators.py
+|   |   ├── date_index_formatter.py
+|   |   ├── date_precision_and_epochs.py
+|   |   ├── dollar_ticks.py
+|   |   ├── fig_axes_customize_simple.py
+|   |   ├── major_minor_demo.py
+|   |   ├── scalarformatter.py
+|   |   ├── tick-formatters.py
+|   |   ├── tick-locators.py
+|   |   ├── tick_label_right.py
+|   |   ├── tick_labels_from_values.py
+|   |   ├── tick_xlabel_top.py
+|   |   ├── ticklabels_rotation.py
+|   |   └── ticks_too_many.py
+|   ├── units
+|   |   ├── README.txt
+|   |   ├── annotate_with_units.py
+|   |   ├── artist_tests.py
+|   |   ├── bar_demo2.py
+|   |   ├── bar_unit_demo.py
+|   |   ├── basic_units.py
+|   |   ├── ellipse_with_units.py
+|   |   ├── evans_test.py
+|   |   ├── radian_demo.py
+|   |   ├── units_sample.py
+|   |   └── units_scatter.py
+|   ├── user_interfaces
+|   |   ├── README.txt
+|   |   ├── canvasagg.py
+|   |   ├── embedding_in_gtk3_panzoom_sgskip.py
+|   |   ├── embedding_in_gtk3_sgskip.py
+|   |   ├── embedding_in_gtk4_panzoom_sgskip.py
+|   |   ├── embedding_in_gtk4_sgskip.py
+|   |   ├── embedding_in_qt_sgskip.py
+|   |   ├── embedding_in_tk_sgskip.py
+|   |   ├── embedding_in_wx2_sgskip.py
+|   |   ├── embedding_in_wx3_sgskip.py
+|   |   ├── embedding_in_wx4_sgskip.py
+|   |   ├── embedding_in_wx5_sgskip.py
+|   |   ├── embedding_webagg_sgskip.py
+|   |   ├── fourier_demo_wx_sgskip.py
+|   |   ├── gtk3_spreadsheet_sgskip.py
+|   |   ├── gtk4_spreadsheet_sgskip.py
+|   |   ├── mathtext_wx_sgskip.py
+|   |   ├── mpl_with_glade3_sgskip.py
+|   |   ├── pylab_with_gtk3_sgskip.py
+|   |   ├── pylab_with_gtk4_sgskip.py
+|   |   ├── svg_histogram_sgskip.py
+|   |   ├── svg_tooltip_sgskip.py
+|   |   ├── toolmanager_sgskip.py
+|   |   ├── web_application_server_sgskip.py
+|   |   └── wxcursor_demo_sgskip.py
+|   ├── userdemo
+|   |   ├── README.txt
+|   |   ├── anchored_box04.py
+|   |   ├── annotate_explain.py
+|   |   ├── annotate_simple01.py
+|   |   ├── annotate_simple02.py
+|   |   ├── annotate_simple03.py
+|   |   ├── annotate_simple04.py
+|   |   ├── annotate_simple_coord01.py
+|   |   ├── annotate_simple_coord02.py
+|   |   ├── annotate_simple_coord03.py
+|   |   ├── annotate_text_arrow.py
+|   |   ├── connect_simple01.py
+|   |   ├── connectionstyle_demo.py
+|   |   ├── custom_boxstyle01.py
+|   |   ├── demo_gridspec01.py
+|   |   ├── demo_gridspec03.py
+|   |   ├── demo_gridspec06.py
+|   |   ├── pgf_fonts.py
+|   |   ├── pgf_preamble_sgskip.py
+|   |   ├── pgf_texsystem.py
+|   |   ├── simple_annotate01.py
+|   |   ├── simple_legend01.py
+|   |   └── simple_legend02.py
+|   └── widgets
+|       ├── README.txt
+|       ├── annotated_cursor.py
+|       ├── buttons.py
+|       ├── check_buttons.py
+|       ├── cursor.py
+|       ├── lasso_selector_demo_sgskip.py
+|       ├── menu.py
+|       ├── mouse_cursor.py
+|       ├── multicursor.py
+|       ├── polygon_selector_demo.py
+|       ├── polygon_selector_simple.py
+|       ├── radio_buttons.py
+|       ├── range_slider.py
+|       ├── rectangle_selector.py
+|       ├── slider_demo.py
+|       ├── slider_snap_demo.py
+|       ├── span_selector.py
+|       └── textbox.py
+├── extern
+|   ├── agg24-svn
+|   |   ├── include
+|   |   |   ├── ctrl
+|   |   |   ├── platform
+|   |   |   |   ├── mac
+|   |   |   |   └── win32
+|   |   |   └── util
+|   |   └── src
+|   |       ├── agg_arc.cpp
+|   |       ├── agg_arrowhead.cpp
+|   |       ├── agg_bezier_arc.cpp
+|   |       ├── agg_bspline.cpp
+|   |       ├── agg_color_rgba.cpp
+|   |       ├── agg_curves.cpp
+|   |       ├── agg_embedded_raster_fonts.cpp
+|   |       ├── agg_gsv_text.cpp
+|   |       ├── agg_image_filters.cpp
+|   |       ├── agg_line_aa_basics.cpp
+|   |       ├── agg_line_profile_aa.cpp
+|   |       ├── agg_rounded_rect.cpp
+|   |       ├── agg_sqrt_tables.cpp
+|   |       ├── agg_trans_affine.cpp
+|   |       ├── agg_trans_double_path.cpp
+|   |       ├── agg_trans_single_path.cpp
+|   |       ├── agg_trans_warp_magnifier.cpp
+|   |       ├── agg_vcgen_bspline.cpp
+|   |       ├── agg_vcgen_contour.cpp
+|   |       ├── agg_vcgen_dash.cpp
+|   |       ├── agg_vcgen_markers_term.cpp
+|   |       ├── agg_vcgen_smooth_poly1.cpp
+|   |       ├── agg_vcgen_stroke.cpp
+|   |       ├── agg_vpgen_clip_polygon.cpp
+|   |       ├── agg_vpgen_clip_polyline.cpp
+|   |       ├── agg_vpgen_segmentator.cpp
+|   |       ├── ctrl
+|   |       |   ├── agg_bezier_ctrl.cpp
+|   |       |   ├── agg_cbox_ctrl.cpp
+|   |       |   ├── agg_gamma_ctrl.cpp
+|   |       |   ├── agg_gamma_spline.cpp
+|   |       |   ├── agg_polygon_ctrl.cpp
+|   |       |   ├── agg_rbox_ctrl.cpp
+|   |       |   ├── agg_scale_ctrl.cpp
+|   |       |   ├── agg_slider_ctrl.cpp
+|   |       |   └── agg_spline_ctrl.cpp
+|   |       └── platform
+|   |           ├── AmigaOS
+|   |           ├── BeOS
+|   |           ├── X11
+|   |           ├── mac
+|   |           ├── sdl
+|   |           └── win32
+|   └── ttconv
+|       ├── pprdrv_tt.cpp
+|       ├── pprdrv_tt2.cpp
+|       └── ttutil.cpp
+├── lib
+|   ├── matplotlib
+|   |   ├── __init__.py
+|   |   ├── _afm.py
+|   |   ├── _animation_data.py
+|   |   ├── _api
+|   |   |   ├── __init__.py
+|   |   |   └── deprecation.py
+|   |   ├── _blocking_input.py
+|   |   ├── _cm.py
+|   |   ├── _cm_listed.py
+|   |   ├── _color_data.py
+|   |   ├── _constrained_layout.py
+|   |   ├── _docstring.py
+|   |   ├── _enums.py
+|   |   ├── _fontconfig_pattern.py
+|   |   ├── _internal_utils.py
+|   |   ├── _layoutgrid.py
+|   |   ├── _mathtext.py
+|   |   ├── _mathtext_data.py
+|   |   ├── _pylab_helpers.py
+|   |   ├── _text_helpers.py
+|   |   ├── _tight_bbox.py
+|   |   ├── _tight_layout.py
+|   |   ├── _type1font.py
+|   |   ├── afm.py
+|   |   ├── animation.py
+|   |   ├── artist.py
+|   |   ├── axes
+|   |   |   ├── __init__.py
+|   |   |   ├── _axes.py
+|   |   |   ├── _base.py
+|   |   |   ├── _secondary_axes.py
+|   |   |   └── _subplots.py
+|   |   ├── axis.py
+|   |   ├── backend_bases.py
+|   |   ├── backend_managers.py
+|   |   ├── backend_tools.py
+|   |   ├── backends
+|   |   |   ├── __init__.py
+|   |   |   ├── _backend_gtk.py
+|   |   |   ├── _backend_pdf_ps.py
+|   |   |   ├── _backend_tk.py
+|   |   |   ├── backend_agg.py
+|   |   |   ├── backend_cairo.py
+|   |   |   ├── backend_gtk3.py
+|   |   |   ├── backend_gtk3agg.py
+|   |   |   ├── backend_gtk3cairo.py
+|   |   |   ├── backend_gtk4.py
+|   |   |   ├── backend_gtk4agg.py
+|   |   |   ├── backend_gtk4cairo.py
+|   |   |   ├── backend_macosx.py
+|   |   |   ├── backend_mixed.py
+|   |   |   ├── backend_nbagg.py
+|   |   |   ├── backend_pdf.py
+|   |   |   ├── backend_pgf.py
+|   |   |   ├── backend_ps.py
+|   |   |   ├── backend_qt.py
+|   |   |   ├── backend_qt5.py
+|   |   |   ├── backend_qt5agg.py
+|   |   |   ├── backend_qt5cairo.py
+|   |   |   ├── backend_qtagg.py
+|   |   |   ├── backend_qtcairo.py
+|   |   |   ├── backend_svg.py
+|   |   |   ├── backend_template.py
+|   |   |   ├── backend_tkagg.py
+|   |   |   ├── backend_tkcairo.py
+|   |   |   ├── backend_webagg.py
+|   |   |   ├── backend_webagg_core.py
+|   |   |   ├── backend_wx.py
+|   |   |   ├── backend_wxagg.py
+|   |   |   ├── backend_wxcairo.py
+|   |   |   ├── qt_compat.py
+|   |   |   ├── qt_editor
+|   |   |   |   ├── __init__.py
+|   |   |   |   ├── _formlayout.py
+|   |   |   |   └── figureoptions.py
+|   |   |   └── web_backend
+|   |   |       ├── .eslintrc.js
+|   |   |       ├── css
+|   |   |       └── js
+|   |   ├── bezier.py
+|   |   ├── blocking_input.py
+|   |   ├── category.py
+|   |   ├── cbook
+|   |   |   └── __init__.py
+|   |   ├── cm.py
+|   |   ├── collections.py
+|   |   ├── colorbar.py
+|   |   ├── colors.py
+|   |   ├── container.py
+|   |   ├── contour.py
+|   |   ├── dates.py
+|   |   ├── docstring.py
+|   |   ├── dviread.py
+|   |   ├── figure.py
+|   |   ├── font_manager.py
+|   |   ├── fontconfig_pattern.py
+|   |   ├── gridspec.py
+|   |   ├── hatch.py
+|   |   ├── image.py
+|   |   ├── layout_engine.py
+|   |   ├── legend.py
+|   |   ├── legend_handler.py
+|   |   ├── lines.py
+|   |   ├── markers.py
+|   |   ├── mathtext.py
+|   |   ├── mlab.py
+|   |   ├── mpl-data
+|   |   |   ├── fonts
+|   |   |   |   ├── afm
+|   |   |   |   ├── pdfcorefonts
+|   |   |   |   └── ttf
+|   |   |   ├── images
+|   |   |   ├── plot_directive
+|   |   |   ├── sample_data
+|   |   |   |   ├── README.txt
+|   |   |   |   └── axes_grid
+|   |   |   └── stylelib
+|   |   ├── offsetbox.py
+|   |   ├── patches.py
+|   |   ├── path.py
+|   |   ├── patheffects.py
+|   |   ├── projections
+|   |   |   ├── __init__.py
+|   |   |   ├── geo.py
+|   |   |   └── polar.py
+|   |   ├── pylab.py
+|   |   ├── pyplot.py
+|   |   ├── quiver.py
+|   |   ├── rcsetup.py
+|   |   ├── sankey.py
+|   |   ├── scale.py
+|   |   ├── sphinxext
+|   |   |   ├── __init__.py
+|   |   |   ├── mathmpl.py
+|   |   |   └── plot_directive.py
+|   |   ├── spines.py
+|   |   ├── stackplot.py
+|   |   ├── streamplot.py
+|   |   ├── style
+|   |   |   ├── __init__.py
+|   |   |   └── core.py
+|   |   ├── table.py
+|   |   ├── testing
+|   |   |   ├── __init__.py
+|   |   |   ├── _markers.py
+|   |   |   ├── compare.py
+|   |   |   ├── conftest.py
+|   |   |   ├── decorators.py
+|   |   |   ├── exceptions.py
+|   |   |   ├── jpl_units
+|   |   |   |   ├── Duration.py
+|   |   |   |   ├── Epoch.py
+|   |   |   |   ├── EpochConverter.py
+|   |   |   |   ├── StrConverter.py
+|   |   |   |   ├── UnitDbl.py
+|   |   |   |   ├── UnitDblConverter.py
+|   |   |   |   ├── UnitDblFormatter.py
+|   |   |   |   └── __init__.py
+|   |   |   └── widgets.py
+|   |   ├── tests
+|   |   |   ├── __init__.py
+|   |   |   ├── baseline_images
+|   |   |   |   ├── dviread
+|   |   |   |   ├── pngsuite
+|   |   |   |   ├── test_agg
+|   |   |   |   ├── test_agg_filter
+|   |   |   |   ├── test_arrow_patches
+|   |   |   |   ├── test_artist
+|   |   |   |   ├── test_axes
+|   |   |   |   ├── test_backend_pdf
+|   |   |   |   ├── test_backend_pgf
+|   |   |   |   ├── test_backend_ps
+|   |   |   |   ├── test_backend_svg
+|   |   |   |   ├── test_bbox_tight
+|   |   |   |   ├── test_collections
+|   |   |   |   ├── test_colorbar
+|   |   |   |   ├── test_colors
+|   |   |   |   ├── test_compare_images
+|   |   |   |   ├── test_constrainedlayout
+|   |   |   |   ├── test_contour
+|   |   |   |   ├── test_dates
+|   |   |   |   ├── test_figure
+|   |   |   |   ├── test_image
+|   |   |   |   ├── test_legend
+|   |   |   |   ├── test_lines
+|   |   |   |   ├── test_mathtext
+|   |   |   |   ├── test_offsetbox
+|   |   |   |   ├── test_patches
+|   |   |   |   ├── test_path
+|   |   |   |   ├── test_patheffects
+|   |   |   |   ├── test_png
+|   |   |   |   ├── test_polar
+|   |   |   |   ├── test_quiver
+|   |   |   |   ├── test_scale
+|   |   |   |   ├── test_simplification
+|   |   |   |   ├── test_skew
+|   |   |   |   ├── test_spines
+|   |   |   |   ├── test_streamplot
+|   |   |   |   ├── test_subplots
+|   |   |   |   ├── test_table
+|   |   |   |   ├── test_text
+|   |   |   |   ├── test_tightlayout
+|   |   |   |   ├── test_transforms
+|   |   |   |   ├── test_triangulation
+|   |   |   |   ├── test_ttconv
+|   |   |   |   ├── test_units
+|   |   |   |   ├── test_usetex
+|   |   |   |   └── test_widgets
+|   |   |   ├── conftest.py
+|   |   |   ├── test_afm.py
+|   |   |   ├── test_agg.py
+|   |   |   ├── test_agg_filter.py
+|   |   |   ├── test_animation.py
+|   |   |   ├── test_api.py
+|   |   |   ├── test_arrow_patches.py
+|   |   |   ├── test_artist.py
+|   |   |   ├── test_axes.py
+|   |   |   ├── test_backend_bases.py
+|   |   |   ├── test_backend_cairo.py
+|   |   |   ├── test_backend_gtk3.py
+|   |   |   ├── test_backend_macosx.py
+|   |   |   ├── test_backend_nbagg.py
+|   |   |   ├── test_backend_pdf.py
+|   |   |   ├── test_backend_pgf.py
+|   |   |   ├── test_backend_ps.py
+|   |   |   ├── test_backend_qt.py
+|   |   |   ├── test_backend_svg.py
+|   |   |   ├── test_backend_template.py
+|   |   |   ├── test_backend_tk.py
+|   |   |   ├── test_backend_tools.py
+|   |   |   ├── test_backend_webagg.py
+|   |   |   ├── test_backends_interactive.py
+|   |   |   ├── test_basic.py
+|   |   |   ├── test_bbox_tight.py
+|   |   |   ├── test_category.py
+|   |   |   ├── test_cbook.py
+|   |   |   ├── test_collections.py
+|   |   |   ├── test_colorbar.py
+|   |   |   ├── test_colors.py
+|   |   |   ├── test_compare_images.py
+|   |   |   ├── test_constrainedlayout.py
+|   |   |   ├── test_container.py
+|   |   |   ├── test_contour.py
+|   |   |   ├── test_cycles.py
+|   |   |   ├── test_dates.py
+|   |   |   ├── test_determinism.py
+|   |   |   ├── test_doc.py
+|   |   |   ├── test_dviread.py
+|   |   |   ├── test_figure.py
+|   |   |   ├── test_font_manager.py
+|   |   |   ├── test_fontconfig_pattern.py
+|   |   |   ├── test_ft2font.py
+|   |   |   ├── test_getattr.py
+|   |   |   ├── test_gridspec.py
+|   |   |   ├── test_image.py
+|   |   |   ├── test_legend.py
+|   |   |   ├── test_lines.py
+|   |   |   ├── test_marker.py
+|   |   |   ├── test_mathtext.py
+|   |   |   ├── test_matplotlib.py
+|   |   |   ├── test_mlab.py
+|   |   |   ├── test_offsetbox.py
+|   |   |   ├── test_patches.py
+|   |   |   ├── test_path.py
+|   |   |   ├── test_patheffects.py
+|   |   |   ├── test_pickle.py
+|   |   |   ├── test_png.py
+|   |   |   ├── test_polar.py
+|   |   |   ├── test_preprocess_data.py
+|   |   |   ├── test_pyplot.py
+|   |   |   ├── test_quiver.py
+|   |   |   ├── test_rcparams.py
+|   |   |   ├── test_sankey.py
+|   |   |   ├── test_scale.py
+|   |   |   ├── test_simplification.py
+|   |   |   ├── test_skew.py
+|   |   |   ├── test_sphinxext.py
+|   |   |   ├── test_spines.py
+|   |   |   ├── test_streamplot.py
+|   |   |   ├── test_style.py
+|   |   |   ├── test_subplots.py
+|   |   |   ├── test_table.py
+|   |   |   ├── test_testing.py
+|   |   |   ├── test_texmanager.py
+|   |   |   ├── test_text.py
+|   |   |   ├── test_textpath.py
+|   |   |   ├── test_ticker.py
+|   |   |   ├── test_tightlayout.py
+|   |   |   ├── test_transforms.py
+|   |   |   ├── test_triangulation.py
+|   |   |   ├── test_ttconv.py
+|   |   |   ├── test_type1font.py
+|   |   |   ├── test_units.py
+|   |   |   ├── test_usetex.py
+|   |   |   ├── test_widgets.py
+|   |   |   └── tinypages
+|   |   |       ├── README.md
+|   |   |       ├── _static
+|   |   |       ├── conf.py
+|   |   |       ├── included_plot_21.rst
+|   |   |       ├── index.rst
+|   |   |       ├── range4.py
+|   |   |       ├── range6.py
+|   |   |       └── some_plots.rst
+|   |   ├── texmanager.py
+|   |   ├── text.py
+|   |   ├── textpath.py
+|   |   ├── ticker.py
+|   |   ├── tight_bbox.py
+|   |   ├── tight_layout.py
+|   |   ├── transforms.py
+|   |   ├── tri
+|   |   |   ├── __init__.py
+|   |   |   ├── triangulation.py
+|   |   |   ├── tricontour.py
+|   |   |   ├── trifinder.py
+|   |   |   ├── triinterpolate.py
+|   |   |   ├── tripcolor.py
+|   |   |   ├── triplot.py
+|   |   |   ├── trirefine.py
+|   |   |   └── tritools.py
+|   |   ├── type1font.py
+|   |   ├── units.py
+|   |   └── widgets.py
+|   ├── mpl_toolkits
+|   |   ├── __init__.py
+|   |   ├── axes_grid1
+|   |   |   ├── __init__.py
+|   |   |   ├── anchored_artists.py
+|   |   |   ├── axes_divider.py
+|   |   |   ├── axes_grid.py
+|   |   |   ├── axes_rgb.py
+|   |   |   ├── axes_size.py
+|   |   |   ├── inset_locator.py
+|   |   |   ├── mpl_axes.py
+|   |   |   └── parasite_axes.py
+|   |   ├── axisartist
+|   |   |   ├── __init__.py
+|   |   |   ├── angle_helper.py
+|   |   |   ├── axes_divider.py
+|   |   |   ├── axes_grid.py
+|   |   |   ├── axes_rgb.py
+|   |   |   ├── axis_artist.py
+|   |   |   ├── axisline_style.py
+|   |   |   ├── axislines.py
+|   |   |   ├── clip_path.py
+|   |   |   ├── floating_axes.py
+|   |   |   ├── grid_finder.py
+|   |   |   ├── grid_helper_curvelinear.py
+|   |   |   └── parasite_axes.py
+|   |   ├── mplot3d
+|   |   |   ├── __init__.py
+|   |   |   ├── art3d.py
+|   |   |   ├── axes3d.py
+|   |   |   ├── axis3d.py
+|   |   |   └── proj3d.py
+|   |   └── tests
+|   |       ├── __init__.py
+|   |       ├── baseline_images
+|   |       |   ├── test_axes_grid1
+|   |       |   ├── test_axisartist_axis_artist
+|   |       |   ├── test_axisartist_axislines
+|   |       |   ├── test_axisartist_clip_path
+|   |       |   ├── test_axisartist_floating_axes
+|   |       |   ├── test_axisartist_grid_helper_curvelinear
+|   |       |   └── test_mplot3d
+|   |       ├── conftest.py
+|   |       ├── test_axes_grid1.py
+|   |       ├── test_axisartist_angle_helper.py
+|   |       ├── test_axisartist_axis_artist.py
+|   |       ├── test_axisartist_axislines.py
+|   |       ├── test_axisartist_clip_path.py
+|   |       ├── test_axisartist_floating_axes.py
+|   |       ├── test_axisartist_grid_finder.py
+|   |       ├── test_axisartist_grid_helper_curvelinear.py
+|   |       └── test_mplot3d.py
+|   └── pylab.py
+├── plot_types
+|   ├── README.rst
+|   ├── arrays
+|   |   ├── README.rst
+|   |   ├── barbs.py
+|   |   ├── contour.py
+|   |   ├── contourf.py
+|   |   ├── imshow.py
+|   |   ├── pcolormesh.py
+|   |   ├── quiver.py
+|   |   └── streamplot.py
+|   ├── basic
+|   |   ├── README.rst
+|   |   ├── bar.py
+|   |   ├── fill_between.py
+|   |   ├── plot.py
+|   |   ├── scatter_plot.py
+|   |   ├── stackplot.py
+|   |   ├── stem.py
+|   |   └── step.py
+|   ├── stats
+|   |   ├── README.rst
+|   |   ├── boxplot_plot.py
+|   |   ├── errorbar_plot.py
+|   |   ├── eventplot.py
+|   |   ├── hexbin.py
+|   |   ├── hist2d.py
+|   |   ├── hist_plot.py
+|   |   ├── pie.py
+|   |   └── violin.py
+|   └── unstructured
+|       ├── README.rst
+|       ├── tricontour.py
+|       ├── tricontourf.py
+|       ├── tripcolor.py
+|       └── triplot.py
+├── requirements
+|   ├── dev
+|   |   └── dev-requirements.txt
+|   ├── doc
+|   |   └── doc-requirements.txt
+|   └── testing
+|       ├── all.txt
+|       ├── extra.txt
+|       ├── flake8.txt
+|       └── minver.txt
+├── setup.py
+├── setupext.py
+├── src
+|   ├── _backend_agg.cpp
+|   ├── _backend_agg_wrapper.cpp
+|   ├── _c_internal_utils.c
+|   ├── _image_wrapper.cpp
+|   ├── _path_wrapper.cpp
+|   ├── _qhull_wrapper.cpp
+|   ├── _tkagg.cpp
+|   ├── _ttconv.cpp
+|   ├── checkdep_freetype2.c
+|   ├── doc
+|   ├── ft2font.cpp
+|   ├── ft2font_wrapper.cpp
+|   ├── py_converters.cpp
+|   └── tri
+|       ├── _tri.cpp
+|       └── _tri_wrapper.cpp
+├── tests.py
+├── tools
+|   ├── README.txt
+|   ├── boilerplate.py
+|   ├── cache_zenodo_svg.py
+|   ├── create_DejaVuDisplay.sh
+|   ├── embed_js.py
+|   ├── gh_api.py
+|   ├── github_stats.py
+|   ├── make_icons.py
+|   ├── memleak.py
+|   ├── run_examples.py
+|   ├── subset.py
+|   ├── triage_tests.py
+|   └── visualize_tests.py
+└── tutorials
+    ├── README.txt
+    ├── advanced
+    |   ├── README.txt
+    |   ├── blitting.py
+    |   ├── path_tutorial.py
+    |   ├── patheffects_guide.py
+    |   └── transforms_tutorial.py
+    ├── colors
+    |   ├── README.txt
+    |   ├── colorbar_only.py
+    |   ├── colormap-manipulation.py
+    |   ├── colormapnorms.py
+    |   ├── colormaps.py
+    |   └── colors.py
+    ├── intermediate
+    |   ├── README.txt
+    |   ├── arranging_axes.py
+    |   ├── artists.py
+    |   ├── autoscale.py
+    |   ├── color_cycle.py
+    |   ├── constrainedlayout_guide.py
+    |   ├── imshow_extent.py
+    |   ├── legend_guide.py
+    |   └── tight_layout_guide.py
+    ├── introductory
+    |   ├── README.txt
+    |   ├── customizing.py
+    |   ├── images.py
+    |   ├── lifecycle.py
+    |   ├── pyplot.py
+    |   └── quick_start.py
+    ├── provisional
+    |   ├── README.txt
+    |   └── mosaic.py
+    ├── text
+    |   ├── README.txt
+    |   ├── annotations.py
+    |   ├── mathtext.py
+    |   ├── pgf.py
+    |   ├── text_intro.py
+    |   ├── text_props.py
+    |   └── usetex.py
+    └── toolkits
+        ├── README.txt
+        ├── axes_grid.py
+        ├── axisartist.py
+        └── mplot3d.py
+--- END FILE TREE ---
+    
+This is the original user query:
+--- BEGIN ORIGINAL QUERY ---
+We are currently solving the following issue within our repository. Here is the issue text:
+
+--- BEGIN ISSUE ---
+Issue title:
+[Bug]: ax.bar raises for all-nan data on matplotlib 3.6.1 
+
+Issue description: 
+### Bug summary
+
+`ax.bar` raises an exception in 3.6.1 when passed only nan data. This irrevocably breaks seaborn's histogram function (which draws and then removes a "phantom" bar to trip the color cycle).
+
+### Code for reproduction
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+f, ax = plt.subplots()
+ax.bar([np.nan], [np.nan])
+```
+
+
+### Actual outcome
+
+```python-traceback
+---------------------------------------------------------------------------
+StopIteration                             Traceback (most recent call last)
+Cell In [1], line 4
+      2 import matplotlib.pyplot as plt
+      3 f, ax = plt.subplots()
+----> 4 ax.bar([np.nan], [np.nan])[0].get_x()
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/__init__.py:1423, in _preprocess_data.<locals>.inner(ax, data, *args, **kwargs)
+   1420 @functools.wraps(func)
+   1421 def inner(ax, *args, data=None, **kwargs):
+   1422     if data is None:
+-> 1423         return func(ax, *map(sanitize_sequence, args), **kwargs)
+   1425     bound = new_sig.bind(ax, *args, **kwargs)
+   1426     auto_label = (bound.arguments.get(label_namer)
+   1427                   or bound.kwargs.get(label_namer))
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2373, in Axes.bar(self, x, height, width, bottom, align, **kwargs)
+   2371 x0 = x
+   2372 x = np.asarray(self.convert_xunits(x))
+-> 2373 width = self._convert_dx(width, x0, x, self.convert_xunits)
+   2374 if xerr is not None:
+   2375     xerr = self._convert_dx(xerr, x0, x, self.convert_xunits)
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/axes/_axes.py:2182, in Axes._convert_dx(dx, x0, xconv, convert)
+   2170 try:
+   2171     # attempt to add the width to x0; this works for
+   2172     # datetime+timedelta, for instance
+   (...)
+   2179     # removes the units from unit packages like `pint` that
+   2180     # wrap numpy arrays.
+   2181     try:
+-> 2182         x0 = cbook._safe_first_finite(x0)
+   2183     except (TypeError, IndexError, KeyError):
+   2184         pass
+
+File ~/miniconda/envs/py310/lib/python3.10/site-packages/matplotlib/cbook/__init__.py:1749, in _safe_first_finite(obj, skip_nonfinite)
+   1746     raise RuntimeError("matplotlib does not "
+   1747                        "support generators as input")
+   1748 else:
+-> 1749     return next(val for val in obj if safe_isfinite(val))
+
+StopIteration: 
+```
+
+### Expected outcome
+
+On 3.6.0 this returns a `BarCollection` with one Rectangle, having `nan` for `x` and `height`.
+
+### Additional information
+
+I assume it's related to this bullet in the release notes:
+
+- Fix barplot being empty when first element is NaN
+
+But I don't know the context for it to investigate further (could these link to PRs?)
+
+Further debugging:
+
+```python
+ax.bar([np.nan], [0])  # Raises
+ax.bar([0], [np.nan])  # Works
+```
+
+So it's about the x position specifically.
+
+### Operating system
+
+Macos
+
+### Matplotlib Version
+
+3.6.1
+
+### Matplotlib Backend
+
+_No response_
+
+### Python version
+
+_No response_
+
+### Jupyter version
+
+_No response_
+
+### Installation
+
+pip
+
+Issue comments:
+
+--- END ISSUE ---
+
+And we need to find relevant existing tests that can be used as regression tests for this issue.
+
+OBJECTIVE: Find 8 relevant existing test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+including ALL necessary imports, test setup, mocking, assertions, and any test method used in the test case.
+
+<reasoning>
+1. Analyze bug characteristics:
+   - Core functionality being tested
+   - Input parameters and configurations
+   - Expected error conditions
+   - Environmental dependencies
+
+2. Search requirements:
+   - Required imports and dependencies
+   - Test files exercising similar functionality
+   - Mock/fixture setup patterns
+   - Assertion styles
+   - Error handling tests
+
+3. Focus areas:
+   - All necessary imports (standard library, testing frameworks, mocking utilities)
+   - Dependencies and third-party packages
+   - Test setup and teardown
+   - Mock object configuration
+   - Network/external service simulation
+   - Error condition verification
+</reasoning>
+
+REQUIREMENTS:
+- Return 8 complete, self-contained test cases that most likely to break existing functionality if this issue is fixed or new changes apply.
+- Must include the identification of the test case (e.g., class name and method name)
+- Must preserve exact file paths and line numbers
+
+<examples>
+--- BEGIN ISSUE ---
+Title: parse_iso8601 drops timezone information for 'Z' suffix
+Body: The helper `parse_iso8601` in `utils/datetime.py` incorrectly returns a naive datetime when the input ends with 'Z' (UTC). For example, "2024-10-12T09:15:00Z" becomes a naive dt instead of timezone-aware UTC. This breaks downstream scheduling.
+Expected: Return timezone-aware datetime in UTC for 'Z' inputs and preserve offsets like "+09:00".
+--- END ISSUE ---
+--- BEGIN TEST CASES ---
+File: tests/test_datetime.py
+Line Number: 118-156
+Content:
+import datetime
+import pytest
+
+from utils.datetime import parse_iso8601  # target under test
+
+def test_z_suffix_returns_utc_aware(self):
+    # Input ending with 'Z' should be interpreted as UTC and be timezone-aware
+    s = "2024-10-12T09:15:00Z"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    # Use UTC comparison that works across pytz/zoneinfo
+    assert dt.utcoffset() == datetime.timedelta(0)
+
+def test_offset_preserved(self):
+    # Offset like +09:00 should be preserved (e.g., Asia/Tokyo offset)
+    s = "2024-10-12T18:00:00+09:00"
+    dt = parse_iso8601(s)
+
+    assert isinstance(dt, datetime.datetime)
+    assert dt.tzinfo is not None
+    assert dt.utcoffset() == datetime.timedelta(hours=9)
+--- END TEST CASES ---
+</example>
+
+--- END ORIGINAL QUERY ---
+
+All aggregated context for the queries:
+--- BEGIN AGGREGATED CONTEXT ---
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 1715 - 1718
+Content:
+1715. def test_nan_bar_values():
+1716.     fig, ax = plt.subplots()
+1717.     ax.bar([0, 1], [np.nan, 4])
+1718. 
+
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 1720 - 1723
+Content:
+1720. def test_bar_ticklabel_fail():
+1721.     fig, ax = plt.subplots()
+1722.     ax.bar([], [])
+1723. 
+
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 7894 - 7901
+Content:
+7894. def test_bar_label_nan_ydata():
+7895.     ax = plt.gca()
+7896.     bars = ax.bar([2, 3], [np.nan, 1])
+7897.     labels = ax.bar_label(bars)
+7898.     assert [l.get_text() for l in labels] == ['', '1']
+7899.     assert labels[0].xy == (2, 0)
+7900.     assert labels[0].get_va() == 'bottom'
+7901. 
+
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 600 - 610
+Content:
+600. def test_flatiter():
+601.     x = np.arange(5)
+602.     it = x.flat
+603.     assert 0 == next(it)
+604.     assert 1 == next(it)
+605.     ret = cbook._safe_first_finite(it)
+606.     assert ret == 0
+607. 
+608.     assert 0 == next(it)
+609.     assert 1 == next(it)
+610. 
+
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 893 - 898
+Content:
+893. def test_safe_first_element_with_none():
+894.     datetime_lst = [date.today() + timedelta(days=i) for i in range(10)]
+895.     datetime_lst[0] = None
+896.     actual = cbook._safe_first_finite(datetime_lst)
+897.     assert actual is not None and actual == datetime_lst[1]
+898. 
+
+
+File: lib/matplotlib/tests/test_cbook.py
+Line number range: 19 - 50
+Content:
+19. class Test_delete_masked_points:
+20.     def test_bad_first_arg(self):
+21.         with pytest.raises(ValueError):
+22.             delete_masked_points('a string', np.arange(1.0, 7.0))
+23. 
+24.     def test_string_seq(self):
+25.         a1 = ['a', 'b', 'c', 'd', 'e', 'f']
+26.         a2 = [1, 2, 3, np.nan, np.nan, 6]
+27.         result1, result2 = delete_masked_points(a1, a2)
+28.         ind = [0, 1, 2, 5]
+29.         assert_array_equal(result1, np.array(a1)[ind])
+30.         assert_array_equal(result2, np.array(a2)[ind])
+31. 
+32.     def test_datetime(self):
+33.         dates = [datetime(2008, 1, 1), datetime(2008, 1, 2),
+34.                  datetime(2008, 1, 3), datetime(2008, 1, 4),
+35.                  datetime(2008, 1, 5), datetime(2008, 1, 6)]
+36.         a_masked = np.ma.array([1, 2, 3, np.nan, np.nan, 6],
+37.                                mask=[False, False, True, True, False, False])
+38.         actual = delete_masked_points(dates, a_masked)
+39.         ind = [0, 1, 5]
+40.         assert_array_equal(actual[0], np.array(dates)[ind])
+41.         assert_array_equal(actual[1], a_masked[ind].compressed())
+42. 
+43.     def test_rgba(self):
+44.         a_masked = np.ma.array([1, 2, 3, np.nan, np.nan, 6],
+45.                                mask=[False, False, True, True, False, False])
+46.         a_rgba = mcolors.to_rgba_array(['r', 'g', 'b', 'c', 'm', 'y'])
+47.         actual = delete_masked_points(a_masked, a_rgba)
+48.         ind = [0, 1, 5]
+49.         assert_array_equal(actual[0], a_masked[ind].compressed())
+50.         assert_array_equal(actual[1], a_rgba[ind])
+
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 7079 - 7082
+Content:
+7079. def test_scatter_empty_data():
+7080.     # making sure this does not raise an exception
+7081.     plt.scatter([], [])
+7082.     plt.scatter([], [], s=[], c=[])
+
+
+File: lib/matplotlib/tests/test_axes.py
+Line number range: 2260 - 2262
+Content:
+2260. def test_stairs_invalid_nan():
+2261.     with pytest.raises(ValueError, match='Nan values in "edges"'):
+2262.         plt.stairs([1, 2], [0, np.nan, 1])
+
+--- END AGGREGATED CONTEXT ---
+
+Analyze if the current context is sufficient to complete the user query by considering:
+1. Do you understand the full scope and requirements of the user query?
+2. Do you have access to all relevant code that needs to be examined or modified?
+3. Are all critical dependencies and their interfaces visible?
+4. Is there enough context about the system architecture and design patterns?
+5. Do you have access to relevant documentation or tests if needed?
+
+Only request additional context if essential information is missing. Ensure you're not requesting:
+- Information already provided in previous queries
+- Nice-to-have but non-essential details
+- Implementation details that aren't relevant to the current task
+
+If additional context is needed:
+- Be specific about what you're looking for
+- Consider both code and documentation that might be relevant
+
+2025-09-11 10:23:27,418 - thread-140190462883520.prometheus.lang_graph.nodes.context_refine_node - DEBUG - reasoning="1. The current context shows several test cases related to NaN handling in bar plots and other matplotlib functions, but it doesn't provide the complete implementation details of the `_safe_first_finite` function that's causing the StopIteration error.\n2. The issue specifically mentions that the problem is in `cbook._safe_first_finite` when it encounters all-NaN data, but we don't have the implementation of this function in the current context.\n3. We need to understand how `_safe_first_finite` works and what changes were made in version 3.6.1 that broke the all-NaN case.\n4. We also need to see the complete bar plot implementation to understand how `_convert_dx` calls `_safe_first_finite` and what the expected behavior should be.\n5. Without the implementation details of these core functions, we cannot properly identify the most relevant test cases that would break if the issue is fixed." refined_query='Please provide the implementation details of the following functions:\n1. `cbook._safe_first_finite` from lib/matplotlib/cbook/__init__.py\n2. The `Axes._convert_dx` method from lib/matplotlib/axes/_axes.py\n3. The `Axes.bar` method implementation from lib/matplotlib/axes/_axes.py\n4. Any recent changes or commits related to bar plot NaN handling mentioned in the release notes'
+2025-09-11 10:23:32,181 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content="I'll help you find the implementation details for those functions and any related changes. Let me start by examining the specific files and functions you mentioned." additional_kwargs={'tool_calls': [{'id': 'call_00_ahzD9tPp0Mj70S9qp3ZjZsyL', 'function': {'arguments': '{"relative_path": "lib/matplotlib/cbook/__init__.py", "text": "def _safe_first_finite"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 74, 'prompt_tokens': 21372, 'total_tokens': 21446, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 21312}, 'prompt_cache_hit_tokens': 21312, 'prompt_cache_miss_tokens': 60}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--e9a88c0a-ea95-4564-96af-2bc0fe791680-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/cbook/__init__.py', 'text': 'def _safe_first_finite'}, 'id': 'call_00_ahzD9tPp0Mj70S9qp3ZjZsyL', 'type': 'tool_call'}] usage_metadata={'input_tokens': 21372, 'output_tokens': 74, 'total_tokens': 21446, 'input_token_details': {'cache_read': 21312}, 'output_token_details': {}}
+2025-09-11 10:23:37,581 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_C1Bfq1o8Ag1G7zBrn4a7TiLh', 'function': {'arguments': '{"relative_path": "lib/matplotlib/axes/_axes.py", "text": "def _convert_dx"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 42, 'prompt_tokens': 21925, 'total_tokens': 21967, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 21888}, 'prompt_cache_hit_tokens': 21888, 'prompt_cache_miss_tokens': 37}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_Og1AzCtNZz_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--78f4feea-2862-4e17-aaf7-b6dfc9f262f2-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/axes/_axes.py', 'text': 'def _convert_dx'}, 'id': 'call_00_C1Bfq1o8Ag1G7zBrn4a7TiLh', 'type': 'tool_call'}] usage_metadata={'input_tokens': 21925, 'output_tokens': 42, 'total_tokens': 21967, 'input_token_details': {'cache_read': 21888}, 'output_token_details': {}}
+2025-09-11 10:24:39,610 - thread-140190462883520.prometheus.lang_graph.nodes.context_provider_node - DEBUG - content='' additional_kwargs={'tool_calls': [{'id': 'call_00_I6dXpSCKooXPYDy9BTg0CXuz', 'function': {'arguments': '{"relative_path": "lib/matplotlib/axes/_axes.py", "text": "def bar"}', 'name': 'find_ast_node_with_text_in_file_with_relative_path'}, 'type': 'function', 'index': 0}], 'refusal': None} response_metadata={'token_usage': {'completion_tokens': 39, 'prompt_tokens': 109082, 'total_tokens': 109121, 'completion_tokens_details': None, 'prompt_tokens_details': {'audio_tokens': None, 'cached_tokens': 21248}, 'prompt_cache_hit_tokens': 21248, 'prompt_cache_miss_tokens': 87834}, 'model_name': 'deepseek-chat', 'system_fingerprint': 'fp_08f168e49b_prod0820_fp8_kvcache', 'finish_reason': 'tool_calls', 'logprobs': None} id='run--6ead8487-e9c4-42be-8546-c00dc749cdca-0' tool_calls=[{'name': 'find_ast_node_with_text_in_file_with_relative_path', 'args': {'relative_path': 'lib/matplotlib/axes/_axes.py', 'text': 'def bar'}, 'id': 'call_00_I6dXpSCKooXPYDy9BTg0CXuz', 'type': 'tool_call'}] usage_metadata={'input_tokens': 109082, 'output_tokens': 39, 'total_tokens': 109121, 'input_token_details': {'cache_read': 21248}, 'output_token_details': {}}
+2025-09-11 10:24:40,506 - thread-140190462883520.prometheus.docker.user_defined_container.UserDefinedContainer - INFO - Cleaning up container and temporary files
+2025-09-11 10:24:50,679 - thread-140190462883520.prometheus - ERROR - Error in answer_issue: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 204236 tokens (196236 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+Traceback (most recent call last):
+  File "/app/prometheus/app/services/issue_service.py", line 121, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/graphs/issue_graph.py", line 133, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/issue_bug_subgraph_node.py", line 54, in __call__
+    output_state = self.issue_bug_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/issue_bug_subgraph.py", line 151, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/bug_get_regression_tests_subgraph_node.py", line 39, in __call__
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/bug_get_regression_tests_subgraph.py", line 132, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 36, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 137, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/lang_graph/nodes/context_provider_node.py", line 307, in __call__
+    response = self.model_with_tools.invoke(message_history)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/runnables/base.py", line 5430, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/app/prometheus/chat_models/custom_chat_openai.py", line 31, in invoke
+    return super().invoke(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 372, in invoke
+    self.generate_prompt(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 957, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 776, in generate
+    self._generate_with_cache(
+  File "/usr/local/lib/python3.11/site-packages/langchain_core/language_models/chat_models.py", line 1022, in _generate_with_cache
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/langchain_openai/chat_models/base.py", line 689, in _generate
+    response = self.client.create(**payload)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1147, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/openai/_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "This model's maximum context length is 131072 tokens. However, you requested 204236 tokens (196236 in the messages, 8000 in the completion). Please reduce the length of the messages or completion.", 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+
