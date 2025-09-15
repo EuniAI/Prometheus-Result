@@ -28,16 +28,19 @@ def rename_log(log_dir, filename, instance_id):
 
 def rename_logs(log_dir, dataset_name):
     dataset = load_dataset(dataset_name, split='test')
-    result = None
+    num = 0
+    num_already_renamed = 0
 
     for data in dataset:
         logs = os.listdir(log_dir)
         logs.sort()
 
         instance_id = data['instance_id']
+        result = None
 
         # skip if already renamed
         if f"{instance_id}.log" in logs:
+            num_already_renamed += 1
             continue
 
         repo = data['repo']
@@ -52,7 +55,12 @@ def rename_logs(log_dir, dataset_name):
         if not result:
             print(f"Warning: No log file found for instance_id {instance_id}")
             continue
+
+        num += 1
         rename_log(log_dir, result, instance_id)
+    print(f"Renamed {num} log files")
+    print(f"Already renamed {num_already_renamed} log files")
+
 
 def remove_non_log_files(log_dir, dataset_name):
     dataset = load_dataset(dataset_name, split='test')
