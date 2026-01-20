@@ -6,6 +6,8 @@ SWEBENCH_IMAGE_FORMAT = (
     "swebench/sweb.eval.x86_64.{repo_prefix}_1776_{instance_id_suffix}:v1"
 )
 
+SWE_POLYBENCH_IMAGE_FORMAT = "ghcr.io/timesler/swe-polybench.eval.x86_64.{instance_id}:latest"
+
 
 def get_swebench_image(instance_id: str, repo: str) -> str:
     """
@@ -16,6 +18,31 @@ def get_swebench_image(instance_id: str, repo: str) -> str:
     return SWEBENCH_IMAGE_FORMAT.format(
         repo_prefix=repo_prefix, instance_id_suffix=instance_id_suffix
     )
+
+
+def get_swe_polybench_image(instance_id: str) -> str:
+    return SWE_POLYBENCH_IMAGE_FORMAT.format(instance_id=instance_id)
+
+
+def get_swe_bench_pro_image(uid, repo_name, dockerhub_username="jefzda"):
+    repo_base, repo_name_only = repo_name.lower().split("/")
+    hsh = uid.replace("instance_", "")
+
+    if uid == "instance_element-hq__element-web-ec0f940ef0e8e3b61078f145f34dc40d1938e6c5-vnan":
+        repo_name_only = 'element-web'  # Keep full name for this one case
+    elif 'element-hq' in repo_name.lower() and 'element-web' in repo_name.lower():
+        repo_name_only = 'element'
+        if hsh.endswith('-vnan'):
+            hsh = hsh[:-5]
+    # All other repos: strip -vnan suffix
+    elif hsh.endswith('-vnan'):
+        hsh = hsh[:-5]
+
+    tag = f"{repo_base}.{repo_name_only}-{hsh}"
+    if len(tag) > 128:
+        tag = tag[:128]
+
+    return f"{dockerhub_username}/sweap-images:{tag}"
 
 
 def rename_log(log_dir, filename, instance_id):
@@ -44,7 +71,12 @@ def rename_logs(log_dir, dataset_name):
             continue
 
         repo = data['repo']
-        image_name = get_swebench_image(instance_id, repo)
+        if dataset_name == "AmazonScience/SWE-PolyBench_Verified":
+            image_name = get_swe_polybench_image(instance_id)
+        elif dataset_name == "ScaleAI/SWE-bench_Pro":
+            image_name = get_swe_bench_pro_image(instance_id, repo)
+        else:
+            image_name = get_swebench_image(instance_id, repo)
 
         for filename in logs:
             if filename.endswith(".log"):
